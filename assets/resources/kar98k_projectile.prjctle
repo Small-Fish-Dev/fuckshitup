@@ -1,0 +1,14 @@
+{
+  "DamageRange": "10 60",
+  "Caliber": "_7_62x54mmR",
+  "GravityMultiplier": 1,
+  "TravelDistance": 400,
+  "Penetration": 0.6,
+  "ForceLoss": 0.15,
+  "ForceMultiplier": 1.5,
+  "RicochetChance": 0.1,
+  "RicochetThreshold": 0.15,
+  "MaxRicochets": 2,
+  "__references": [],
+  "__version": 0
+}

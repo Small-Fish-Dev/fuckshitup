@@ -1,0 +1,17 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root />
+
+@code {
+	private Texture _texture;
+	public Texture Texture
+	{
+		get => _texture;
+		set
+		{
+			_texture = value;
+			Style.SetBackgroundImage( value );
+		}
+	}
+}

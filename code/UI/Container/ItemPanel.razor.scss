@@ -1,0 +1,63 @@
+@import "/UI/Style.scss";
+
+ItemPanel {
+    display: none;
+    position: relative;
+    border: 1px rgba(white, 0);
+    background-image: linear-gradient(darken($white, 0.2) 0%, darken($white, 0.45) 100%);
+
+    &.visible {
+        display: flex;
+    }
+
+    > .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px rgba(black, 0.75);
+    }
+
+    > .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        > .name {
+            position: absolute;
+            padding-left: 5px;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            right: 5px;
+            top: 2px;
+            color: $white;
+            font-family: $font-main;
+            font-size: 16px;
+            height: 20px;
+        }
+
+        > .content {
+            position: relative;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
+            padding: 8px;
+            justify-content: center;
+            align-items: center;
+
+            > TexturePanel {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                image-rendering: bilinear;
+            }
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

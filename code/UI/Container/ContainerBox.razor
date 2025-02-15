@@ -1,0 +1,36 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+@if ( Box is null )
+	return;
+
+<root>
+	<div 
+		class="background inner-border" 
+		style="background-size: @(GridSize)px;"
+	/>
+
+	@foreach ( var (position, item) in Box.References )
+	{
+		if ( !item.IsValid() )
+			continue;
+
+		<ItemPanel
+			Item=@item
+			GridSize=@GridSize
+			style="left: @(position.x * GridSize - 1)px; top: @(position.y * GridSize - 1)px;
+				   width: @(item.Size.x * GridSize - 1)px; height: @(item.Size.y * GridSize - 1)px;"
+		/>
+	}
+</root>
+
+@code {
+	public new SlotCollection.Box Box { get; set; }
+	public float GridSize { get; set; }
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			Box is null,
+			Box?.References?.HashCombine( kvp => kvp.Value?.GetHashCode() ?? 0 )
+		);
+}

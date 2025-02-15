@@ -1,0 +1,91 @@
+﻿﻿@namespace FUCKSHIT.UI
+@inherits ScenePanel
+
+<root />
+
+@code {
+	private Character Character => Character.Local;
+
+	private SceneModel SceneModel { get; set; }
+
+	private SceneDirectionalLight Sun { get; set; }
+	private SceneLight Light { get; set; }
+
+	private bool _isDragging;
+	private float _yaw;
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		base.OnAfterTreeRender( firstTime );
+
+		World ??= new();
+		Camera.FieldOfView = 30;
+		SetupLighting();
+	}
+
+	private void SetupLighting()
+	{
+		if ( !World.IsValid() ) return;
+
+		Sun ??= new SceneDirectionalLight( World, Rotation.From( -45, -45, 0 ), Color.White );
+
+		Light ??= new SceneLight( World, 0, 500f, Color.White * 2f );
+		Light.Position = Camera.Position + Camera.Rotation.Forward * 10f;
+	}
+
+	public void UpdateAppearance()
+	{
+		const string CHAR_PATH = "models/guy/guy.vmdl";
+		SceneModel ??= new SceneModel( World, CHAR_PATH, global::Transform.Zero );
+
+		Update();
+	}
+
+	private void Update()
+	{
+		if ( SceneModel is null )
+			return;
+
+		var mousePos = MousePosition;
+		var headPos = Camera.ToScreen( (SceneModel.GetAttachment( "eyes", false ) ?? Transform.Zero).Position );
+		var localPos = mousePos - headPos;
+
+		/*if ( _isDragging )
+			_yaw += Mouse.Delta.x * 0.20f;*/
+
+		SceneModel.SetAnimParameter( "lookat", new Vector3( 1000f, localPos.x, -localPos.y ) * SceneModel.Rotation.Inverse );
+
+		SceneModel.Update( RealTime.Delta );
+
+		SceneModel.SetAnimParameter( "height", Character.Height );
+		SceneModel.SetAnimParameter( "weight", Character.Fatness );
+
+		SceneModel.Morphs.Set( "fat", Character.Fatness );
+		SceneModel.Rotation = Rotation.From( 0, _yaw, 0 );
+	}
+
+	public override void OnButtonEvent( ButtonEvent e )
+	{
+		if ( e.Button == "mouseleft" )
+			_isDragging = e.Pressed;
+
+		base.OnButtonEvent( e );
+	}
+
+	public override void Tick()
+	{
+		if ( !Character.IsValid() )
+			return;
+
+		if ( SceneModel is null )
+			UpdateAppearance();
+
+		Update();
+
+		var transform = Camera.FitModel( SceneModel );
+		Camera.Position = transform.Position;
+		Camera.Rotation = transform.Rotation;
+
+		SetupLighting();
+	}
+}

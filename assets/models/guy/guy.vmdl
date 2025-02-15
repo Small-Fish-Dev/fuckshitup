@@ -1,0 +1,4813 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = [  ]
+						use_global_default = false
+						global_default_material = ""
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						name = "LOD"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "head"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/player_head.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_head",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "torso"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/player_torso.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_torso",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "hands"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/player_hands.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_hands",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "legs"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/player_legs.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "feet"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/player_feet.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_feet",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "penoid"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+										]
+									},
+								]
+								filename = "models/guy/penoid.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = false
+									exception_list = [  ]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "LOD1"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "head1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/player_head.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_head",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "torso1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/player_torso.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_torso",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "hands1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/player_hands.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_hands",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "legs1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/player_legs.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "feet1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/player_feet.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_feet",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "penoid1"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"hand_IK_L",
+											"hand_IK_R",
+											"hand_L_to_R",
+											"hand_R_to_L",
+											"arm_helper_L",
+											"arm_helper_R",
+										]
+									},
+								]
+								filename = "models/guy/penoid.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = false
+									exception_list = [  ]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "LOD2"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "head2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/player_head.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_head",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "torso2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/player_torso.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_torso",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "hands2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/player_hands.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_hands",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "legs2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/player_legs.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "feet2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/player_feet.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_feet",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "penoid2"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"head",
+											"hand_L",
+											"hand_R",
+											"foot_L",
+											"foot_R",
+										]
+									},
+								]
+								filename = "models/guy/penoid.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = false
+									exception_list = [  ]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "LOD3"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "head3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/player_head.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_head",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "torso3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/player_torso.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_torso",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "hands3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/player_hands.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_hands",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "legs3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/player_legs.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "feet3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/player_feet.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"man",
+										"guy_legs",
+										"guy_feet",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "penoid3"
+								children = 
+								[
+									{
+										_class = "RemoveBoneAndChildren"
+										bone_names = 
+										[
+											"penoid",
+											"penoid_jiggle",
+											"penoid_max",
+											"penoid_min",
+											"root",
+											"arm_helper_L",
+											"arm_helper_R",
+											"neck",
+											"arm_lower_L",
+											"arm_lower_R",
+											"leg_lower_L",
+											"leg_lower_R",
+										]
+									},
+								]
+								filename = "models/guy/penoid.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = false
+									exception_list = [  ]
+								}
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "Feet"
+						children = 
+						[
+							{
+								_class = "Foot"
+								name = "foot_R"
+								anklebone = "foot_R"
+								toebone = ""
+								balloffset = [ 6.36238, -1.640113, -0.344668 ]
+								heeloffset = [ 1.720289, -3.89865, 0.015931 ]
+								autolevel = true
+								traceheight = 40.0
+								traceradius = 0.5
+							},
+							{
+								_class = "Foot"
+								name = "foot_L"
+								anklebone = "foot_L"
+								toebone = ""
+								balloffset = [ 6.382753, -1.679912, -0.341087 ]
+								heeloffset = [ 1.720289, -3.89865, 0.015931 ]
+								autolevel = true
+								traceheight = 40.0
+								traceradius = 0.5
+							},
+						]
+						locktolerance = 0.8
+						heighttolerance = 1.5
+						sanitizetrajectories = true
+					},
+					{
+						_class = "GenericGameData"
+						game_class = "ao_proxy_box"
+						game_keys = 
+						{
+							bonename = "foot_R"
+							dimensions = [ 3.78531, 8.97545, 3.98346 ]
+							offset_origin = [ 0.102604, 3.19962, -0.893066 ]
+							offset_angles = [ 5.52734, 1.47457, 26.565001 ]
+						}
+					},
+					{
+						_class = "GenericGameData"
+						game_class = "ao_proxy_box"
+						game_keys = 
+						{
+							bonename = "foot_L"
+							dimensions = [ 3.785311, 8.975452, 3.983461 ]
+							offset_origin = [ 0.102604, 3.199619, -0.893066 ]
+							offset_angles = [ -5.527341, 1.474566, 26.564981 ]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 1.0
+								},
+								{
+									name = "neck"
+									weight = 0.5
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_spine"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 1.0
+								},
+								{
+									name = "neck"
+									weight = 0.4
+								},
+								{
+									name = "spine2"
+									weight = 0.4
+								},
+								{
+									name = "spine1"
+									weight = 0.2
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_torso"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 1.0
+								},
+								{
+									name = "neck"
+									weight = 1.0
+								},
+								{
+									name = "spine2"
+									weight = 1.0
+								},
+								{
+									name = "spine1"
+									weight = 0.5
+								},
+								{
+									name = "spine0"
+									weight = 0.25
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_torso_pelvis"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 1.0
+								},
+								{
+									name = "neck"
+									weight = 1.0
+								},
+								{
+									name = "spine2"
+									weight = 1.0
+								},
+								{
+									name = "spine1"
+									weight = 0.75
+								},
+								{
+									name = "spine0"
+									weight = 0.5
+								},
+								{
+									name = "pelvis"
+									weight = 0.25
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "right_arm"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "hand_R"
+									weight = 1.0
+								},
+								{
+									name = "arm_lower_R"
+									weight = 0.66
+								},
+								{
+									name = "arm_upper_R"
+									weight = 0.339
+								},
+								{
+									name = "clavicle_R"
+									weight = 0.196
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_weak"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 0.8
+								},
+								{
+									name = "neck"
+									weight = 0.4
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_spine_weak"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 0.5
+								},
+								{
+									name = "neck"
+									weight = 0.25
+								},
+								{
+									name = "spine2"
+									weight = 0.5
+								},
+								{
+									name = "spine1"
+									weight = 0.2
+								},
+							]
+						}
+					},
+					{
+						_class = "LookAtChain"
+						name = "lookat_torsoweak"
+						lookat_chain = 
+						{
+							name = ""
+							bones = 
+							[
+								{
+									name = "head"
+									weight = 1.0
+								},
+								{
+									name = "neck"
+									weight = 1.0
+								},
+								{
+									name = "spine2"
+									weight = 0.7
+								},
+								{
+									name = "spine1"
+									weight = 0.25
+								},
+								{
+									name = "spine0"
+									weight = 0.1
+								},
+							]
+						}
+					},
+				]
+			},
+			{
+				_class = "PhysicsJointList"
+				children = 
+				[
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "pelvis"
+						child_body = "spine0"
+						anchor_origin = [ 3.451378, 0.000004, 0.000008 ]
+						anchor_angles = [ 0.000019, -71.345352, -89.999969 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.2
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "spine0"
+						child_body = "spine1"
+						anchor_origin = [ 13.28793, 0.05496, 0.000022 ]
+						anchor_angles = [ -0.000002, -90.848488, -89.999977 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.2
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "spine1"
+						child_body = "spine2"
+						anchor_origin = [ 13.28793, 0.05496, 0.000022 ]
+						anchor_angles = [ -0.000002, -90.848488, -89.999977 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.2
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "spine2"
+						child_body = "neck"
+						anchor_origin = [ 8.228764, 0.00001, 0.000015 ]
+						anchor_angles = [ -0.000021, -62.887653, -89.999977 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.2
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "neck"
+						child_body = "head"
+						anchor_origin = [ 3.402008, 0.000004, 0.00001 ]
+						anchor_angles = [ 0.000012, -116.263855, -89.999962 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.2
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -30.0
+						max_twist_angle = 30.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "spine2"
+						child_body = "clavicle_L"
+						anchor_origin = [ 6.454094, -0.305082, 3.329753 ]
+						anchor_angles = [ -0.694716, -89.449242, 23.200342 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 10.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "clavicle_L"
+						child_body = "arm_upper_L"
+						anchor_origin = [ 4.226801, 0.000007, 0.000042 ]
+						anchor_angles = [ 2.857722, -93.709839, -45.986717 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -30.0
+						max_twist_angle = 30.0
+					},
+					{
+						_class = "PhysicsJointRevolute"
+						parent_body = "arm_upper_L"
+						child_body = "arm_lower_L"
+						anchor_origin = [ 9.726097, 0.000009, 0.000019 ]
+						anchor_angles = [ 0.0, 0.0, 0.0 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_limit = true
+						min_angle = 0.0
+						max_angle = 135.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "arm_lower_L"
+						child_body = "hand_L"
+						anchor_origin = [ 9.861359, 0.000007, 0.000027 ]
+						anchor_angles = [ 0.100442, -92.236198, -77.527245 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -30.0
+						max_twist_angle = 30.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "spine2"
+						child_body = "clavicle_R"
+						anchor_origin = [ 6.45406, -0.305086, -3.329722 ]
+						anchor_angles = [ -0.69469, 90.550781, 23.200375 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 10.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "clavicle_R"
+						child_body = "arm_upper_R"
+						anchor_origin = [ 4.226791, 0.000006, -0.000065 ]
+						anchor_angles = [ -2.857711, -93.709839, -134.013229 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -30.0
+						max_twist_angle = 30.0
+					},
+					{
+						_class = "PhysicsJointRevolute"
+						parent_body = "arm_upper_R"
+						child_body = "arm_lower_R"
+						anchor_origin = [ 9.726101, 0.000006, -0.000042 ]
+						anchor_angles = [ 0.0, 0.0, 0.0 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_limit = true
+						min_angle = 0.0
+						max_angle = 135.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "arm_lower_R"
+						child_body = "hand_R"
+						anchor_origin = [ 9.86138, 0.000001, -0.000048 ]
+						anchor_angles = [ -0.100453, -92.236198, -102.472702 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -30.0
+						max_twist_angle = 30.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "pelvis"
+						child_body = "leg_upper_L"
+						anchor_origin = [ 0.321865, -0.98957, 4.023433 ]
+						anchor_angles = [ 0.812582, 103.670708, 99.116768 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointRevolute"
+						parent_body = "leg_upper_L"
+						child_body = "leg_lower_L"
+						anchor_origin = [ 14.449104, 0.0, 0.000011 ]
+						anchor_angles = [ 0.0, 0.0, 0.0 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.15
+						enable_limit = true
+						min_angle = -105.0
+						max_angle = 0.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "leg_lower_L"
+						child_body = "foot_L"
+						anchor_origin = [ 15.997797, 0.000006, 0.000009 ]
+						anchor_angles = [ 1.41735, -19.000456, -90.676277 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 15.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "pelvis"
+						child_body = "leg_upper_R"
+						anchor_origin = [ 0.321838, -0.989575, -4.023421 ]
+						anchor_angles = [ 0.812572, -76.329285, 99.116783 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 30.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+					{
+						_class = "PhysicsJointRevolute"
+						parent_body = "leg_upper_R"
+						child_body = "leg_lower_R"
+						anchor_origin = [ 14.449131, 0.000002, -0.000001 ]
+						anchor_angles = [ 0.0, 0.0, 0.0 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.15
+						enable_limit = true
+						min_angle = -105.0
+						max_angle = 0.0
+					},
+					{
+						_class = "PhysicsJointConical"
+						parent_body = "leg_lower_R"
+						child_body = "foot_R"
+						anchor_origin = [ 15.997803, 0.000003, -0.000003 ]
+						anchor_angles = [ -1.417376, -19.000439, -89.32373 ]
+						collision_enabled = false
+						linear_strength = 0.0
+						angular_strength = 0.0
+						friction = 0.1
+						enable_swing_limit = true
+						swing_limit = 15.0
+						swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+						enable_twist_limit = true
+						min_twist_angle = -15.0
+						max_twist_angle = 15.0
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "pelvis"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 4.0
+						point0 = [ 2.064731, -0.266202, 3.029094 ]
+						point1 = [ 2.064475, -0.266558, -3.156846 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "spine0"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 4.0
+						point0 = [ 3.117544, 0.813027, 2.592552 ]
+						point1 = [ 3.117248, 0.812813, -2.583166 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "spine1"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 4.5
+						point0 = [ 3.687289, 0.332235, 1.602734 ]
+						point1 = [ 3.687058, 0.332056, -1.662335 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "spine2"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 5.0
+						point0 = [ 3.079488, -0.443887, 0.232041 ]
+						point1 = [ 3.079458, -0.44391, -0.301665 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "neck"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.5
+						point0 = [ 3.402004, -0.539986, 0.0 ]
+						point1 = [ 0.526008, -0.35964, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "head"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 7.0
+						point0 = [ 5.074379, -0.103299, 0.0 ]
+						point1 = [ 1.950656, 0.637192, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "clavicle_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 1.528023, -0.082218, -0.265861 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 6.237974, 4.866745, 3.812163 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "arm_upper_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.2
+						point0 = [ 8.248141, 0.0, 0.0 ]
+						point1 = [ 0.757358, -0.0, -0.189372 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "arm_lower_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.0
+						point0 = [ 8.007676, 0.0, -0.0 ]
+						point1 = [ 0.809136, -0.0, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "hand_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 3.848427, 0.185258, 0.13528 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 7.707686, 3.962245, 2.462731 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "leg_upper_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 3.0
+						point0 = [ 12.3427, -0.865835, -0.0 ]
+						point1 = [ 2.491823, -0.07986, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "leg_lower_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.4
+						point0 = [ 15.258147, 0.077376, 0.0 ]
+						point1 = [ 1.73313, -1.123387, -0.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "foot_L"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 3.54634, -1.3775, 0.087212 ]
+						angles = [ 4.261909, 27.026373, -5.416762 ]
+						dimensions = [ 9.525541, 2.820527, 4.125545 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "clavicle_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 1.52802, 0.082218, 0.265861 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 6.237974, 4.866745, 3.812163 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "arm_upper_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.2
+						point0 = [ 8.248141, 0.0, 0.0 ]
+						point1 = [ 0.757358, -0.0, 0.189372 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "arm_lower_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.0
+						point0 = [ 8.007676, 0.0, -0.0 ]
+						point1 = [ 0.809136, -0.0, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "hand_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 3.848427, 0.185258, 0.13528 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 7.707686, 3.962245, 2.462731 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "leg_upper_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 3.0
+						point0 = [ 12.3427, -0.865835, -0.0 ]
+						point1 = [ 2.491823, -0.07986, 0.0 ]
+					},
+					{
+						_class = "PhysicsShapeCapsule"
+						parent_bone = "leg_lower_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						radius = 2.4
+						point0 = [ 15.258147, 0.077376, 0.0 ]
+						point1 = [ 1.73313, -1.123387, -0.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = "foot_R"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 3.54634, -1.3775, -0.087212 ]
+						angles = [ -4.26191, 27.0264, 5.41676 ]
+						dimensions = [ 9.525541, 2.820527, 4.125545 ]
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "idle"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						disable_interpolation = false
+						enable_scale = false
+						source_filename = "models/guy/animations/idle.fbx"
+						start_frame = -1
+						end_frame = -1
+						framerate = 12.0
+						take = 0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "idle_delta"
+						children = 
+						[
+							{
+								_class = "AnimSubtract"
+								anim_name = "idle"
+								frame = 0
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						disable_interpolation = false
+						enable_scale = false
+						source_filename = "models/guy/animations/idle.fbx"
+						start_frame = -1
+						end_frame = -1
+						framerate = 12.0
+						take = 0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "sitting_pose"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						disable_interpolation = false
+						enable_scale = false
+						source_filename = "models/guy/animations/sitting_pose.fbx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "penoid"
+						children = 
+						[
+							{
+								_class = "AnimSubtract"
+								anim_name = "penoid"
+								frame = 0
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						disable_interpolation = false
+						enable_scale = false
+						source_filename = "models/guy/penoid.fbx"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
+					{
+						_class = "Folder"
+						name = "movement"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "crouch_delta"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "idle"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/crouch.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "Folder"
+								name = "walk"
+								children = 
+								[
+									{
+										_class = "AnimFile"
+										name = "walkN"
+										children = 
+										[
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Single"
+											},
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 1
+												frames_from_end = 1
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.3
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.3
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/walkN.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "walkW"
+										children = 
+										[
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Single"
+											},
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 1
+												frames_from_end = 1
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 6
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.3
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 20
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.3
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/walkW.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "walkE"
+										children = 
+										[
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 1
+												frames_from_end = 1
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.3
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.3
+												}
+											},
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Single"
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/walkE.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "walkS"
+										children = 
+										[
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Single"
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.3
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.3
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/walkS.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+								]
+							},
+							{
+								_class = "Folder"
+								name = "run"
+								children = 
+								[
+									{
+										_class = "AnimFile"
+										name = "runE"
+										children = 
+										[
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 1
+												frames_from_end = 1
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "AnimStartLoop"
+												start_loop_frame = 20
+											},
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Uniform"
+											},
+											{
+												_class = "AnimAlign"
+												align_tx = true
+												align_ty = true
+												align_tz = false
+												align_rx = false
+												align_ry = false
+												align_rz = false
+												align_frame_type = "Number"
+												frame = 0
+												align_to_anim = "idle"
+												align_to_frame_type = "Number"
+												align_to_frame = 0
+												bone = "root"
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/runE.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 36.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "runW"
+										children = 
+										[
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Single"
+											},
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 1
+												frames_from_end = 1
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 6
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 20
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.5
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/runW.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 36.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "runS"
+										children = 
+										[
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = "pelvis"
+												motion_type = "Uniform"
+												motion_samples = [ 0, 26 ]
+											},
+											{
+												_class = "AnimStartLoop"
+												start_loop_frame = 22
+											},
+											{
+												_class = "AnimAlign"
+												align_tx = true
+												align_ty = true
+												align_tz = false
+												align_rx = false
+												align_ry = false
+												align_rz = false
+												align_frame_type = "Number"
+												frame = 0
+												align_to_anim = "walkS"
+												align_to_frame_type = "Number"
+												align_to_frame = 0
+												bone = "pelvis"
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/runS.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 36.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "runN"
+										children = 
+										[
+											{
+												_class = "ExtractMotion"
+												extract_tx = true
+												extract_ty = true
+												extract_tz = false
+												extract_rz = false
+												linear = false
+												quadratic = false
+												root_bone_name = ""
+												motion_type = "Single"
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 21
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.5
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 7
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 0.5
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/runN.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 36.0
+										take = 0
+										reverse = false
+									},
+								]
+							},
+							{
+								_class = "Folder"
+								name = "jumping"
+								children = 
+								[
+									{
+										_class = "AnimFile"
+										name = "jump"
+										children = 
+										[
+											{
+												_class = "AnimSubtract"
+												disabled = true
+												anim_name = "idle"
+												frame = 0
+											},
+											{
+												_class = "AnimEvent"
+												name = "jump"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 1
+												event_keys = 
+												{
+													TypeName = "jump"
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = ""
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 0
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 0.5
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = false
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/jump.fbx"
+										start_frame = 2
+										end_frame = 6
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "falling"
+										children = 
+										[
+											{
+												_class = "AnimAlign"
+												align_tx = false
+												align_ty = false
+												align_tz = true
+												align_rx = false
+												align_ry = false
+												align_rz = false
+												align_frame_type = "Number"
+												frame = 0
+												align_to_anim = "idle"
+												align_to_frame_type = "Number"
+												align_to_frame = 0
+												bone = "root"
+											},
+											{
+												_class = "AnimSmoothLoop"
+												frames_from_start = 2
+												frames_from_end = 2
+											},
+											{
+												_class = "AnimStartLoop"
+												start_loop_frame = 2
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = true
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = true
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/jump.fbx"
+										start_frame = 5
+										end_frame = 11
+										framerate = 4.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "landing"
+										children = 
+										[
+											{
+												_class = "AnimSubtract"
+												anim_name = "idle"
+												frame = 0
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 0
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 1.0
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 0
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 1.0
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = false
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/jump.fbx"
+										start_frame = 13
+										end_frame = -1
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "land_heavy"
+										children = 
+										[
+											{
+												_class = "AnimSubtract"
+												anim_name = "idle"
+												frame = 0
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 0
+												event_keys = 
+												{
+													Attachment = "foot_L"
+													Foot = "0"
+													Volume = 2.0
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_FOOTSTEP"
+												event_frame = 0
+												event_keys = 
+												{
+													Attachment = "foot_R"
+													Foot = "1"
+													Volume = 2.0
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = false
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/land_heavy.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 12.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "arms_raise"
+										children = 
+										[
+											{
+												_class = "AnimSubtract"
+												anim_name = "arms_raise"
+												frame = 0
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = false
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "models/guy/animations/arms_raise.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = 5.0
+										take = 0
+										reverse = false
+									},
+								]
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "use"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "use"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/use.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "use_delta"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/use.fbx"
+								start_frame = -1
+								end_frame = 8
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "use_delta_2"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "use"
+										frame = 8
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/use.fbx"
+								start_frame = 8
+								end_frame = 12
+								framerate = 12.0
+								take = 0
+								reverse = false
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "height"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "tallness"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "tallness"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/tallness.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "shortness"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "shortness"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/tallness.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = true
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "rifle"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "aim_matrix_delta"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "aim_matrix"
+										frame = 4
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/aim_matrix.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "aim_matrix"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/aim_matrix.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "rifle_hold"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/rifle_hold.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "rifle_reload"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/rifle_reload.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "rifle_fire"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "rifle_fire"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/rifle_fire.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "fishing"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "fishing_pose"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/fishing_pose.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "fishing_cast"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "fishing_cast"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/fishing_cast.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "fishing_pull"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "fishing_pull"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/fishing_cast.fbx"
+								start_frame = -1
+								end_frame = 11
+								framerate = 42.0
+								take = 0
+								reverse = false
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "items"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "hold_pose"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/hold_pose.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "hold_consume"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/hold_consume.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "hold_flashlight"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/hold_flashlight.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "melee_pose"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/melee_pose.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "melee_attack"
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										name = "hit"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 8
+										event_keys = 
+										{
+											TypeName = "hit"
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = ""
+										}
+									},
+									{
+										_class = "AnimSubtract"
+										anim_name = "melee_attack"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/melee_attack.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = 28.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "melee_attack2"
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										name = "hit1"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 8
+										event_keys = 
+										{
+											TypeName = "hit"
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = ""
+										}
+									},
+									{
+										_class = "AnimSubtract"
+										anim_name = "melee_attack2"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/melee_attack2.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = 28.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "melee_attack3"
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										name = "hit2"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 8
+										event_keys = 
+										{
+											TypeName = "hit"
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = ""
+										}
+									},
+									{
+										_class = "AnimSubtract"
+										anim_name = "melee_attack3"
+										frame = 0
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/melee_attack3.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = 28.0
+								take = 0
+								reverse = false
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "character_creator"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "mugshot_turnleft"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = true
+										extract_rz = true
+										linear = false
+										quadratic = false
+										root_bone_name = "root"
+										motion_type = "Uniform"
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/mugshot_turnleft.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "mugshot_turnright"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = true
+										extract_rz = true
+										linear = false
+										quadratic = false
+										root_bone_name = "root"
+										motion_type = "Uniform"
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/mugshot_turnright.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "inspect_arms"
+								children = 
+								[
+									{
+										_class = "AnimSmoothLoop"
+										frames_from_start = 3
+										frames_from_end = 3
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/inspect_arms.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "inspect_legs"
+								children = 
+								[
+									{
+										_class = "AnimSmoothLoop"
+										frames_from_start = 3
+										frames_from_end = 3
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/inspect_legs.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "mugshot_pose"
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/mugshot_pose.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "mugshot_pose_delta"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "mugshot_pose"
+										frame = 1
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/mugshot_pose.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "mugshot_weight"
+								children = 
+								[
+									{
+										_class = "AnimSubtract"
+										anim_name = "mugshot_pose"
+										frame = 1
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "models/guy/animations/mugshot_weight.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
+							},
+						]
+					},
+				]
+				default_root_bone_name = ""
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "eyes"
+						parent_bone = "head"
+						relative_origin = [ 3.942314, 2.555611, 0.000466 ]
+						relative_angles = [ 0.002252, 90.000008, 90.000008 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "forward"
+						parent_bone = "head"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 90.0, 90.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "foot_L"
+						parent_bone = "foot_L"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "foot_R"
+						parent_bone = "foot_R"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "rifle_end"
+						parent_bone = "hand_R"
+						relative_origin = [ 31.889135, -3.659393, 1.457825 ]
+						relative_angles = [ -7.713576, -13.31436, -113.068787 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "aim_forward"
+						parent_bone = "aim"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "right_arm_forward"
+						parent_bone = "hand_R"
+						relative_origin = [ 5.299253, -0.296711, -0.364796 ]
+						relative_angles = [ -0.0, -0.007481, -0.006157 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "hand_R"
+						parent_bone = "hand_R"
+						relative_origin = [ 3.618608, 0.434778, -1.3619 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "hand_R_flashlight"
+						parent_bone = "hand_R"
+						relative_origin = [ 3.618608, 0.434778, -1.3619 ]
+						relative_angles = [ 0.0, -90.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "mugshot_sign"
+						parent_bone = "hand_R"
+						relative_origin = [ 6.497816, 8.797225, -6.638517 ]
+						relative_angles = [ -32.24855, 7.77372, -39.934181 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
+			},
+			{
+				_class = "IKData"
+				children = 
+				[
+					{
+						_class = "IKChain"
+						name = "leg_R"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "leg_upper_R"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "leg_lower_R"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "foot_R"
+												children = 
+												[
+													{
+														_class = "IKJointConstraint_Hinge"
+														constrained_joint = ""
+														hinge_axis = "Up"
+														min_radians = -2.094395
+														max_radians = 0.0
+													},
+												]
+												bone = "foot_R"
+											},
+										]
+										bone = "leg_lower_R"
+									},
+								]
+								bone = "leg_upper_R"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "IK_R"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+					{
+						_class = "IKChain"
+						name = "leg_L"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "leg_upper_L"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "leg_lower_L"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "foot_L"
+												children = 
+												[
+													{
+														_class = "IKJointConstraint_Hinge"
+														constrained_joint = ""
+														hinge_axis = "Up"
+														min_radians = -2.094395
+														max_radians = 0.0
+													},
+												]
+												bone = "foot_L"
+											},
+										]
+										bone = "leg_lower_L"
+									},
+								]
+								bone = "leg_upper_L"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "IK_L"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+					{
+						_class = "IKChain"
+						name = "arm_R"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "arm_upper_R"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "arm_lower_R"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "hand_R"
+												bone = "hand_R"
+											},
+										]
+										bone = "arm_lower_R"
+									},
+								]
+								bone = "arm_upper_R"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "Hand_IK_R"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+					{
+						_class = "IKChain"
+						name = "arm_L"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "arm_upper_L"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "arm_lower_L"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "hand_L"
+												bone = "hand_L"
+											},
+										]
+										bone = "arm_lower_L"
+									},
+								]
+								bone = "arm_upper_L"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "Hand_IK_L"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+				]
+			},
+			{
+				_class = "BoneMarkupList"
+				children = 
+				[
+					{
+						_class = "BoneMarkup"
+						target_bone = "IK_L"
+						ignore_Translation = false
+						ignore_rotation = false
+						do_not_discard = true
+					},
+					{
+						_class = "BoneMarkup"
+						target_bone = "IK_R"
+						ignore_Translation = false
+						ignore_rotation = false
+						do_not_discard = true
+					},
+					{
+						_class = "BoneMarkup"
+						target_bone = "hand_R_IK"
+						ignore_Translation = false
+						ignore_rotation = false
+						do_not_discard = true
+					},
+					{
+						_class = "BoneMarkup"
+						target_bone = "hand_L_IK"
+						ignore_Translation = false
+						ignore_rotation = false
+						do_not_discard = true
+					},
+					{
+						_class = "BoneMarkup"
+						target_bone = "root"
+						ignore_Translation = false
+						ignore_rotation = false
+						do_not_discard = true
+					},
+				]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "BodyGroupList"
+				children = 
+				[
+					{
+						_class = "BodyGroup"
+						name = "head"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"head",
+									"head1",
+									"head2",
+									"head3",
+								]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+						hidden_in_tools = false
+					},
+					{
+						_class = "BodyGroup"
+						name = "torso"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"torso",
+									"torso1",
+									"torso2",
+									"torso3",
+								]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+						hidden_in_tools = false
+					},
+					{
+						_class = "BodyGroup"
+						name = "hands"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"hands",
+									"hands1",
+									"hands2",
+									"hands3",
+								]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+						hidden_in_tools = false
+					},
+					{
+						_class = "BodyGroup"
+						name = "legs"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"legs",
+									"legs1",
+									"legs2",
+									"legs3",
+								]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+						hidden_in_tools = false
+					},
+					{
+						_class = "BodyGroup"
+						name = "feet"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"feet",
+									"feet1",
+									"feet2",
+									"feet3",
+								]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+						]
+						hidden_in_tools = false
+					},
+					{
+						_class = "BodyGroup"
+						name = "penoid"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = [  ]
+							},
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"penoid",
+									"penoid1",
+									"penoid2",
+									"penoid3",
+								]
+							},
+						]
+						hidden_in_tools = false
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "right_arm"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "arm_lower_R"
+								weight = 1.0
+							},
+							{
+								bone = "arm_upper_R"
+								weight = 0.639098
+							},
+							{
+								bone = "clavicle_L"
+								weight = 0.0
+							},
+							{
+								bone = "clavicle_R"
+								weight = 0.293233
+							},
+							{
+								bone = "fingers_L"
+								weight = 0.0
+							},
+							{
+								bone = "hand_R_IK"
+								weight = 0.0
+							},
+							{
+								bone = "neck"
+								weight = 0.530043
+							},
+							{
+								bone = "root"
+								weight = 0.0
+							},
+							{
+								bone = "spine1"
+								weight = 0.291846
+							},
+							{
+								bone = "spine2"
+								weight = 0.527897
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "only_penoid"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "balls"
+								weight = 1.0
+							},
+							{
+								bone = "penoid"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "torso"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "Hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "Hand_IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "aim"
+								weight = 0.0
+							},
+							{
+								bone = "arm_lower_L"
+								weight = 1.0
+							},
+							{
+								bone = "arm_lower_R"
+								weight = 1.0
+							},
+							{
+								bone = "arm_upper_L"
+								weight = 1.0
+							},
+							{
+								bone = "arm_upper_R"
+								weight = 1.0
+							},
+							{
+								bone = "clavicle_L"
+								weight = 1.0
+							},
+							{
+								bone = "clavicle_R"
+								weight = 1.0
+							},
+							{
+								bone = "fingers_L"
+								weight = 1.0
+							},
+							{
+								bone = "fingers_R"
+								weight = 1.0
+							},
+							{
+								bone = "hand_IK_L"
+								weight = 1.0
+							},
+							{
+								bone = "hand_IK_R"
+								weight = 1.0
+							},
+							{
+								bone = "hand_L"
+								weight = 1.0
+							},
+							{
+								bone = "hand_R"
+								weight = 1.0
+							},
+							{
+								bone = "head"
+								weight = 1.0
+							},
+							{
+								bone = "neck"
+								weight = 1.0
+							},
+							{
+								bone = "spine0"
+								weight = 0.196765
+							},
+							{
+								bone = "spine1"
+								weight = 0.495957
+							},
+							{
+								bone = "spine2"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "legs"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "Hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "Hand_IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "IK_L"
+								weight = 1.0
+							},
+							{
+								bone = "IK_R"
+								weight = 1.0
+							},
+							{
+								bone = "aim"
+								weight = 0.0
+							},
+							{
+								bone = "root"
+								weight = 1.0
+							},
+							{
+								bone = "spine0"
+								weight = 0.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "IK_legs"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "IK_L"
+								weight = 1.0
+							},
+							{
+								bone = "IK_R"
+								weight = 1.0
+							},
+							{
+								bone = "aim"
+								weight = 0.0
+							},
+							{
+								bone = "hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "hand_IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "root"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "right_arm_torso"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "Hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "Hand_IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "aim"
+								weight = 0.0
+							},
+							{
+								bone = "arm_lower_L"
+								weight = 0.0
+							},
+							{
+								bone = "arm_lower_R"
+								weight = 1.0
+							},
+							{
+								bone = "arm_upper_L"
+								weight = 0.0
+							},
+							{
+								bone = "arm_upper_R"
+								weight = 1.0
+							},
+							{
+								bone = "clavicle_L"
+								weight = 0.0
+							},
+							{
+								bone = "clavicle_R"
+								weight = 1.0
+							},
+							{
+								bone = "fingers_L"
+								weight = 0.0
+							},
+							{
+								bone = "fingers_R"
+								weight = 1.0
+							},
+							{
+								bone = "hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "hand_IK_R"
+								weight = 1.0
+							},
+							{
+								bone = "hand_L"
+								weight = 0.0
+							},
+							{
+								bone = "hand_R"
+								weight = 1.0
+							},
+							{
+								bone = "head"
+								weight = 1.0
+							},
+							{
+								bone = "neck"
+								weight = 1.0
+							},
+							{
+								bone = "spine0"
+								weight = 0.22372
+							},
+							{
+								bone = "spine1"
+								weight = 0.493261
+							},
+							{
+								bone = "spine2"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "right_arm_torso_50_left"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "Hand_IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "Hand_IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "IK_L"
+								weight = 0.0
+							},
+							{
+								bone = "IK_R"
+								weight = 0.0
+							},
+							{
+								bone = "aim"
+								weight = 0.0
+							},
+							{
+								bone = "arm_lower_L"
+								weight = 0.792982
+							},
+							{
+								bone = "arm_lower_R"
+								weight = 0.919298
+							},
+							{
+								bone = "arm_upper_L"
+								weight = 0.8
+							},
+							{
+								bone = "arm_upper_R"
+								weight = 0.919298
+							},
+							{
+								bone = "clavicle_L"
+								weight = 0.792982
+							},
+							{
+								bone = "clavicle_R"
+								weight = 0.915789
+							},
+							{
+								bone = "fingers_L"
+								weight = 0.792982
+							},
+							{
+								bone = "fingers_R"
+								weight = 0.926316
+							},
+							{
+								bone = "hand_IK_L"
+								weight = 0.519298
+							},
+							{
+								bone = "hand_IK_R"
+								weight = 1.0
+							},
+							{
+								bone = "hand_L"
+								weight = 0.792982
+							},
+							{
+								bone = "hand_R"
+								weight = 0.919298
+							},
+							{
+								bone = "hand_R_to_L"
+								weight = 0.0
+							},
+							{
+								bone = "head"
+								weight = 1.0
+							},
+							{
+								bone = "neck"
+								weight = 1.0
+							},
+							{
+								bone = "spine0"
+								weight = 0.22372
+							},
+							{
+								bone = "spine1"
+								weight = 0.487871
+							},
+							{
+								bone = "spine2"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+				]
+			},
+			{
+				_class = "AnimConstraintList"
+				children = 
+				[
+					{
+						_class = "AnimConstraintTiltTwist"
+						name = "ulna_L"
+						children = 
+						[
+							{
+								_class = "AnimConstraintBoneInput"
+								parent_bone = "hand_L"
+								relative_origin = [ 0.0, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+							},
+							{
+								_class = "AnimConstraintSlave"
+								parent_bone = "arm_helper_L"
+								relative_origin = [ 0.0, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 0.4
+							},
+						]
+						input_axis = 0
+						slave_axis = 0
+					},
+					{
+						_class = "AnimConstraintTiltTwist"
+						name = "ulna_R"
+						children = 
+						[
+							{
+								_class = "AnimConstraintBoneInput"
+								parent_bone = "hand_R"
+								relative_origin = [ 0.0, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 1.0
+							},
+							{
+								_class = "AnimConstraintSlave"
+								parent_bone = "arm_helper_R"
+								relative_origin = [ 0.0, 0.0, 0.0 ]
+								relative_angles = [ 0.0, 0.0, 0.0 ]
+								weight = 0.4
+							},
+						]
+						input_axis = 0
+						slave_axis = 0
+					},
+				]
+			},
+			{
+				_class = "LODGroupList"
+				children = 
+				[
+					{
+						_class = "LODGroup"
+						switch_threshold = 0.0
+						meshes = 
+						[
+							"head",
+							"torso",
+							"hands",
+							"legs",
+							"feet",
+							"penoid",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 15.0
+						meshes = 
+						[
+							"head1",
+							"torso1",
+							"hands1",
+							"legs1",
+							"feet1",
+							"penoid1",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 30.0
+						meshes = 
+						[
+							"head2",
+							"torso2",
+							"hands2",
+							"legs2",
+							"feet2",
+							"penoid2",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 80.0
+						meshes = 
+						[
+							"head3",
+							"torso3",
+							"hands3",
+							"legs3",
+							"feet3",
+							"penoid3",
+						]
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "Hitbox"
+						children = 
+						[
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "head"
+								surface_property = ""
+								translation_only = false
+								tags = "head"
+								radius = 4.241225
+								point0 = [ 1.449744, 0.564704, -0.054422 ]
+								point1 = [ 4.520969, 0.098416, 0.000656 ]
+							},
+							{
+								_class = "HitboxSphere"
+								parent_bone = "neck"
+								surface_property = ""
+								translation_only = false
+								tags = "head"
+								center = [ 0.0, 0.0, 0.0 ]
+								radius = 3.417507
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "spine1"
+								surface_property = ""
+								translation_only = false
+								tags = "torso"
+								radius = 7.1158
+								point0 = [ -0.677915, 0.04691, 0.028382 ]
+								point1 = [ 0.730222, 0.06879, 0.036555 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "spine2"
+								surface_property = ""
+								translation_only = false
+								tags = "torso"
+								radius = 6.614392
+								point0 = [ -0.134158, 0.0, 0.0 ]
+								point1 = [ 2.807481, -0.362631, 0.016659 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "arm_upper_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_arm"
+								radius = 3.165569
+								point0 = [ 0.151572, -0.126642, 0.069965 ]
+								point1 = [ 7.18042, 0.193331, 0.261744 ]
+							},
+							{
+								_class = "HitboxSphere"
+								parent_bone = "clavicle_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_arm"
+								center = [ 0.0, 0.0, 0.0 ]
+								radius = 2.875332
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "arm_lower_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_arm"
+								radius = 2.191932
+								point0 = [ 0.151572, -0.126642, 0.069965 ]
+								point1 = [ 9.636353, -0.156163, 0.099419 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "hand_R_to_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_arm"
+								radius = 1.81918
+								point0 = [ 0.2397, -0.203833, 0.042802 ]
+								point1 = [ 5.962383, 0.087232, 0.196313 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "arm_upper_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_arm"
+								radius = 3.165569
+								point0 = [ 0.151572, -0.126642, 0.069965 ]
+								point1 = [ 7.18042, 0.193331, 0.261744 ]
+							},
+							{
+								_class = "HitboxSphere"
+								parent_bone = "clavicle_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_arm"
+								center = [ 0.0, 0.0, 0.0 ]
+								radius = 2.875332
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "arm_lower_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_arm"
+								radius = 2.191932
+								point0 = [ 0.151572, -0.126642, 0.069965 ]
+								point1 = [ 9.539263, -0.015965, -0.21916 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "hand_L_to_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_arm"
+								radius = 1.81918
+								point0 = [ 0.2397, -0.203833, 0.042802 ]
+								point1 = [ 5.962383, 0.087232, 0.196313 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "leg_upper_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_leg"
+								radius = 3.589705
+								point0 = [ -0.015166, 0.001277, -0.000148 ]
+								point1 = [ 11.802574, -0.993481, 0.114979 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "leg_lower_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_leg"
+								radius = 3.264316
+								point0 = [ 0.087963, -0.999966, 0.165325 ]
+								point1 = [ 15.935413, 0.0467, -0.032444 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "foot_L"
+								surface_property = ""
+								translation_only = false
+								tags = "left_leg"
+								radius = 2.365831
+								point0 = [ 0.517698, -0.719881, 0.286853 ]
+								point1 = [ 5.981528, -0.644192, 0.074901 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "leg_upper_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_leg"
+								radius = 3.589705
+								point0 = [ -0.015166, 0.001277, -0.000148 ]
+								point1 = [ 11.802574, -0.993481, 0.114979 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "leg_lower_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_leg"
+								radius = 3.264316
+								point0 = [ 0.087963, -0.999966, 0.165325 ]
+								point1 = [ 15.935413, 0.0467, -0.032444 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "foot_R"
+								surface_property = ""
+								translation_only = false
+								tags = "right_leg"
+								radius = 2.365831
+								point0 = [ 0.417901, -0.850183, 0.299466 ]
+								point1 = [ 5.981528, -0.644192, 0.074901 ]
+							},
+							{
+								_class = "HitboxCapsule"
+								parent_bone = "spine0"
+								surface_property = ""
+								translation_only = false
+								tags = "torso"
+								radius = 7.041663
+								point0 = [ 0.393555, -0.047997, 0.16137 ]
+								point1 = [ 0.403507, -0.048973, 0.161474 ]
+							},
+						]
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = "models/guy/guy.vanmgrph"
+		base_model_name = ""
+	}
+}

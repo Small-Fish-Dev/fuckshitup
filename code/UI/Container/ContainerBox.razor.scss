@@ -1,0 +1,20 @@
+@import "/UI/Style.scss";
+
+ContainerBox {
+    position: absolute;
+    border: 1px $black;
+
+    > .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image-tint: rgba(#5F5F5F, 0.75);
+        background-image: url(ui/generic/grid-bg.png);
+        background-position: -1px;
+        background-repeat: repeat;
+    }
+
+    > ItemPanel {
+        position: absolute;
+    }
+}

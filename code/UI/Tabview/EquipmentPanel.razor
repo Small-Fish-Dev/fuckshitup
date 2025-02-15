@@ -1,0 +1,34 @@
+﻿@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root class="@(IsLongSlot() ? "long" : "")" style="left: @(GetSlotOffset().x * 100f)%; top: @(GetSlotOffset().y * 100f)%;">
+	<div class="title header-bg">@Slot</div>
+	<div class="slot">
+		<div class="container inner-border">
+
+		</div>
+	</div>
+</root>
+
+@code {	
+	public EquipmentSlot Slot { get; set; }
+	
+	private Vector2 GetSlotOffset()
+		=> Slot switch 
+		{
+			EquipmentSlot.Headwear => new Vector2( 0.35f, 0.03f ),
+			EquipmentSlot.Face => new Vector2( 0.65f, 0.03f ),
+			EquipmentSlot.Body => new Vector2( 0.35f, 0.23f ),
+			EquipmentSlot.Gear => new Vector2( 0.05f, 0.23f ),
+			EquipmentSlot.Legs => new Vector2( 0.35f, 0.43f ),
+			EquipmentSlot.Primary => new Vector2( 0.1f, 0.63f ),
+			EquipmentSlot.Secondary => new Vector2( 0.1f, 0.81f ),
+			_ => Vector2.One,
+		};
+
+	private bool IsLongSlot()
+		=> Slot is EquipmentSlot.Primary or EquipmentSlot.Secondary;
+
+	protected override int BuildHash() 
+		=> HashCode.Combine( Slot );
+}

@@ -1,0 +1,40 @@
+@import "/UI/Style.scss";
+
+EquipmentPanel {
+    flex-direction: column;
+    color: $white;
+    font-family: $font-main;
+    background-color: $black;
+
+    &.long {
+        > .slot {
+            width: 505px;
+            aspect-ratio: 3.75;
+
+            > .container {
+                background-size: 505px 155px;
+            }
+        }
+    }
+
+    > .title {
+        width: 100%;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        padding: 2px 8px;
+        height: 30px;
+    }
+
+    > .slot {
+        width: 150px;
+        aspect-ratio: 1;
+        border: 1px $black;
+
+        > .container {
+            background-image: url(ui/generic/container-bg.png);
+            background-size: 155px 155px;
+            background-image-tint: rgba(darken(white, 0.9), 0.05);
+        }
+    }
+}

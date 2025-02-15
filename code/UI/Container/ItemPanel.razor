@@ -1,0 +1,44 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root class="@(Valid ? "visible" : "")" style="background-image-tint: @(Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba);">
+	@if ( Valid )
+	{
+		<div class="background" />
+
+		<div class="container">
+			<div class="content">
+				@{
+					var texture = IconManager.Request( Item, Item.AbsoluteSize.x, Item.AbsoluteSize.y );
+
+					<TexturePanel
+						Texture=@texture
+						style="transform: @(Item.Rotated && !DisableRotation ? "rotate(90deg)" : "");
+							   @(!DisableRotation 
+								? $"width: {Item.AbsoluteSize.x * GridSize * ICON_SCALE}px; height: {Item.AbsoluteSize.y * GridSize * ICON_SCALE}px;"
+								: "")"
+					/>
+				}
+			</div>
+
+			<p class="name">@Item.Name</p>
+		</div>
+	}
+</root>
+
+@code {
+	public const float ICON_SCALE = 0.75f;
+
+	public Item Item { get; set; }
+	public bool DisableRotation { get; set; }
+	public float GridSize { get; set; }
+
+	private bool Valid => Item.IsValid() && !Item.IsProxy;
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			Item.IsValid(),
+			Item?.Rotated,
+			(Item as IIconGenerator)?.CreateIconHash()
+		);
+}

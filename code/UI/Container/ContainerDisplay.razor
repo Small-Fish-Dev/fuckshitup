@@ -1,0 +1,25 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+@if ( !Container.IsValid() )
+	return;
+
+<root>
+	@foreach ( var slotCollection in Container.SlotCollections )
+	{
+		if ( slotCollection is null )
+			continue;
+
+		<SlotCollectionDisplay SlotCollection=@slotCollection />
+	}
+</root>
+
+@code {
+	public Container Container { get; set; }
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			Container.IsValid(),
+			Container?.SlotCollections?.HashCombine( slotCollection => slotCollection?.GetHashCode() ?? 0 )
+		);
+}

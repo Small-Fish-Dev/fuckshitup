@@ -1,0 +1,46 @@
+@import "/UI/Style.scss";
+
+SlotCollectionDisplay {
+    flex-direction: column;
+    color: $white;
+    font-family: $font-main;
+    gap: 0px;
+
+    &.has-source {
+        > .container {
+            flex-direction: row;
+            gap: 10px;
+        }
+    }
+
+    > .title {
+        width: 150px;
+        max-width: 150px;
+        font-weight: bold;
+        text-transform: uppercase;
+        height: 30px;
+        text-overflow: ellipsis;
+        padding: 4px 12px;
+    }
+
+    > .container {
+        flex-direction: column;
+
+        > ItemPanel {
+            width: 150px;
+            max-width: 150px;
+            aspect-ratio: 1;
+            border: 1px $black;
+
+            > .container {
+                > .content {
+                    background-size: 155px 155px;
+                }
+            }
+        }
+
+        > .boxes {
+            position: relative;
+        }
+    }
+}

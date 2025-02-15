@@ -1,0 +1,35 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+@if ( !Character.IsValid() )
+	return;
+
+<root>
+	@* Left-side player window *@
+	<div class="window">
+		<div class="container">
+			<CharacterRenderer />
+
+			@foreach ( var slot in Enum.GetValues<EquipmentSlot>() )
+			{
+				<EquipmentPanel Slot=@slot />
+			}
+		</div>
+	</div>
+
+	@* Container inventory *@
+	<div class="window">
+		<div class="container">
+			<ContainerDisplay Container=@Character.Inventory />
+		</div>
+	</div>
+</root>
+
+@code {
+	public Character Character => Character.Local;
+
+	protected override int BuildHash() 
+		=> HashCode.Combine( 
+			Character.IsValid() 
+		);
+}

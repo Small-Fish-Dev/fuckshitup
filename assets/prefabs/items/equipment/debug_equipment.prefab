@@ -1,0 +1,202 @@
+{
+  "RootObject": {
+    "__guid": "14e356c2-9849-4d41-8799-8503a6a85a14",
+    "Flags": 0,
+    "Name": "debug_equipment",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "FUCKSHIT.Equipment",
+        "__guid": "ce37440b-5e51-49d4-96b8-892c8f3c125d",
+        "AbsoluteSize": "4,4",
+        "EquipmentBoxes": [
+          {
+            "Size": "1,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,1",
+            "SameLine": false,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,1",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,1",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,1",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "1,1",
+            "SameLine": true,
+            "Margin": "0,0"
+          },
+          {
+            "Size": "2,2",
+            "SameLine": false,
+            "Margin": "30,0"
+          },
+          {
+            "Size": "2,2",
+            "SameLine": true,
+            "Margin": "0,0"
+          }
+        ],
+        "IconSettings": {
+          "Offset": "-13.2,0,-0.7",
+          "Rotation": "0,0,0,0"
+        },
+        "Name": "Debug Equipment",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Rarity": "Mythical",
+        "Slot": "Gear"
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "c4b93267-137e-4f4d-a419-6b1b7f0744f9",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "327368d0-06b7-464b-9dda-325a892d8c58",
+        "Flags": 0,
+        "Name": "Model",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "58090c74-9729-4baf-bd56-718cead3d1db",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/citizen_clothes/vest/tactical_vest/models/tactical_vest.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "dd8e6869-85e8-433f-9148-468e564dba8c",
+            "Center": "1.211062,-0.06572914,43.9724",
+            "Friction": null,
+            "IsTrigger": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Scale": "19.70341,20.48299,22.68271",
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
