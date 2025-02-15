@@ -33,20 +33,25 @@ partial class Character
 			if ( Input.Down( InputAction.RIGHT_MOUSE ) )
 			{
 				MoveGrabbed();
-
-				var localPosition = (GrabbedPosition - WorldPosition) * Renderer.WorldRotation.Inverse;
-				var length = localPosition.Length;
-				
-				var angles = Rotation.LookAt( localPosition.Normal ).Angles();
-				angles.pitch = angles.pitch.Clamp( -90, 10 );
-				angles.yaw = angles.yaw.Clamp( -45, 45 );
-				localPosition = angles.Forward * length;
-
-				var transform = new Transform( localPosition, Rotation.Identity );
-				RightIK ??= transform;
-				RightIK = global::Transform.Lerp( RightIK.GetValueOrDefault(), transform, 10f * Time.Delta, true );
 			}
 			else Grabbed = null;
+		}
+
+		if ( Input.Down( InputAction.RIGHT_MOUSE ) )
+		{
+			var localPosition = Grabbed.IsValid()
+				? (GrabbedPosition - WorldPosition) * Renderer.WorldRotation.Inverse
+				: EyeForward * MAX_HOLD_DISTANCE * Renderer.WorldRotation.Inverse;
+			var length = localPosition.Length;
+
+			var angles = Rotation.LookAt( localPosition.Normal ).Angles();
+			angles.pitch = angles.pitch.Clamp( -90, 10 );
+			angles.yaw = angles.yaw.Clamp( -45, 45 );
+			localPosition = angles.Forward * length;
+
+			var transform = new Transform( localPosition, Rotation.Identity );
+			RightIK ??= transform;
+			RightIK = global::Transform.Lerp( RightIK.GetValueOrDefault(), transform, 10f * Time.Delta, true );
 		}
 		else RightIK = null;
 	}

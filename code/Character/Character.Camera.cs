@@ -6,8 +6,13 @@ partial class Character
 
 	[Sync]
 	public Angles EyeAngles { get; set; }
+	public Angles RagdollAngles { get; set; }
 
-	public Ray EyeRay => new Ray( Camera?.WorldPosition ?? WorldPosition, EyeAngles.Forward );
+	public Vector3 EyeForward => Ragdolled
+		? ((FirstpersonView?.GetAttachment( "eyes" )?.Rotation ?? Rotation.Identity) * Rotation.From( RagdollAngles )).Forward
+		: EyeAngles.Forward;
+
+	public Ray EyeRay => new Ray( Camera?.WorldPosition ?? WorldPosition, EyeForward );
 
 	private void SimulateCamera()
 	{
@@ -18,17 +23,31 @@ partial class Character
 		angles.pitch = angles.pitch.Clamp( -89, 89 );
 		EyeAngles = angles;
 
+		if ( Ragdolled )
+		{
+			angles = RagdollAngles + Input.AnalogLook;
+			angles.pitch = angles.pitch.Clamp( -89, 89 );
+			angles.yaw = angles.yaw.Clamp( -120, 120 );
+
+			RagdollAngles = angles;
+		}
+
 		var eyes = FirstpersonView.GetAttachment( "eyes" ) ?? Transform.World;
 		Camera.WorldPosition = eyes.Position + eyes.Rotation.Forward * 3f;
-		Camera.WorldRotation = Rotation.From( EyeAngles );
+		Camera.WorldRotation = Ragdolled 
+			? eyes.Rotation * Rotation.From( RagdollAngles )
+			: Rotation.From( EyeAngles );
 	}
 
 	private void CreateFirstpersonView()
 	{
+		if ( IsProxy ) return;
+
 		// Clone renderer for firstperson view legs...
 		var gameObject = Renderer.GameObject.Clone();
 		gameObject.Name = $"Firstperson View";
 		gameObject.SetParent( GameObject, false );
+		gameObject.NetworkMode = NetworkMode.Never;
 
 		var renderer = gameObject.GetComponent<SkinnedModelRenderer>();
 		if ( renderer.IsValid() )

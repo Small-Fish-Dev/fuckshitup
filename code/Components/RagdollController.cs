@@ -15,6 +15,7 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 	private Rigidbody _rootBody;
 	private BoneCollection _bones;
 	private bool _updated;
+	private Transform _rootBindPose;
 
 	private bool _showRigidBodies;
 	private bool _showColliders;
@@ -147,6 +148,9 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 			}
 		}
 	}
+
+	[Property, Group( "Physics" )]
+	public bool DriveFromAnimation { get; set; }
 
 	[Property, Group( "Components" )]
 	public bool ShowRigidbodies
@@ -415,6 +419,7 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 		}
 
 		_rootBody = _bodies[0].Component;
+		_rootBindPose = Model.GetBoneTransform( _bodies[0].Bone.Index );
 
 		foreach ( var body in _bodies )
 		{
@@ -508,7 +513,14 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 				continue;
 
 			if ( body.Component.MotionEnabled )
+			{
+				if ( DriveFromAnimation )
+				{
+					DriveBodyFromAnimation( body );
+				}
+
 				continue;
+			}
 
 			if ( Renderer.TryGetBoneTransformAnimation( body.Bone, out var boneWorld ) )
 			{
@@ -542,6 +554,21 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 				continue;
 
 			body.Component.Sleeping = true;
+		}
+	}
+
+
+	private void DriveBodyFromAnimation( Body body )
+	{
+		if ( !body.Component.IsValid() )
+			return;
+		if ( body.Bone.Parent is null )
+			return;
+		if ( Renderer.TryGetBoneTransformAnimation( body.Bone, out var boneWorld ) )
+		{
+			boneWorld = WorldTransform.ToLocal( boneWorld );
+			boneWorld = _rootBody.WorldTransform.ToWorld( _rootBindPose.ToLocal( boneWorld ) );
+			body.Component.SmoothRotate( boneWorld.Rotation, 0.01f, Time.Delta );
 		}
 	}
 

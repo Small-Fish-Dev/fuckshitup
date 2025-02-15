@@ -50,15 +50,22 @@ partial class Character
 			return;
 		}*/
 
-		SetAnimParameter( "grounded", Grounded );
-		SetAnimParameter( "crouching", Crouched );
+		SetAnimParameter( "grounded", Ragdolled ? true : Grounded );
+		SetAnimParameter( "crouching", Ragdolled ? false : Crouched );
 
-		var oldX = Renderer.GetFloat( "move_x" );
-		var oldY = Renderer.GetFloat( "move_y" );
-		var newX = Vector3.Dot( WishVelocity, WorldRotation.Forward ) / 150f;
-		var newY = Vector3.Dot( WishVelocity, WorldRotation.Right ) / 150f;
-		var x = MathX.Lerp( oldX, newX, Time.Delta * 5f );
-		var y = MathX.Lerp( oldY, newY, Time.Delta * 5f );
+		var x = 0f;
+		var y = 0f;
+
+		if ( !Ragdolled )
+		{
+			var oldX = Renderer.GetFloat( "move_x" );
+			var oldY = Renderer.GetFloat( "move_y" );
+			var newX = Vector3.Dot( WishVelocity, WorldRotation.Forward ) / 150f;
+			var newY = Vector3.Dot( WishVelocity, WorldRotation.Right ) / 150f;
+			
+			x = MathX.Lerp( oldX, newX, Time.Delta * 5f );
+			y = MathX.Lerp( oldY, newY, Time.Delta * 5f );
+		}
 
 		SetAnimParameter( "move_x", x );
 		SetAnimParameter( "move_y", y );

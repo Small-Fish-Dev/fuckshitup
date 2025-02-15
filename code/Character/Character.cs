@@ -15,6 +15,8 @@ public sealed partial class Character : Pawn
 		set
 		{
 			// Reset renderer local transform.
+			RagdollAngles = Angles.Zero;
+
 			if ( Renderer.IsValid() && !value )
 			{
 				WorldPosition -= Renderer.LocalPosition.WithZ( -Renderer.LocalPosition.z );
@@ -57,6 +59,7 @@ public sealed partial class Character : Pawn
 	public ShrimpleCharacterController Controller { get; private set; }
 	public RagdollController RagdollController { get; private set; }
 	public Container Inventory { get; private set; }
+	public Voice Voice { get; private set; }
 
 	protected override void OnStart()
 	{
@@ -72,6 +75,9 @@ public sealed partial class Character : Pawn
 
 		Camera = Components.Get<CameraComponent>( FindMode.EverythingInSelfAndChildren );
 		Camera.Enabled = !IsProxy;
+
+		Voice = Components.Get<Voice>( FindMode.EverythingInSelfAndChildren );
+		Voice.Enabled = !IsProxy;
 
 		Inventory = Components.Get<Container>( FindMode.EverythingInSelfAndChildren );
 
