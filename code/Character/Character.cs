@@ -9,50 +9,6 @@ public sealed partial class Character : Pawn
 		? Client.Local.Pawn as Character
 		: null;
 
-	public bool Ragdolled
-	{
-		get => RagdollController.IsValid() && RagdollController.MotionEnabled;
-		set
-		{
-			// Reset renderer local transform.
-			RagdollAngles = Angles.Zero;
-
-			if ( Renderer.IsValid() && !value )
-			{
-				WorldPosition -= Renderer.LocalPosition.WithZ( -Renderer.LocalPosition.z );
-				Renderer.LocalTransform = global::Transform.Zero;
-			}
-
-			// Toggle ragdoll controller.
-			if ( RagdollController.IsValid() )
-			{
-				RagdollController.MotionEnabled = value;
-				RagdollController.Enabled = value;
-
-				if ( !value )
-				{
-					foreach ( var child in RagdollController.GameObject.Children )
-						child.Destroy();
-				}
-
-				// Inherit velocity from controller and also vice-versa.
-				if ( Controller.IsValid() )
-				{
-					if ( value )
-					{
-						RagdollController.SetVelocity( Controller.Velocity );
-						Controller.Velocity = Vector3.Zero;
-					}
-					else
-						Controller.Velocity = RagdollController.GetVelocity();
-				}
-			}
-
-			if ( Collider.IsValid() )
-				Collider.Enabled = !value;
-		}
-	}
-
 	public SkinnedModelRenderer Renderer { get; private set; }
 	public BoxCollider Collider { get; private set; }
 	public CameraComponent Camera { get; private set; }
@@ -66,18 +22,24 @@ public sealed partial class Character : Pawn
 		base.OnStart();
 
 		Renderer = Components.Get<SkinnedModelRenderer>( FindMode.EverythingInSelfAndChildren );
-		
+		if ( Renderer.IsValid() )
+			Renderer.RenderType = ModelRenderer.ShadowRenderType.On;
+
 		RagdollController = Components.Get<RagdollController>( FindMode.EverythingInSelfAndChildren );
+		if ( RagdollController.IsValid() )
+			RagdollController.Enabled = false;
 
 		Collider = Components.Get<BoxCollider>( FindMode.EverythingInSelfAndChildren );
 
 		Controller = Components.Get<ShrimpleCharacterController>( FindMode.EverythingInSelfAndChildren );
 
 		Camera = Components.Get<CameraComponent>( FindMode.EverythingInSelfAndChildren );
-		Camera.Enabled = !IsProxy;
+		if ( Camera.IsValid() )
+			Camera.Enabled = !IsProxy;
 
 		Voice = Components.Get<Voice>( FindMode.EverythingInSelfAndChildren );
-		Voice.Enabled = !IsProxy;
+		if ( Voice.IsValid() )
+			Voice.Enabled = !IsProxy;
 
 		Inventory = Components.Get<Container>( FindMode.EverythingInSelfAndChildren );
 
@@ -121,7 +83,7 @@ public sealed partial class Character : Pawn
 			HandleGrabbing();
 
 			if ( Input.Pressed( InputAction.RELOAD ) )
-				Ragdolled = !Ragdolled;
+				LocalRagdolled = !LocalRagdolled;
 
 			if ( Input.Pressed( InputAction.LEFT_MOUSE ) )
 			{
@@ -154,5 +116,7 @@ public sealed partial class Character : Pawn
 			SimulateCamera();
 			SimulateView();
 		}
+
+		SimulateRagdoll();
 	}
 }

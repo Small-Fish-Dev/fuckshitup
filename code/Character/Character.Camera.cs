@@ -8,7 +8,7 @@ partial class Character
 	public Angles EyeAngles { get; set; }
 	public Angles RagdollAngles { get; set; }
 
-	public Vector3 EyeForward => Ragdolled
+	public Vector3 EyeForward => LocalRagdolled
 		? ((FirstpersonView?.GetAttachment( "eyes" )?.Rotation ?? Rotation.Identity) * Rotation.From( RagdollAngles )).Forward
 		: EyeAngles.Forward;
 
@@ -23,7 +23,7 @@ partial class Character
 		angles.pitch = angles.pitch.Clamp( -89, 89 );
 		EyeAngles = angles;
 
-		if ( Ragdolled )
+		if ( LocalRagdolled )
 		{
 			angles = RagdollAngles + Input.AnalogLook;
 			angles.pitch = angles.pitch.Clamp( -89, 89 );
@@ -34,7 +34,7 @@ partial class Character
 
 		var eyes = FirstpersonView.GetAttachment( "eyes" ) ?? Transform.World;
 		Camera.WorldPosition = eyes.Position + eyes.Rotation.Forward * 3f;
-		Camera.WorldRotation = Ragdolled 
+		Camera.WorldRotation = LocalRagdolled
 			? eyes.Rotation * Rotation.From( RagdollAngles )
 			: Rotation.From( EyeAngles );
 	}
@@ -74,7 +74,7 @@ partial class Character
 		// Set visibility of Firstperson View and actual Renderer.
 		Renderer.RenderType = ModelRenderer.ShadowRenderType.ShadowsOnly;
 		FirstpersonView.RenderType = ModelRenderer.ShadowRenderType.Off;
-		FirstpersonView.BoneMergeTarget = Ragdolled ? Renderer : null;
+		FirstpersonView.BoneMergeTarget = LocalRagdolled ? Renderer : null;
 
 		// Move head out of the way for Firstperson View.
 		const int HEAD_BONE = 7;

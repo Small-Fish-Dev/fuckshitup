@@ -9,4 +9,7 @@ global using System.Threading.Tasks;
 global using ControllerNameSpaceFuckYOU;
 global using System.Text;
 global using System.Text.Json.Serialization;
+global using System.IO.Compression;
+global using System.IO;
 
+namespace FUCKSHIT;
