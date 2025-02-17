@@ -66,6 +66,8 @@ public sealed class IconEditor : GraphicsView
 				TranslucentBackground = true
 			}, 1 );
 		}
+		
+		Layout.AddSpacingCell( 8 );
 
 		{
 			// Save Button
