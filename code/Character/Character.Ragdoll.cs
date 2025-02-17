@@ -1,6 +1,6 @@
 ﻿namespace FUCKSHIT;
 
-public record struct BoneTransform( Vector3 pos, Rotation rot );
+record struct BoneTransform( Vector3 pos, Rotation rot );
 
 partial class Character
 {
@@ -72,34 +72,15 @@ partial class Character
 
 		if ( !Renderer.IsValid() )
 			return;
-
-		var model = Renderer.Model;
+		
 		var sceneObject = Renderer.SceneModel;
-		if ( model is null || !sceneObject.IsValid() )
+		if ( !sceneObject.IsValid() )
 			return;
 
 		// Interpolate all bones for other clients.
 		if ( IsProxy )
 		{
-			if ( _boneTransforms != null )
-				for ( int i = 0; i < model.BoneCount; i++ )
-				{
-					var transform = new Transform(
-						_boneTransforms[i].pos,
-						_boneTransforms[i].rot,
-						1f
-					);
-
-					var lerped = new Transform(
-						Vector3.Lerp( _previousTransforms[i].Position, _boneTransforms[i].pos, 15f * Time.Delta ),
-						Rotation.Lerp( _previousTransforms[i].Rotation, _boneTransforms[i].rot, 15f * Time.Delta ),
-						1f
-					);
-
-					sceneObject.SetBoneWorldTransform( i, lerped );
-					_previousTransforms[i] = lerped;
-				}
-
+			UpdateBoneTransforms( sceneObject );
 			return;
 		}
 
@@ -148,6 +129,28 @@ partial class Character
 		_lastBoneUpdate = 0f;
 	}
 
+	private void UpdateBoneTransforms( SceneModel sceneObject )
+	{
+		if ( _boneTransforms is null )
+			return;
+
+		var model = sceneObject.Model;
+		if ( model is null )
+			return;
+
+		for ( int i = 0; i < model.BoneCount; i++ )
+		{
+			var transform = new Transform(
+				Vector3.Lerp( _previousTransforms[i].Position, _boneTransforms[i].pos, 15f * Time.Delta ),
+				Rotation.Lerp( _previousTransforms[i].Rotation, _boneTransforms[i].rot, 15f * Time.Delta ),
+				1f
+			);
+
+			sceneObject.SetBoneWorldTransform( i, transform );
+			_previousTransforms[i] = transform;
+		}
+	}
+
 	[Rpc.Broadcast]
 	private void BroadcastBoneTransforms( byte[] data )
 	{
@@ -178,5 +181,9 @@ partial class Character
 
 			if ( initial ) _previousTransforms[i] = new Transform( pos, rot, 1f );
 		}
+
+		var sceneObject = Renderer.SceneModel;
+		if ( sceneObject.IsValid() )
+			UpdateBoneTransforms( sceneObject );
 	}
 }

@@ -37,7 +37,7 @@ partial class Character
 			else Grabbed = null;
 		}
 
-		if ( Input.Down( InputAction.RIGHT_MOUSE ) )
+		if ( Input.Down( InputAction.RIGHT_MOUSE ) ) // todo: doesn't work properly in ragdoll :D
 		{
 			var localPosition = Grabbed.IsValid()
 				? (GrabbedPosition - WorldPosition) * Renderer.WorldRotation.Inverse
@@ -45,11 +45,14 @@ partial class Character
 			var length = localPosition.Length;
 
 			var angles = Rotation.LookAt( localPosition.Normal ).Angles();
-			angles.pitch = angles.pitch.Clamp( -90, 10 );
+			angles.pitch = angles.pitch.Clamp( -70, 10 );
 			angles.yaw = angles.yaw.Clamp( -45, 45 );
 			localPosition = angles.Forward * length;
 
-			var transform = new Transform( localPosition, Rotation.Identity );
+			var targetPosition = Grabbed.IsValid() ? GrabbedPosition : EyeRay.Position + EyeForward * MAX_HOLD_DISTANCE;
+			var direction = Vector3.Direction( EyeRay.Position, targetPosition );
+			var pitch = Rotation.LookAt( direction ).Pitch();
+			var transform = new Transform( localPosition, Rotation.From( pitch.Clamp( -70, 40 ), 0, 90 ) );
 			RightIK ??= transform;
 			RightIK = global::Transform.Lerp( RightIK.GetValueOrDefault(), transform, 10f * Time.Delta, true );
 		}

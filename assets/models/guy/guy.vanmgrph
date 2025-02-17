@@ -3461,7 +3461,7 @@
 				{
 					_class = "CTwoBoneIKAnimNode"
 					m_sName = "Arm L IK"
-					m_vecPosition = [ 1600.0, 112.0 ]
+					m_vecPosition = [ 1600.0, 96.0 ]
 					m_nNodeID = 
 					{
 						m_id = 656395703
@@ -11425,7 +11425,7 @@
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
-				m_defaultValue = [ 0.0, 15.0, 30.0, 1.0 ]
+				m_defaultValue = [ 0.0, 0.0, 0.0, 1.0 ]
 			},
 			{
 				_class = "CBoolAnimParameter"
@@ -11598,7 +11598,7 @@
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
-				m_defaultValue = [ 180.0, 15.0, -30.0, 1.0 ]
+				m_defaultValue = [ 0.0, 0.0, 0.0, 1.0 ]
 			},
 			{
 				_class = "CBoolAnimParameter"

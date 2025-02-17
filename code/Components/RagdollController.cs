@@ -562,8 +562,10 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 	{
 		if ( !body.Component.IsValid() )
 			return;
+
 		if ( body.Bone.Parent is null )
 			return;
+
 		if ( Renderer.TryGetBoneTransformAnimation( body.Bone, out var boneWorld ) )
 		{
 			boneWorld = WorldTransform.ToLocal( boneWorld );
