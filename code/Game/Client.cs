@@ -37,6 +37,16 @@ public sealed class Client : Component
 	public Connection Connection => Connection.Find( ConnectionId );
 
 	/// <summary>
+	/// The Steam display name of this client.
+	/// </summary>
+	public string Name => Connection?.DisplayName ?? "unknown";
+
+	/// <summary>
+	/// The Steam display name of this client.
+	/// </summary>
+	public SteamId SteamId => Connection?.SteamId ?? default;
+
+	/// <summary>
 	/// The current pawn of this client.
 	/// </summary>
 	[Sync]
@@ -79,8 +89,7 @@ public sealed class Client : Component
 	/// <returns></returns>
 	public static Client Find( Connection connection )
 	{
-		Assert.True( connection is not null, "Tried to create client for null connection." );
-		
+		if ( connection is null ) return null;
 		return All.FirstOrDefault( client => client.ConnectionId == connection.Id );
 	}
 
