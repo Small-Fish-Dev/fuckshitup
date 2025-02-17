@@ -40,6 +40,23 @@ public sealed class SlotCollection
 		{ }
 
 		/// <summary>
+		/// Does our <see cref="SlotCollection.Box"/> contain this item's reference?
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="position"></param>
+		public bool TryGetPosition( Item item, out Vector2Int position )
+		{
+			position = default( Vector2Int );
+			if ( item is null ) 
+				return false;
+
+			var query = _references.FirstOrDefault( kvp => kvp.Value == item );
+			position = query.Key;
+
+			return query.Value is not null;
+		}
+
+		/// <summary>
 		/// Store a reference in our <see cref="SlotCollection.Box"/>.
 		/// </summary>
 		/// <param name="position"></param>
@@ -47,6 +64,9 @@ public sealed class SlotCollection
 		public void StoreReference( Vector2Int position, Item item )
 		{
 			Assert.False( _references.TryGetValue( position, out var reference ) && reference.IsValid(), "Tried to store an Item reference on top of another on the Container SlotCollection Box." );
+			if ( position.x >= Size.x || position.y >= Size.y ) return;
+			if ( position.x < 0 || position.y < 0 ) return;
+
 			_references.Add( position, item );
 		}
 
@@ -78,10 +98,14 @@ public sealed class SlotCollection
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="size"></param>
+		/// <param name="ignore"></param>
 		/// <returns></returns>
-		public bool CanFit( Vector2Int position, Vector2Int size )
+		public bool CanFit( Vector2Int position, Vector2Int size, Item ignore = null )
 		{
-			if ( position.x - size.x + 1 >= Size.x || position.x - size.y + 1 >= Size.x )
+			if ( position.x + size.x - 1 >= Size.x || position.y + size.y - 1 >= Size.y )
+				return false;
+
+			if ( position.x < 0 || position.y < 0 )
 				return false;
 
 			if ( size.x > Size.x || size.y > Size.y )
@@ -94,13 +118,18 @@ public sealed class SlotCollection
 					slotsNeeded.Add( new Vector2Int( x, y ) );
 				}
 
-			for ( int x = 0; x < Size.x - size.x + 1; x++ )
-				for ( int y = 0; y < Size.y - size.y + 1; y++ )
-				{
-					var pos = new Vector2Int( x, y );
-					if ( _references.TryGetValue( pos, out var _ ) && slotsNeeded.Contains( pos ) )
-						return false;
-				}
+			foreach ( var (pos, item) in _references)
+			{
+				if ( ignore is not null && item == ignore ) continue;
+				if ( !item.IsValid() ) continue;
+
+				for ( int x = pos.x; x < pos.x + item.Size.x; x++ )
+					for ( int y = pos.y; y < pos.y + item.Size.y; y++ )
+					{
+						if ( slotsNeeded.Contains( new Vector2Int( x, y ) ) )
+							return false;
+					}
+			}
 
 			return true;
 		}
