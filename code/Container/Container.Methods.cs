@@ -58,6 +58,34 @@ partial class Container
 	}
 
 	/// <summary>
+	/// Try to find this item's reference inside of this container.
+	/// </summary>
+	/// <param name="item"></param>
+	/// <param name="result"></param>
+	/// <returns></returns>
+	public bool TryFind( Item item, out ContainerResult result )
+	{
+		result = (null, null, default, false);
+
+		if ( item is null )
+			return false;
+
+		foreach ( var collection in _slotCollections )
+		{
+			var position = default( Vector2Int );
+			var box = collection.Boxes.FirstOrDefault( box => box.TryGetPosition( item, out position ) );
+			if ( box is null )
+				continue;
+
+			result.Position = position;
+			result.Box = box;
+			result.Collection = collection;
+		}
+
+		return result.Box is not null;
+	}
+
+	/// <summary>
 	/// Insert an item into our <see cref="Container"/>, do note that this method will throw an exception if something doesn't go right.
 	/// </summary>
 	/// <param name="item"></param>
