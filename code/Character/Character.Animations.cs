@@ -79,13 +79,13 @@ partial class Character
 		if ( LeftIK != null )
 		{
 			SetAnimParameter( "left_ik_pos", LeftIK?.Position ?? default );
-			SetAnimParameter( "left_ik_pos", LeftIK?.Rotation.Angles() ?? default );
+			SetAnimParameter( "left_ik_rot", LeftIK?.Rotation.Angles() ?? default );
 		}
 
 		if ( RightIK != null )
 		{
 			SetAnimParameter( "right_ik_pos", RightIK?.Position ?? default );
-			SetAnimParameter( "right_ik_pos", RightIK?.Rotation.Angles() ?? default );
+			SetAnimParameter( "right_ik_rot", RightIK?.Rotation.Angles() ?? default );
 		}
 	}
 
