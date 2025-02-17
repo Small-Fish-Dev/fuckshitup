@@ -3,7 +3,7 @@
 public sealed partial class Container 
 	: Component
 {
-	[Property, Category( "Information" )]
+	[Property, Sync, Category( "Information" )]
 	public string Name { get; set; }
 
 	/// <summary>
