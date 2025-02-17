@@ -8,6 +8,7 @@ public sealed partial class GameManager : Component, Component.INetworkListener
 	protected override void OnStart()
 	{
 		IconManager.Clear();
+		PrefabLibrary.Initialize();
 
 		if ( IsProxy )
 			return;
