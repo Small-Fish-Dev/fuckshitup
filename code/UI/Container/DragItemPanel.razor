@@ -35,6 +35,8 @@
 	public bool Rotated { get; set; }
 	public Vector2Int Size => Rotated ? new Vector2Int( Item.AbsoluteSize.y, Item.AbsoluteSize.x ) : Item.AbsoluteSize;
 
+	public static void Reset() => Instance = null;
+
 	public override void Tick()
 	{
 		if ( !Valid )

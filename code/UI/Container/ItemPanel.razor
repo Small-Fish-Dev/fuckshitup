@@ -1,7 +1,7 @@
 @namespace FUCKSHIT.UI
 @inherits Panel
 
-<root class="@(Valid || Static ? "visible" : "") @(IsBeingDragged && !Static ? "dragged" : "")" style="background-image-tint: @(RgbaColor);">
+<root class="@(Valid || Static ? "visible" : "") @(IsBeingDragged ? "dragged" : "")" style="background-image-tint: @(RgbaColor);">
 	@if ( Valid )
 	{
 		<div class="background" />
@@ -36,13 +36,14 @@
 
 	private bool IsBeingDragged => DragItemPanel.Instance is not null && DragItemPanel.Instance.Item == Item;
 	protected bool Valid => Item.IsValid() && !Item.IsProxy;
-	protected string RgbaColor => Valid ? Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba : "#FFFFFF";
+	protected string RgbaColor => Valid ? Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba : "#00000000";
 
 	protected override void OnMouseDown( MousePanelEvent e )
 	{
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
 
+		// todo: doesn't work from equipment slots
 		DragItemPanel.TryBegin( this );
 	}
 
@@ -51,7 +52,8 @@
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
 
-		DragItemPanel.TryStop( this, (item, rotated) => Container.Released( item, rotated ) );
+		// todo: doesn't work from equipment slots
+		DragItemPanel.TryStop( this, (item, rotated) => Container?.Released( item, rotated ) );
 	}
 
 	protected override int BuildHash()

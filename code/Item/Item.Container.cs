@@ -12,8 +12,8 @@ public sealed class EquipmentBox
 		get => _size;
 		set => _size = value.ComponentMax( Vector2Int.One );
 	}
-	
-	[JsonIgnore, Hide] 
+
+	[JsonIgnore, Hide]
 	private Vector2Int _size = Vector2Int.One;
 
 	/// <inheritdoc cref="SlotCollection.Box.SameLine"/>
@@ -25,7 +25,7 @@ public sealed class EquipmentBox
 	public Vector2 Margin { get; set; }
 }
 
-partial class Equipment
+partial class Item
 {
 	/// <summary>
 	/// List of all equipment boxes used for constructing the <see cref="Container"/>, this is for the editor.

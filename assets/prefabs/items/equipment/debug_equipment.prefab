@@ -6,9 +6,9 @@
     "Enabled": true,
     "Components": [
       {
-        "__type": "FUCKSHIT.Equipment",
-        "__guid": "ce37440b-5e51-49d4-96b8-892c8f3c125d",
-        "AbsoluteSize": "4,4",
+        "__type": "FUCKSHIT.Item",
+        "__guid": "7aa3ef3d-cd62-45a1-a645-c63a540158b2",
+        "AbsoluteSize": "3,3",
         "EquipmentBoxes": [
           {
             "Size": "1,2",
@@ -72,9 +72,10 @@
           }
         ],
         "IconSettings": {
-          "Offset": "-13.2,0,-0.7",
+          "Offset": "-11,0,0",
           "Rotation": "0,0,0,0"
         },
+        "IsEquipment": true,
         "Name": "Debug Equipment",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -82,7 +83,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Rarity": "Mythical",
+        "Rarity": "Legendary",
         "Slot": "Gear"
       },
       {

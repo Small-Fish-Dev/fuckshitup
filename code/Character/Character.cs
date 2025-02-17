@@ -66,7 +66,7 @@ public sealed partial class Character : Pawn
 			] )
 			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
 
-		var source = Scene.GetAllComponents<Item>().FirstOrDefault( item => item is Equipment equipment && equipment.IsContainer && equipment.Network.TakeOwnership() );
+		var source = Scene.GetAllComponents<Item>().FirstOrDefault( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() );
 		if ( !IsProxy && source.IsValid() && source.GameObject.TryGetContainer( out var container ) )
 		{
 			source.GameObject.Network.TakeOwnership();
@@ -75,7 +75,7 @@ public sealed partial class Character : Pawn
 
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )
-			if ( item is not Equipment )
+			if ( !item.IsEquipment )
 				Inventory.TryInsertItem( item );
 	}
 
