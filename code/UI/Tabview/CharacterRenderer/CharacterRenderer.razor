@@ -7,6 +7,7 @@
 	private Character Character => Character.Local;
 
 	private SceneModel SceneModel { get; set; }
+	private SceneModel DummyModel { get; set; }
 
 	private SceneDirectionalLight Sun { get; set; }
 	private SceneLight Light { get; set; }
@@ -19,8 +20,35 @@
 		base.OnAfterTreeRender( firstTime );
 
 		World ??= new();
-		Camera.FieldOfView = 30;
+		Camera.FieldOfView = 50;
+		Camera.OnRenderOverlay = OnRenderOverlay;
 		SetupLighting();
+	}
+
+	private void OnRenderOverlay()
+	{
+		var material = Material.FromShader( "shaders/character_view.shader" );
+		var attributes = Camera.Attributes;
+
+		using var rt = RenderTarget.GetTemporary( 1, ImageFormat.Default );
+		Graphics.RenderTarget = rt;
+		Graphics.Clear( Color.Black, clearColor: false );
+		{
+			DummyModel.SetBodyGroup( "head", 0 ); // todo
+			DummyModel.SetBodyGroup( "torso", 1 );
+			DummyModel.SetBodyGroup( "legs", 1 );
+			DummyModel.SetBodyGroup( "feet", 1 );
+			DummyModel.SetBodyGroup( "hands", 1 );
+			DummyModel.Morphs.Set( "fat", Character.Fatness );
+
+			Graphics.Render( DummyModel );
+		}
+		Graphics.RenderTarget = null;
+
+		attributes.Set( "HoverTexture", rt.ColorTarget );
+
+		Graphics.GrabFrameTexture( "ColorTexture", attributes );
+		Graphics.Blit( material, attributes );
 	}
 
 	private void SetupLighting()
@@ -37,13 +65,15 @@
 	{
 		const string CHAR_PATH = "models/guy/guy.vmdl";
 		SceneModel ??= new SceneModel( World, CHAR_PATH, global::Transform.Zero );
+		DummyModel ??= new SceneModel( World, CHAR_PATH, global::Transform.Zero );
+		DummyModel.RenderingEnabled = false;
 
 		Update();
 	}
 
 	private void Update()
 	{
-		if ( SceneModel is null )
+		if ( SceneModel is null || DummyModel is null )
 			return;
 
 		var mousePos = MousePosition;
@@ -53,15 +83,29 @@
 		/*if ( _isDragging )
 			_yaw += Mouse.Delta.x * 0.20f;*/
 
-		SceneModel.SetAnimParameter( "lookat", new Vector3( 1000f, localPos.x, -localPos.y ) * SceneModel.Rotation.Inverse );
-
-		SceneModel.Update( RealTime.Delta );
-
-		SceneModel.SetAnimParameter( "height", Character.Height );
-		SceneModel.SetAnimParameter( "weight", Character.Fatness );
+		var lookat = new Vector3( 1000f, localPos.x, -localPos.y ) * SceneModel.Rotation.Inverse;
+		SetAnimParameter( "lookat", lookat );
+		
+		SetAnimParameter( "height", Character.Height );
+		SetAnimParameter( "weight", Character.Fatness );
 
 		SceneModel.Morphs.Set( "fat", Character.Fatness );
-		SceneModel.Rotation = Rotation.From( 0, _yaw, 0 );
+
+		// SceneModel.Rotation = Rotation.From( 0, _yaw, 0 );
+		SceneModel.Update( RealTime.Delta );
+		DummyModel.Update( RealTime.Delta );
+	}
+
+	private void SetAnimParameter( string name, Vector3 value )
+	{
+		SceneModel.SetAnimParameter( name, value );
+		DummyModel.SetAnimParameter( name, value );
+	}
+
+	private void SetAnimParameter( string name, float value )
+	{
+		SceneModel.SetAnimParameter( name, value );
+		DummyModel.SetAnimParameter( name, value );
 	}
 
 	public override void OnButtonEvent( ButtonEvent e )

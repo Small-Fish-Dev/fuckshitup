@@ -2,9 +2,16 @@
 @inherits PanelComponent
 
 <root>
-	@*<Tabview />*@
+	<Tabview />
 </root>
 
 @code {
+	public static UIComponent Instance { get; private set; }
 
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		Instance = this;
+	}
 }
