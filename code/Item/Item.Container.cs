@@ -28,6 +28,12 @@ public sealed class EquipmentBox
 partial class Item
 {
 	/// <summary>
+	/// Is our item also a container?
+	/// </summary>
+	[Property, FeatureEnabled( "Container" )]
+	public bool IsContainer { get; set; }
+
+	/// <summary>
 	/// List of all equipment boxes used for constructing the <see cref="Container"/>, this is for the editor.
 	/// </summary>
 	[Property, WideMode, Title( "Container" ), Feature( "Container" )]
@@ -38,11 +44,6 @@ partial class Item
 	/// </summary>
 	[Sync]
 	public Container Inventory { get; set; }
-
-	/// <summary>
-	/// True if we have any <see cref="EquipmentBoxes"/> defined.
-	/// </summary>
-	public bool IsContainer => EquipmentBoxes?.Any() ?? false;
 
 	protected void SetupContainer()
 	{
