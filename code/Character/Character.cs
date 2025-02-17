@@ -67,16 +67,16 @@ public sealed partial class Character : Pawn
 			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
 
 		var source = Scene.GetAllComponents<Item>().FirstOrDefault( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() );
-		if ( !IsProxy && source.IsValid() && source.GameObject.TryGetContainer( out var container ) )
+		if ( !IsProxy && source.IsValid() )
 		{
 			source.GameObject.Network.TakeOwnership();
-			Inventory.AddSlotCollections( container );
+			TryEquip( source );
 		}
 
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )
 			if ( !item.IsEquipment )
-				Inventory.TryInsertItem( item );
+				Inventory.TryInsert( item );
 	}
 
 	protected override void OnFixedUpdate()

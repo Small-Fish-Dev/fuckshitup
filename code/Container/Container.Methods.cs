@@ -91,7 +91,7 @@ partial class Container
 	/// <param name="item"></param>
 	/// <returns></returns>
 	/// <exception cref="Exception"/>
-	public bool InsertItem( Item item )
+	public bool Insert( Item item )
 	{
 		Assert.True( !IsProxy, "Tried to place an Item inside of a Container you don't own." );
 		Assert.True( item.IsValid(), "Can't place an invalid Item into a Container." );
@@ -116,17 +116,36 @@ partial class Container
 
 	/// <summary>
 	/// Let's try to insert an item into our <see cref="Container"/>.
-	/// <para>Uses <see cref="InsertItem(Item)"/> internally.</para>
+	/// <para>Uses <see cref="Insert(Item)"/> internally.</para>
 	/// </summary>
 	/// <param name="item"></param>
 	/// <returns></returns>
-	public bool TryInsertItem( Item item )
+	public bool TryInsert( Item item )
 	{
 		try
 		{
-			var result = InsertItem( item );
+			var result = Insert( item );
 			return result;
 		}
 		catch { return false; }
 	}
+
+	/// <summary>
+	/// Drop an item from this container.
+	/// </summary>
+	/// <param name="item"></param>
+	/// <returns></returns>
+	public bool Drop( Item item )
+	{
+		if ( !TryFind( item, out var result ) )
+			return false;
+
+		// todo: drop logic
+		item.State = ItemState.InWorld;
+		item.SetContainer( null );
+		result.Box?.ClearReference( result.Position );
+
+		return true;
+	}
+
 }

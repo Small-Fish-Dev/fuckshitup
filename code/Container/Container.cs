@@ -107,8 +107,24 @@ public sealed partial class Container
 	{
 		Assert.True( collection is not null, "Tried to remove non-existing SlotCollection from Container." );
 		Assert.True( _slotCollections.Contains( collection ), "Tried to remove SlotCollection that doesn't belong to this Container." );
-		
+
 		_slotCollections.Remove( collection );
+	}
+
+	/// <summary>
+	/// Remove <see cref="SlotCollection"/>s of another <see cref="Container"/> from this <see cref="Container"/>.
+	/// </summary>
+	/// <param name="container"></param>
+	public void RemoveSlotCollections( Container container )
+	{
+		Assert.True( container.IsValid(), "Tried to add slot collections from an invalid container." );
+		Assert.True( !IsProxy, "Tried to add slot collections to a container you don't have ownership of." );
+
+		foreach ( var collection in _slotCollections )
+		{
+			if ( container.SlotCollections.Contains( collection ) )
+				_slotCollections.Remove( collection );
+		}
 	}
 
 	/// <summary>

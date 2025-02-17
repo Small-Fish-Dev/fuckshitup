@@ -71,7 +71,7 @@ partial class Item
 	}
 
 	[Rpc.Broadcast]
-	private void SetParentObject( GameObject gameObject )
+	public void SetParentObject( GameObject gameObject )
 	{
 		GameObject.SetParent( !gameObject.IsValid() ? null : gameObject, false );
 	}

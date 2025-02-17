@@ -41,15 +41,15 @@ public partial class Item : Component
 
 	protected override void OnStart()
 	{
-		// Fetch components.
 		Renderer = Components.Get<ModelRenderer>( FindMode.EverythingInSelfAndChildren );
 		Collider = Components.Get<BoxCollider>( FindMode.EverythingInSelfAndChildren );
 		Rigidbody = Components.Get<Rigidbody>( FindMode.EverythingInSelfAndChildren );
 
-		// Set up networking.
 		if ( !Network.Active )
 		{
 			GameObject.SetupNetworking( transfer: OwnerTransfer.Request );
 		}
+
+		SetupContainer();
 	}
 }
