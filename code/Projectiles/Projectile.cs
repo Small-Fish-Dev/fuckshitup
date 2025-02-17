@@ -3,7 +3,7 @@
 public sealed class Projectile : Component
 {
 	private const float INCH_TO_METER = 0.0254f;
-	public const float GRAVITY = 800f;
+	public const float GRAVITY = 400f;
 
 	public ProjectileResource Resource { get; private set; }
 	public ProjectileSettings Settings { get; private set; }
