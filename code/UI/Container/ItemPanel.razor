@@ -1,7 +1,7 @@
 @namespace FUCKSHIT.UI
 @inherits Panel
 
-<root class="@(Valid ? "visible" : "")" style="background-image-tint: @(Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba);">
+<root class="@(Valid || Static ? "visible" : "") @(IsBeingDragged && !Static ? "dragged" : "")" style="background-image-tint: @(RgbaColor);">
 	@if ( Valid )
 	{
 		<div class="background" />
@@ -13,9 +13,9 @@
 
 					<TexturePanel
 						Texture=@texture
-						style="transform: @(Item.Rotated && !DisableRotation ? "rotate(90deg)" : "");
-							   @(!DisableRotation 
-								? $"width: {Item.AbsoluteSize.x * GridSize * ICON_SCALE}px; height: {Item.AbsoluteSize.y * GridSize * ICON_SCALE}px;"
+						style="transform: @(Item.Rotated && !Static ? "rotate(90deg)" : "");
+							   @(!Static 
+								? $"width: {Item.AbsoluteSize.x * GRID_SIZE * ICON_SCALE}px; height: {Item.AbsoluteSize.y * GRID_SIZE * ICON_SCALE}px;"
 								: "")"
 					/>
 				}
@@ -27,18 +27,38 @@
 </root>
 
 @code {
+	protected const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
 	public const float ICON_SCALE = 0.75f;
 
 	public Item Item { get; set; }
-	public bool DisableRotation { get; set; }
-	public float GridSize { get; set; }
+	public bool Static { get; set; }
+	public ContainerDisplay Container { get; set; }
 
-	private bool Valid => Item.IsValid() && !Item.IsProxy;
+	private bool IsBeingDragged => DragItemPanel.Instance is not null && DragItemPanel.Instance.Item == Item;
+	protected bool Valid => Item.IsValid() && !Item.IsProxy;
+	protected string RgbaColor => Valid ? Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba : "#FFFFFF";
+
+	protected override void OnMouseDown( MousePanelEvent e )
+	{
+		if ( e.MouseButton is not MouseButtons.Left )
+			return;
+
+		DragItemPanel.TryBegin( this );
+	}
+
+	protected override void OnMouseUp( MousePanelEvent e )
+	{
+		if ( e.MouseButton is not MouseButtons.Left )
+			return;
+
+		DragItemPanel.TryStop( this, (item, rotated) => Container.Released( item, rotated ) );
+	}
 
 	protected override int BuildHash()
 		=> HashCode.Combine(
 			Item.IsValid(),
 			Item?.Rotated,
+			IsBeingDragged,
 			(Item as IIconGenerator)?.CreateIconHash()
 		);
 }

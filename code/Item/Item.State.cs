@@ -28,7 +28,7 @@ partial class Item
 	/// <summary>
 	/// The container that this item is currently inside of.
 	/// </summary>
-	[Sync]
+	[Sync, Change( nameof( OnContainerChanged ) )]
 	public Container Container { get; set; }
 
 	/// <summary>
@@ -55,12 +55,16 @@ partial class Item
 
 	public void SetContainer( Container container )
 	{
+		if ( IsProxy )
+			return;
+
+		if ( container == Container ) 
+			return;
+
 		Container = container;
 
 		if ( !container.IsValid() )
-		{
 			return;
-		}
 
 		State = ItemState.InContainer;
 		SetParentObject( container.GameObject );
@@ -70,5 +74,41 @@ partial class Item
 	private void SetParentObject( GameObject gameObject )
 	{
 		GameObject.SetParent( !gameObject.IsValid() ? null : gameObject, false );
+	}
+
+	private void OnContainerChanged( Container previous, Container value )
+	{
+		if ( !value.IsValid() ) return;
+
+		var gameObject = value.GameObject;
+		GameObject.SetParent( !gameObject.IsValid() ? null : gameObject, true );
+	}
+
+	/// <summary>
+	/// Try to move this Item to a new position.
+	/// </summary>
+	/// <param name="target"></param>
+	/// <param name="box"></param>
+	/// <param name="pos"></param>
+	/// <param name="rotated"></param>
+	/// <returns></returns>
+	public bool TryMove( Container target, SlotCollection.Box box, Vector2Int pos, bool rotated )
+	{
+		if ( !Container.IsValid() ) return false;
+		if ( !target.IsValid() ) return false;
+		if ( box is null ) return false;
+
+		var size = rotated ? new Vector2Int( AbsoluteSize.y, AbsoluteSize.x ) : AbsoluteSize;
+		if ( !box.CanFit( pos, size, this ) ) 
+			return false;
+
+		if ( Container.TryFind( this, out var result ) )
+			result.Box.ClearReference( result.Position );
+
+		Rotated = rotated;
+		box.StoreReference( pos, this );
+		SetContainer( target );
+
+		return true;
 	}
 }

@@ -1,0 +1,14 @@
+HoverSlots {
+    position: absolute;
+    opacity: 0.5;
+    background-color: red;
+    display: none;
+
+    &.visible {
+        display: flex;
+    }
+
+    &.valid {
+        background-color: green;
+    }
+}

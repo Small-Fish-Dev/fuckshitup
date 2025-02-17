@@ -2,9 +2,6 @@
 
 public sealed partial class Character : Pawn
 {
-	/// <summary>
-	/// The local player...
-	/// </summary>
 	public static Character Local => Client.Local.IsValid()
 		? Client.Local.Pawn as Character
 		: null;
@@ -61,6 +58,12 @@ public sealed partial class Character : Pawn
 				new SlotCollection.Box( 2, 2, margin: Vector2.Left * 30.5f, sameLine: false ),
 				new SlotCollection.Box( 2, 2 ),
 			] )
+			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );*/
+
+		Inventory
+			.AddSlotCollection( "Backpack", [
+				new SlotCollection.Box( 5, 8 ),
+			] )
 			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
 
 		var source = Scene.GetAllComponents<Item>().FirstOrDefault( item => item is Equipment equipment && equipment.IsContainer && equipment.Network.TakeOwnership() );
@@ -72,7 +75,8 @@ public sealed partial class Character : Pawn
 
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )
-			Inventory.TryInsertItem( item );*/
+			if ( item is not Equipment )
+				Inventory.TryInsertItem( item );
 	}
 
 	protected override void OnFixedUpdate()
@@ -82,7 +86,7 @@ public sealed partial class Character : Pawn
 			SimulateMovement();
 			HandleGrabbing();
 
-			if ( Input.Pressed( InputAction.RELOAD ) )
+			if ( Input.Pressed( InputAction.RIGHT_MOUSE ) )
 				LocalRagdolled = !LocalRagdolled;
 
 			if ( Input.Pressed( InputAction.LEFT_MOUSE ) )
@@ -90,14 +94,14 @@ public sealed partial class Character : Pawn
 				var resource = ResourceLibrary.GetAll<ProjectileResource>().FirstOrDefault();
 				if ( resource is not null )
 					Projectile.Launch(
-						Camera.WorldPosition + Camera.WorldRotation.Forward * 20f,
+						EyeRay.Position + EyeForward * 20f,
 						resource,
 						new ProjectileSettings
 						{
 							Count = 25,
 							HorizontalSpread = new RangedFloat( -1f, 1f ),
 							VerticalSpread = new RangedFloat( -1f, 1f ),
-							Velocity = Camera.WorldRotation.Forward * 3000f
+							Velocity = EyeForward * 3000f
 						} 
 					);
 			}
@@ -118,5 +122,20 @@ public sealed partial class Character : Pawn
 		}
 
 		SimulateRagdoll();
+	}
+
+	private void InitializeInventory()
+	{
+		if ( !Inventory.IsValid() )
+			return;
+
+		Inventory.Name = $"{Client.Name}";
+		Inventory.Clear();
+		Inventory.AddSlotCollection( "Pockets", [
+			new SlotCollection.Box( 1, 1 ),
+			new SlotCollection.Box( 1, 2 ),
+			new SlotCollection.Box( 1, 2 ),
+			new SlotCollection.Box( 1, 1 ),
+		] );
 	}
 }

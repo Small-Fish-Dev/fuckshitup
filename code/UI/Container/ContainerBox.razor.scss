@@ -3,6 +3,7 @@
 ContainerBox {
     position: absolute;
     border: 1px $black;
+    pointer-events: all;
 
     > .background {
         position: absolute;

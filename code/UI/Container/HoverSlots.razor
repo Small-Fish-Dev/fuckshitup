@@ -1,0 +1,36 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+@{
+	var size = DragItemPanel.Instance?.Size ?? 0;
+	var position = Container.HoveredPosition;
+
+	if ( Visible )
+	{
+		CanFit = Container.HoveredBox?.Box?.CanFit( position, size, DragItemPanel.Instance.Item ) ?? false;
+	}
+
+	<root 
+		class="@(Visible ? "visible" : "") @(CanFit ? "valid" : "")"
+		style="left: @(position.x * GRID_SIZE - 1)px; top: @(position.y * GRID_SIZE - 1)px;
+			   width: @(size.x * GRID_SIZE - 1)px; height: @(size.y * GRID_SIZE - 1)px;"
+	/>
+}
+
+@code {
+	private const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
+
+	public ContainerDisplay Container { get; set; }
+	public ContainerBox Box { get; set; }
+
+	private bool CanFit { get; set; }
+	private bool Visible => Container?.HoveredBox == Box && DragItemPanel.Instance is not null;
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			CanFit,
+			Container.HoveredPosition,
+			DragItemPanel.Instance?.Rotated,
+			DragItemPanel.Instance
+		);
+}

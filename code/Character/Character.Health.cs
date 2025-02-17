@@ -1,4 +1,4 @@
-namespace FUCKSHIT;
+﻿namespace FUCKSHIT;
 
 partial class Character
 {
@@ -98,20 +98,6 @@ partial class Character
 				Limb = limbData.Key
 			} );
 		}
-	}
-
-	private void InitializeInventory()
-	{
-		if ( !Inventory.IsValid() )
-			return;
-
-		Inventory.Clear();
-		Inventory.AddSlotCollection( "Pockets", [
-			new SlotCollection.Box( 1, 1 ),
-			new SlotCollection.Box( 1, 2 ),
-			new SlotCollection.Box( 1, 2 ),
-			new SlotCollection.Box( 1, 1 ),
-		] );
 	}
 
 	/// <summary>

@@ -11,7 +11,7 @@
 
 		@if ( Source.IsValid() )
 		{
-			<ItemPanel Item=@Source DisableRotation=@true />
+			<ItemPanel Item=@Source Static=@true />
 		}
 
 		<div class="boxes">
@@ -37,10 +37,12 @@
 					totalX = left;
 
 					@* SlotCollection box.. *@
-					<ContainerBox Box=@box GridSize=@GRID_SIZE
-						 style="width: @(box.Size.x * GRID_SIZE + 2)px; 
-								height: @(box.Size.y * GRID_SIZE + 2)px;
-								top: @(top)px; left: @(left)px;"
+					<ContainerBox 
+						Box=@box 
+						Container=@Container
+						style="width: @(box.Size.x * GRID_SIZE + 2)px; 
+							   height: @(box.Size.y * GRID_SIZE + 2)px;
+							   top: @(top)px; left: @(left)px;"
 					/>
 
 					@* Is our item the tallest? *@
@@ -71,6 +73,7 @@
 	public const float COLLECTION_GAP = 20;
 	public const float GAP = 3;
 
+	public ContainerDisplay Container { get; set; }
 	public SlotCollection SlotCollection { get; set; }
 	
 	private IReadOnlyCollection<SlotCollection.Box> Boxes => SlotCollection.Boxes;

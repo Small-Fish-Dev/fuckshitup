@@ -4,10 +4,10 @@
 @if ( Box is null )
 	return;
 
-<root>
+<root onmouseover=@OnMouseOver>
 	<div 
 		class="background inner-border" 
-		style="background-size: @(GridSize)px;"
+		style="background-size: @(GRID_SIZE)px;"
 	/>
 
 	@foreach ( var (position, item) in Box.References )
@@ -17,16 +17,28 @@
 
 		<ItemPanel
 			Item=@item
-			GridSize=@GridSize
-			style="left: @(position.x * GridSize - 1)px; top: @(position.y * GridSize - 1)px;
-				   width: @(item.Size.x * GridSize - 1)px; height: @(item.Size.y * GridSize - 1)px;"
+			Container=@Container
+			style="left: @(position.x * GRID_SIZE - 1)px; top: @(position.y * GRID_SIZE - 1)px;
+				   width: @(item.Size.x * GRID_SIZE - 1)px; height: @(item.Size.y * GRID_SIZE - 1)px;"
 		/>
 	}
+
+	<HoverSlots Box=@this Container=@Container />
 </root>
 
 @code {
+	private const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
+
 	public new SlotCollection.Box Box { get; set; }
-	public float GridSize { get; set; }
+	public ContainerDisplay Container { get; set; }
+
+	private void OnMouseOver()
+	{
+		if ( Container is null )
+			return;
+
+		Container.HoveredBox = this;
+	}
 
 	protected override int BuildHash()
 		=> HashCode.Combine(

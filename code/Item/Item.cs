@@ -25,7 +25,7 @@ public partial class Item : Component
 	}
 
 	[Sync]
-	public bool Rotated { get; set; } = true;
+	public bool Rotated { get; set; } = false;
 
 	public ModelRenderer Renderer { get; private set; }
 	public Rigidbody Rigidbody { get; private set; }

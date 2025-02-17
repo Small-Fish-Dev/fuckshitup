@@ -1,0 +1,122 @@
+@namespace FUCKSHIT.UI
+@attribute [StyleSheet]
+@inherits ItemPanel
+
+<root class="@(Valid ? "visible" : "")" style="background-image-tint: @(RgbaColor);">
+	@if ( Valid )
+	{
+		<div class="background" />
+
+		<div class="container">
+			<div class="content">
+				@{
+					var texture = IconManager.Request( Item, Item.AbsoluteSize.x, Item.AbsoluteSize.y );
+
+					<TexturePanel
+						Texture=@texture
+						style="transform: @(Rotated && !Static ? "rotate(90deg)" : "");
+							   @(!Static 
+								? $"width: {Item.AbsoluteSize.x * GRID_SIZE * ICON_SCALE}px; height: {Item.AbsoluteSize.y * GRID_SIZE * ICON_SCALE}px;"
+								: "")"
+					/>
+				}
+			</div>
+
+			<p class="name">@Item.Name</p>
+		</div>
+	}
+</root>
+
+
+@code {
+	public static DragItemPanel Instance { get; private set; }
+
+	public Container Source { get; set; }
+	public Vector2 LocalPosition { get; set; }
+	public bool Rotated { get; set; }
+	public Vector2Int Size => Rotated ? new Vector2Int( Item.AbsoluteSize.y, Item.AbsoluteSize.x ) : Item.AbsoluteSize;
+
+	public override void Tick()
+	{
+		if ( !Valid )
+		{
+			Delete();
+			Instance = null;
+			return;
+		}
+
+		if ( Input.Pressed( InputAction.RELOAD ) )
+		{
+			Rotated = !Rotated;
+			LocalPosition = new Vector2( LocalPosition.y, LocalPosition.x );
+		}
+
+		UpdateTransform();
+	}
+
+	private void UpdateTransform()
+	{
+		if ( !Item.IsValid() ) return;
+
+		var pos = Mouse.Position - LocalPosition * Box.Rect.Size;
+		pos /= Screen.Size;
+
+		Style.Left = Length.Fraction( pos.x );
+		Style.Top = Length.Fraction( pos.y );
+
+		Style.Width = Size.x * GRID_SIZE;
+		Style.Height = Size.y * GRID_SIZE;
+	}
+
+	public static void TryBegin( ItemPanel panel )
+	{
+		if ( DragItemPanel.Instance is not null )
+			return;
+
+		if ( panel is null ) 
+			return;
+
+		var item = panel.Item;
+		if ( !item.IsValid() )
+			return;
+
+		var container = item.Container;
+		if ( !container.IsValid() )
+			return;
+
+		Instance = new() 
+		{
+			Item = item,
+			Rotated = item.Rotated,
+			Source = container,
+			LocalPosition = panel.MousePosition / panel.Box.Rect.Size,
+			Parent = UIComponent.Instance?.Panel
+		};
+
+		Instance.UpdateTransform();
+	}
+
+	public static void TryStop( ItemPanel panel, Action<Item, bool> callback )
+	{
+		if ( DragItemPanel.Instance is null )
+			return;
+
+		if ( panel is null ) 
+			return;
+
+		if ( panel.Item == Instance.Item )
+		{
+			callback?.Invoke( Instance.Item, Instance.Rotated );
+
+			Instance.Delete();
+			Instance = null;
+		}
+	}
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			Item.IsValid(),
+			Rotated,
+			(Item as IIconGenerator)?.CreateIconHash()
+		);
+}

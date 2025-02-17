@@ -10,12 +10,43 @@
 		if ( slotCollection is null )
 			continue;
 
-		<SlotCollectionDisplay SlotCollection=@slotCollection />
+		<SlotCollectionDisplay Container=@this SlotCollection=@slotCollection />
 	}
 </root>
 
 @code {
+	private const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
+
 	public Container Container { get; set; }
+
+	public ContainerBox HoveredBox { get; set; }
+	public Vector2Int HoveredPosition { get; set; }
+
+	public override void Tick()
+	{
+		base.Tick();
+
+		if ( HoveredBox is null )
+			return;
+
+		var offset = Vector2.Zero;
+		var dragPanel = DragItemPanel.Instance;
+		if ( dragPanel is not null )
+			offset = dragPanel.LocalPosition * dragPanel.Box.Rect.Size;
+
+		var pos = HoveredBox.MousePosition - offset + GRID_SIZE * 0.5f;
+		pos /= GRID_SIZE * ScaleToScreen;
+
+		HoveredPosition = new Vector2Int( (int)pos.x, (int)pos.y );
+	}
+
+	public void Released( Item item, bool rotated )
+	{
+		if ( !item.IsValid() )
+			return;
+
+		item.TryMove( Container, HoveredBox.Box, HoveredPosition, rotated );
+	}
 
 	protected override int BuildHash()
 		=> HashCode.Combine(

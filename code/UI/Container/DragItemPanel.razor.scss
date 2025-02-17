@@ -1,18 +1,10 @@
 @import "/UI/Style.scss";
 
-ItemPanel {
-    display: none;
-    position: relative;
+DragItemPanel {
+    position: absolute;
     border: 1px rgba(white, 0);
     background-image: linear-gradient(darken($white, 0.2) 0%, darken($white, 0.45) 100%);
 
-    &.dragged {
-        animation: OpacityAlternate 0.5s 0s linear alternate infinite; 
-    }
-
-    &.visible {
-        display: flex;
-    }
 
     > .background {
         position: absolute;
@@ -63,16 +55,5 @@ ItemPanel {
 
     &:hover {
         cursor: pointer;
-    }
-}
-
-@keyframes OpacityAlternate
-{
-    0% {
-        opacity: 0.8;
-    }
-
-    100% {
-        opacity: 0.2;
     }
 }
