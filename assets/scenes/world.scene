@@ -147,15 +147,6 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "3250d95e-4244-4392-a517-ca9588023a23",
-      "Flags": 0,
-      "Name": "debug_long",
-      "Position": "-184.0713,104.1027,3",
-      "Enabled": true,
-      "__Prefab": "prefabs/items/debug_long.prefab",
-      "__PrefabVariables": {}
-    },
-    {
       "__guid": "1c687aa8-71c4-4a28-96d4-84d85f85dae7",
       "Flags": 0,
       "Name": "debug_big",
@@ -169,15 +160,6 @@
       "Flags": 0,
       "Name": "debug_long (1)",
       "Position": "-182.4018,64.40985,3.000015",
-      "Enabled": true,
-      "__Prefab": "prefabs/items/debug_long.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "61236fd3-910d-4ece-bf6d-7c2223114fbb",
-      "Flags": 0,
-      "Name": "debug_long (2)",
-      "Position": "-198.1666,80.46431,3.000015",
       "Enabled": true,
       "__Prefab": "prefabs/items/debug_long.prefab",
       "__PrefabVariables": {}
@@ -216,6 +198,78 @@
       "Position": "-184.3206,-21.35632,3",
       "Enabled": true,
       "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "415fbd5f-6d80-427e-978f-88ed69fc3818",
+      "Flags": 0,
+      "Name": "debug_small (7)",
+      "Position": "-143.6694,36.3587,3.000015",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "61236fd3-910d-4ece-bf6d-7c2223114fbb",
+      "Flags": 0,
+      "Name": "debug_long (2)",
+      "Position": "-198.1666,80.46431,3.000015",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_long.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "ed05e891-03ce-46c5-bdfd-d9b22c76b3b8",
+      "Flags": 0,
+      "Name": "debug_small (6)",
+      "Position": "-145.4734,13.99219,3",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "1eed9fbf-1b13-4bc8-af11-f3680623b0b7",
+      "Flags": 0,
+      "Name": "debug_small (5)",
+      "Position": "-144.6305,-2.272247,3",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "aec28a46-f356-439d-b2b3-b410da0429bc",
+      "Flags": 0,
+      "Name": "debug_small (4)",
+      "Position": "-144.5431,-21.35632,3",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "86a3cb9d-f98c-48e6-aaab-0685e0ac7654",
+      "Flags": 0,
+      "Name": "debug_small (11)",
+      "Position": "-102.5856,36.3587,3.000015",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "f3a1ebd1-de9e-45b6-bc97-f5f4349f0f4c",
+      "Flags": 0,
+      "Name": "debug_small (10)",
+      "Position": "-104.3896,13.99219,3",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_small.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "3250d95e-4244-4392-a517-ca9588023a23",
+      "Flags": 0,
+      "Name": "debug_long",
+      "Position": "-184.0713,104.1027,3",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/debug_long.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -343,7 +397,7 @@
               "__guid": "3a657c53-2ace-4023-ad7b-a79ef9442597",
               "Flags": 4,
               "Name": "hand_IK_L",
-              "Position": "36.14781,-0.4136696,10.37346",
+              "Position": "36.14505,-0.4903321,10.58096",
               "Rotation": "0.02840126,0.9991273,-0.005222708,0.03017095",
               "Enabled": true
             },
@@ -351,7 +405,7 @@
               "__guid": "b4117bf5-b14d-4d80-b016-1e357f651924",
               "Flags": 4,
               "Name": "hand_IK_R",
-              "Position": "36.14783,-0.4136868,-10.66113",
+              "Position": "36.14507,-0.4903469,-10.44877",
               "Rotation": "0.02840126,0.9991274,0.005222708,-0.03017089",
               "Enabled": true
             }
@@ -620,7 +674,7 @@
               "Flags": 4,
               "Name": "balls",
               "Position": "-0.9530144,2.114695,-0.000007629395",
-              "Rotation": "0.412336,0.574463,-0.574413,-0.4123361",
+              "Rotation": "0.412336,0.574463,-0.5744131,-0.412336",
               "Enabled": true
             }
           ]
