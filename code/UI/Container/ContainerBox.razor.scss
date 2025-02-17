@@ -4,6 +4,7 @@ ContainerBox {
     position: absolute;
     border: 1px $black;
     pointer-events: all;
+    overflow: hidden;
 
     > .background {
         position: absolute;
