@@ -47,17 +47,17 @@
 		if ( Input.Pressed( InputAction.RELOAD ) )
 		{
 			Rotated = !Rotated;
-			LocalPosition = new Vector2( LocalPosition.y, LocalPosition.x );
+			if ( Size.x != Size.y ) LocalPosition = new Vector2( LocalPosition.y, LocalPosition.x );
 		}
 
-		UpdateTransform();
+		UpdateTransform( Box.Rect );
 	}
 
-	private void UpdateTransform()
+	private void UpdateTransform( Rect rect )
 	{
 		if ( !Item.IsValid() ) return;
 
-		var pos = Mouse.Position - LocalPosition * Box.Rect.Size;
+		var pos = Mouse.Position - LocalPosition * rect.Size;
 		pos /= Screen.Size;
 
 		Style.Left = Length.Fraction( pos.x );
@@ -92,7 +92,7 @@
 			Parent = UIComponent.Instance?.Panel
 		};
 
-		Instance.UpdateTransform();
+		Instance.UpdateTransform( panel.Box.Rect );
 	}
 
 	public static void TryStop( ItemPanel panel, Action<Item, bool> callback )

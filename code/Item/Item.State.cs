@@ -105,6 +105,9 @@ partial class Item
 		if ( Container.TryFind( this, out var result ) )
 			result.Box.ClearReference( result.Position );
 
+		if ( Network.Active && !Network.IsOwner ) 
+			Network.TakeOwnership();
+
 		Rotated = rotated;
 		box.StoreReference( pos, this );
 		SetContainer( target );

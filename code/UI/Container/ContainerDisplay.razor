@@ -29,15 +29,18 @@
 		if ( HoveredBox is null )
 			return;
 
-		var offset = Vector2.Zero;
+		var offset = Vector2Int.Zero;
 		var dragPanel = DragItemPanel.Instance;
 		if ( dragPanel is not null )
-			offset = dragPanel.LocalPosition * dragPanel.Box.Rect.Size;
+		{
+			var localPosition = dragPanel.LocalPosition * dragPanel.Box.Rect.Size / GRID_SIZE * ScaleToScreen;
+			offset = new Vector2Int( (int)localPosition.x, (int)localPosition.y );
+		}
 
-		var pos = HoveredBox.MousePosition - offset + GRID_SIZE * 0.5f;
+		var pos = HoveredBox.MousePosition;
 		pos /= GRID_SIZE * ScaleToScreen;
 
-		HoveredPosition = new Vector2Int( (int)pos.x, (int)pos.y );
+		HoveredPosition = new Vector2Int( (int)pos.x, (int)pos.y ) - offset;
 	}
 
 	public void Released( Item item, bool rotated )
