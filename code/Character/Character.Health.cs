@@ -1,4 +1,4 @@
-﻿namespace FUCKSHIT;
+namespace FUCKSHIT;
 
 partial class Character
 {
@@ -85,9 +85,12 @@ partial class Character
 		var remainder = TryDamageLimb( damageInfo );
 		if ( remainder > 0 )
 		{
-			var limbData = Health.FirstOrDefault( kvp => kvp.Value > 0 );
-			if ( limbData.Key == default && limbData.Value == default )
-				return;
+			var limbs = Health.Where( kvp => kvp.Value > 0 );
+			var count = limbs.Count();
+			if ( count <= 0 ) return;
+
+			var index = Game.Random.Int( 0, count - 1 );
+			var limbData = limbs.ElementAtOrDefault( index );
 
 			SpreadDamage( damageInfo with
 			{
@@ -139,5 +142,6 @@ partial class Character
 		if ( !IsAlive || damageInfo.IsHealing ) return;
 
 		SpreadDamage( damageInfo );
+		if ( !IsAlive ) Log.Info( "Died." );
 	}
 }
