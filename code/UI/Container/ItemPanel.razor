@@ -53,6 +53,9 @@
 			return;
 
 		// todo: doesn't work from equipment slots
+		if ( DragDropTarget.Current is not null )
+			DragItemPanel.TryStop( DragDropTarget.Current );
+
 		DragItemPanel.TryStop( this, (item, rotated) => Container?.Released( item, rotated ) );
 	}
 

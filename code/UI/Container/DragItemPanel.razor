@@ -114,6 +114,23 @@
 		}
 	}
 
+	public static void TryStop( DragDropTarget target )
+	{
+		if ( DragItemPanel.Instance is null )
+			return;
+
+		if ( target is null ) 
+			return;
+
+		if ( DragDropTarget.Current == target )
+		{
+			target.OnDropped( DragItemPanel.Instance.Item, DragItemPanel.Instance.Rotated );
+
+			Instance.Delete();
+			Instance = null;
+		}
+	}
+
 	protected override int BuildHash()
 		=> HashCode.Combine(
 			Item.IsValid(),

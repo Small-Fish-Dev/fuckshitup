@@ -60,18 +60,14 @@ public sealed partial class Character : Pawn
 			] )
 			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );*/
 
-		Inventory
-			.AddSlotCollection( "Backpack", [
-				new SlotCollection.Box( 5, 8 ),
-			] )
-			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
-
-		var source = Scene.GetAllComponents<Item>().FirstOrDefault( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() );
-		if ( !IsProxy && source.IsValid() )
-		{
-			source.GameObject.Network.TakeOwnership();
-			TryEquip( source );
-		}
+		var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() ).ToList();
+		
+		if ( !IsProxy && equippables is { Count: > 0 } )
+			foreach ( var source in equippables )
+			{
+				Log.Error( source );
+				TryEquip( source );
+			}
 
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )

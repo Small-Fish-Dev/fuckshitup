@@ -56,7 +56,6 @@ partial class Item
 		// Clear just in case the Container existed before, it might contain some old shit...
 		Inventory.Clear();
 
-		// Convert the EquipmentBoxes to an actual SlotColletion that the Container can use.
 		var boxes = EquipmentBoxes
 			.Select( box => new SlotCollection.Box( box.Size, box.Margin, box.SameLine ) )
 			.ToArray();

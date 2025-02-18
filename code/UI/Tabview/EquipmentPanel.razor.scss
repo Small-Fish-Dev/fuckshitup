@@ -5,6 +5,7 @@ EquipmentPanel {
     color: $white;
     font-family: $font-main;
     background-color: $black;
+    pointer-events: all;
 
     &.long {
         > .slot {

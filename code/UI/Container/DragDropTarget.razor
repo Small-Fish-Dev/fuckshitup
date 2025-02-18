@@ -1,0 +1,36 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root />
+
+@code {
+	public static DragDropTarget Current { get; private set; }
+
+	protected override void OnMouseOver( MousePanelEvent e )
+	{
+		base.OnMouseOver( e );
+
+		Current = this;
+	}
+
+	protected override void OnMouseOut(MousePanelEvent e)
+	{
+		base.OnMouseOut( e );
+
+		if ( Current == this )
+			Current = null;
+	}
+
+	public override void OnDeleted()
+	{
+		base.OnDeleted();
+
+		if ( Current == this )
+			Current = null;
+	}
+
+	public virtual void OnDropped( Item item, bool rotated )
+	{
+
+	}
+}

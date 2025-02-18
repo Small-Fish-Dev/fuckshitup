@@ -90,13 +90,18 @@ public sealed partial class Container
 	/// Add <see cref="SlotCollection"/>s to this <see cref="Container"/> from another.
 	/// </summary>
 	/// <param name="container"></param>
-	public void AddSlotCollections( Container container )
+	/// <param name="source"></param>
+	public void AddSlotCollections( Container container, Item source = null )
 	{
 		Assert.True( container.IsValid(), "Tried to add slot collections from an invalid container." );
 		Assert.True( !IsProxy, "Tried to add slot collections to a container you don't have ownership of." );
 
 		foreach ( var slot in container.SlotCollections )
-			AddSlotCollection( slot );
+		{
+			var collection = AddSlotCollection( slot );
+			if ( source is not null ) 
+				collection = collection.WithSource( source );
+		}
 	}
 
 	/// <summary>

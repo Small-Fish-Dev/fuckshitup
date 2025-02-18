@@ -69,8 +69,8 @@ public sealed class ContainerWidget : Widget
 			for ( int x = 0; x < box.Size.x; x++ ) 
 				for ( int y = 0; y < box.Size.y; y++ )
 				{
-					var px = (int)(left + x * (GRID_SIZE - PADDING - 1) + 1);
-					var py = (int)(top + y * (GRID_SIZE - PADDING - 1) + 1);
+					var px = (int)(left + x * (GRID_SIZE - PADDING) + 1);
+					var py = (int)(top + y * (GRID_SIZE - PADDING) + 1);
 					rect = new Rect( px, py, GRID_SIZE - PADDING - 2, GRID_SIZE - PADDING - 2 );
 					Paint.DrawRect( rect );
 				}

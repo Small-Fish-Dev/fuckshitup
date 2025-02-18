@@ -86,6 +86,34 @@ partial class Container
 	}
 
 	/// <summary>
+	/// Try to find an item inside of this container that fullfils this predicate.
+	/// </summary>
+	/// <param name="predicate"></param>
+	/// <param name="result"></param>
+	/// <returns></returns>
+	public bool TryFind( Func<Item, bool> predicate, out ContainerResult result )
+	{
+		result = (null, null, default, false);
+
+		if ( predicate is null )
+			return false;
+
+		foreach ( var collection in _slotCollections )
+		{
+			var position = default( Vector2Int );
+			var box = collection.Boxes.FirstOrDefault( box => box.TryFind( predicate, out position ) );
+			if ( box is null )
+				continue;
+
+			result.Position = position;
+			result.Box = box;
+			result.Collection = collection;
+		}
+
+		return result.Box is not null;
+	}
+
+	/// <summary>
 	/// Insert an item into our <see cref="Container"/>, do note that this method will throw an exception if something doesn't go right.
 	/// </summary>
 	/// <param name="item"></param>
@@ -147,5 +175,4 @@ partial class Container
 
 		return true;
 	}
-
 }

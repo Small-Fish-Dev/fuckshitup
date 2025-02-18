@@ -25,7 +25,27 @@ partial class Character
 		// Add slot collections to our character's inventory.
 		if ( item.IsContainer && item.GameObject.TryGetContainer( out var container ) )
 		{
-			Inventory.AddSlotCollections( container );
+			Inventory.AddSlotCollections( container, item );
+		}
+
+		return true;
+	}
+
+	public bool TryUnequip( Item item )
+	{
+		if ( !item.IsEquipment ) return false;
+		if ( !Equipment.TryGetValue( item.Slot, out var equipped ) )
+			return false;
+
+		if ( equipped != item )
+			return false;
+
+		Equipment[item.Slot] = null;
+
+		// Remove slot collections to our character's inventory.
+		if ( item.IsContainer && item.GameObject.TryGetContainer( out var container ) )
+		{
+			Inventory.RemoveSlotCollections( container );
 		}
 
 		return true;

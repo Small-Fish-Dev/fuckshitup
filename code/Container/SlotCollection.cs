@@ -57,6 +57,23 @@ public sealed class SlotCollection
 		}
 
 		/// <summary>
+		/// Does our <see cref="SlotCollection.Box"/> have an item that fullfils this predicate.
+		/// </summary>
+		/// <param name="predicate"></param>
+		/// <param name="position"></param>
+		public bool TryFind( Func<Item, bool> predicate, out Vector2Int position )
+		{
+			position = default( Vector2Int );
+			if ( predicate is null )
+				return false;
+
+			var query = _references.FirstOrDefault( kvp => predicate( kvp.Value ) );
+			position = query.Key;
+
+			return query.Value is not null;
+		}
+
+		/// <summary>
 		/// Store a reference in our <see cref="SlotCollection.Box"/>.
 		/// </summary>
 		/// <param name="position"></param>

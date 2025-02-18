@@ -1,18 +1,33 @@
 ﻿@namespace FUCKSHIT.UI
-@inherits Panel
+@inherits DragDropTarget
 
 <root class="@(IsLongSlot() ? "long" : "")" style="left: @(GetSlotOffset().x * 100f)%; top: @(GetSlotOffset().y * 100f)%;">
 	<div class="title header-bg">@Slot</div>
 	<div class="slot">
 		<div class="container inner-border">
-
+			@if ( Equipment.IsValid() )
+			{
+				<ItemPanel Item=@Equipment Static=@true />
+			}
 		</div>
 	</div>
 </root>
 
-@code {	
+@code {
 	public EquipmentSlot Slot { get; set; }
-	
+
+	private Character Character => Character.Local;
+	private Item Equipment 
+	{
+		get 
+		{
+			if ( Character.IsValid() && Character.Equipment.TryGetValue( Slot, out var item ) )
+				return item;
+
+			return null;
+		}
+	}
+
 	private Vector2 GetSlotOffset()
 		=> Slot switch 
 		{
@@ -29,6 +44,15 @@
 	private bool IsLongSlot()
 		=> Slot is EquipmentSlot.Primary or EquipmentSlot.Secondary;
 
+	public override void OnDropped( Item item, bool rotated )
+	{
+		if ( !Character.IsValid() )
+			return;
+		Log.Error( $"{item} dropped on {Slot}" );
+		if ( item.IsEquipment && Equipment is null )
+			Character.TryEquip( item );
+	}
+
 	protected override int BuildHash() 
-		=> HashCode.Combine( Slot );
+		=> HashCode.Combine( Slot, Equipment );
 }
