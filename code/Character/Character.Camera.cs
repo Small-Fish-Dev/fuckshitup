@@ -16,7 +16,7 @@ partial class Character
 
 	private void SimulateCamera()
 	{
-		if ( !Camera.IsValid() || !Renderer.IsValid() )
+		if ( !Camera.IsValid() || !FirstpersonView.IsValid() )
 			return;
 
 		var angles = EyeAngles + Input.AnalogLook;
@@ -32,7 +32,7 @@ partial class Character
 			RagdollAngles = angles;
 		}
 
-		var eyes = Renderer.GetAttachment( "eyes" ) ?? Transform.World;
+		var eyes = FirstpersonView.GetAttachment( "eyes" ) ?? Transform.World;
 		Camera.WorldPosition = eyes.Position + eyes.Rotation.Forward * 3f;
 		Camera.WorldRotation = LocalRagdolled
 			? eyes.Rotation * Rotation.From( RagdollAngles )
@@ -72,18 +72,21 @@ partial class Character
 			return;
 
 		// Set visibility of Firstperson View and actual Renderer.
-		Renderer.RenderType = LocalRagdolled ? ModelRenderer.ShadowRenderType.On : ModelRenderer.ShadowRenderType.ShadowsOnly;
+		Renderer.RenderType = ModelRenderer.ShadowRenderType.ShadowsOnly;
+
 		FirstpersonView.RenderType = ModelRenderer.ShadowRenderType.Off;
-		FirstpersonView.Enabled = !LocalRagdolled;
+		FirstpersonView.BoneMergeTarget = LocalRagdolled ? Renderer : null;
+
+		FirstpersonView.RenderOptions.Overlay = !LocalRagdolled;
+		FirstpersonView.RenderOptions.Game = LocalRagdolled;
 
 		// Move head out of the way for Firstperson View.
-		var current = LocalRagdolled ? Renderer : FirstpersonView;
 		const int HEAD_BONE = 7;
 
-		var eyes = current.GetAttachment( "eyes" ) ?? Transform.World;
+		var eyes = FirstpersonView.GetAttachment( "eyes" ) ?? Transform.World;
 		var rot = WorldRotation;
 		var transform = new Transform( eyes.Position + eyes.Backward * 10 + eyes.Down * 10f, Rotation.Identity, 0 );
 
-		current.SceneModel?.SetBoneWorldTransform( HEAD_BONE, transform );
+		FirstpersonView.SceneModel?.SetBoneWorldTransform( HEAD_BONE, transform );
 	}
 }
