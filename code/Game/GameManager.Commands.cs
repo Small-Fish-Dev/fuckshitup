@@ -66,4 +66,13 @@ partial class GameManager
 			}
 		}
 	}
+
+	[ConCmd( "reset_character" )]
+	private static void CmdResetCharacter( string name = "<NOTHING>" )
+	{
+		if ( !Character.Local.IsValid() )
+			return;
+
+		Character.Local.RequestRespawn();
+	}
 }

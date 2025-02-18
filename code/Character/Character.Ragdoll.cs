@@ -65,6 +65,48 @@ partial class Character
 		}
 	}
 
+	private void SimulateRagdollMovement()
+	{
+		if ( !RagdollController.IsValid() ) return;
+
+		void SimulateHand( string name, bool active )
+		{
+			var hand = RagdollController.Bodies?.FirstOrDefault( x => x.Bone.Name == name );
+			if ( hand is null || !active )
+				return;
+
+			var rigidBody = hand.Component;
+			if ( !rigidBody.IsValid() )
+				return;
+
+			if ( !Grabbed.IsValid() )
+			{
+				var target = Camera.WorldPosition + Camera.WorldRotation.Forward * 50f;
+				rigidBody.SmoothMove( target, 0.2f, Time.Delta );
+
+				return;
+			}
+
+			rigidBody.SmoothMove( GrabbedPosition, 0.25f, Time.Delta );
+			var distance = GrabbedPosition.Distance( rigidBody.WorldPosition );
+			var power = MathX.Remap( distance, 0f, 200f, 100f, 600f, true );
+
+			foreach ( var body in RagdollController.Bodies )
+			{
+				var component = body.Component;
+				if ( body == hand || !component.IsValid() ) continue;
+
+				var normal = Vector3.Direction( component.WorldPosition, GrabbedPosition );
+				rigidBody.ApplyImpulse( normal * rigidBody.Mass / 2f * power );
+			}
+
+			if ( GrabbedPosition.Distance( rigidBody.WorldPosition ) > 125f )
+				Grabbed = null;
+		}
+
+		SimulateHand( "hand_R", Input.Down( InputAction.RIGHT_MOUSE ) );
+	}
+
 	private void SimulateRagdoll()
 	{
 		if ( !Ragdolled ) 

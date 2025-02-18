@@ -206,12 +206,15 @@ public sealed class RagdollController : Component, Component.ExecuteInEditor
 		}
 	}
 
-	public void SetVelocity( Vector3 velocity )
+	public void SetVelocity( Vector3 velocity, Vector3? angular = null )
 	{
+		var angularVelocity = angular.GetValueOrDefault();
+
 		foreach ( var body in Bodies )
 			if ( body.Component.IsValid() )
 			{
 				body.Component.Velocity += velocity;
+				body.Component.AngularVelocity += angularVelocity;
 			}
 	}
 

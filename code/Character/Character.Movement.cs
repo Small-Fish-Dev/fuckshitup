@@ -69,12 +69,18 @@ partial class Character
 
 	private void SimulateMovement()
 	{
-		if ( !Controller.IsValid() || !Collider.IsValid() || !IsAlive || LocalRagdolled )
+		if ( !Controller.IsValid() || !Collider.IsValid() || !IsAlive )
 			return;
 
 		if ( Noclip )
 		{
 			HandleNoclipInput();
+			return;
+		}
+
+		if ( LocalRagdolled )
+		{
+			SimulateRagdollMovement();
 			return;
 		}
 

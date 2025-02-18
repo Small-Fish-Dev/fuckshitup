@@ -51,6 +51,8 @@ partial class Item
 
 		if ( Rigidbody.IsValid() )
 			Rigidbody.Enabled = ShouldSimulate;
+
+		LocalTransform = global::Transform.Zero;
 	}
 
 	public void SetContainer( Container container )

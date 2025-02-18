@@ -57,6 +57,13 @@ partial class Character
 			RightIK = global::Transform.Lerp( RightIK.GetValueOrDefault(), transform, 10f * Time.Delta, true );
 		}
 		else RightIK = null;
+
+		// Lost reach...
+		if ( Grabbed.IsValid() && !LocalRagdolled )
+		{
+			if ( GrabbedPosition.Distance( WorldPosition ) > MAX_HOLD_DISTANCE + 10f )
+				Grabbed = null;
+		}
 	}
 
 	void Grab( SceneTraceResult tr )

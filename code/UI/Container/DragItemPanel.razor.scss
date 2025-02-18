@@ -4,6 +4,7 @@ DragItemPanel {
     position: absolute;
     border: 1px rgba(white, 0);
     background-image: linear-gradient(darken($white, 0.2) 0%, darken($white, 0.45) 100%);
+    pointer-events: none;
 
     > .background {
         position: absolute;

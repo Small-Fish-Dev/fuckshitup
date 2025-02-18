@@ -73,8 +73,8 @@ partial class Character
 
 	private void HandleIK()
 	{
-		SetAnimParameter( "left_ik", LeftIK != null );
-		SetAnimParameter( "right_ik", RightIK != null );
+		SetAnimParameter( "left_ik", !LocalRagdolled && LeftIK != null );
+		SetAnimParameter( "right_ik", !LocalRagdolled && RightIK != null );
 
 		if ( LeftIK != null )
 		{

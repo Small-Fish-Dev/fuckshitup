@@ -107,6 +107,9 @@ partial class Character
 	[Rpc.Owner]
 	public void RequestRespawn()
 	{
+		LocalRagdolled = false;
+		WorldTransform = global::Transform.Zero;
+
 		// Reset limb states.
 		if ( MaxHealth != null && Health != null )
 			foreach ( var (limb, max) in MaxHealth )
