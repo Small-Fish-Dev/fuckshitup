@@ -60,19 +60,18 @@ public sealed partial class Character : Pawn
 			] )
 			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );*/
 
-		/*var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() ).ToList();
+		var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() ).ToList();
 		
 		if ( !IsProxy && equippables is { Count: > 0 } )
 			foreach ( var source in equippables )
 			{
-				Log.Error( source );
 				TryEquip( source );
 			}
 
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )
 			if ( !item.IsEquipment )
-				Inventory.TryInsert( item );*/
+				Inventory.TryInsert( item );
 	}
 
 	protected override void OnFixedUpdate()
@@ -82,7 +81,7 @@ public sealed partial class Character : Pawn
 			SimulateMovement();
 			HandleGrabbing();
 
-			if ( Input.Pressed( InputAction.RELOAD ) )
+			if ( Input.Pressed( InputAction.RELOAD ) && !Mouse.Visible )
 				LocalRagdolled = !LocalRagdolled;
 
 			if ( Input.Pressed( InputAction.LEFT_MOUSE ) )

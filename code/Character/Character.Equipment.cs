@@ -8,7 +8,7 @@ partial class Character
 	public bool TryEquip( Item item )
 	{
 		if ( !item.IsEquipment ) return false;
-		if ( Equipment.TryGetValue( item.Slot, out _ ) )
+		if ( Equipment.TryGetValue( item.Slot, out var slotEquipped ) && slotEquipped.IsValid() )
 			return false;
 
 		// Clear reference from the container this item is inside of.

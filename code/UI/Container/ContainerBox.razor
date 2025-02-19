@@ -18,6 +18,7 @@
 		<ItemPanel
 			Item=@item
 			Container=@Container
+			Source=@Container?.Container
 			style="left: @(position.x * GRID_SIZE - 1)px; top: @(position.y * GRID_SIZE - 1)px;
 				   width: @(item.Size.x * GRID_SIZE - 1)px; height: @(item.Size.y * GRID_SIZE - 1)px;"
 		/>

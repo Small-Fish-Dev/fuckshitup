@@ -30,10 +30,13 @@
 @code {
 	public static DragItemPanel Instance { get; private set; }
 
-	public Container Source { get; set; }
+	public object Source { get; set; }
 	public Vector2 LocalPosition { get; set; }
 	public bool Rotated { get; set; }
 	public Vector2Int Size => Rotated ? new Vector2Int( Item.AbsoluteSize.y, Item.AbsoluteSize.x ) : Item.AbsoluteSize;
+
+	public bool FromContainer => Source is Container;
+	public bool FromEquipped => Source is Character;
 
 	public static void Reset() => Instance = null;
 
@@ -69,7 +72,7 @@
 		Style.Height = Size.y * GRID_SIZE;
 	}
 
-	public static void TryBegin( ItemPanel panel )
+	public static void TryBegin( ItemPanel panel, object source )
 	{
 		if ( DragItemPanel.Instance is not null )
 			return;
@@ -81,15 +84,11 @@
 		if ( !item.IsValid() )
 			return;
 
-		var container = item.Container;
-		if ( !container.IsValid() )
-			return;
-
 		Instance = new() 
 		{
 			Item = item,
 			Rotated = item.Rotated,
-			Source = container,
+			Source = source,
 			LocalPosition = panel.MousePosition / panel.Box.Rect.Size,
 			Parent = UIComponent.Instance?.Panel
 		};
@@ -97,7 +96,7 @@
 		Instance.UpdateTransform( panel.Box.Rect );
 	}
 
-	public static void TryStop( ItemPanel panel, Action<Item, bool> callback )
+	public static void TryStop( ItemPanel panel, Action<Item, bool, object> callback )
 	{
 		if ( DragItemPanel.Instance is null )
 			return;
@@ -105,30 +104,10 @@
 		if ( panel is null ) 
 			return;
 
-		if ( panel.Item == Instance.Item )
-		{
-			callback?.Invoke( Instance.Item, Instance.Rotated );
+		callback?.Invoke( Instance.Item, Instance.Rotated, Instance.Source );
 
-			Instance.Delete();
-			Instance = null;
-		}
-	}
-
-	public static void TryStop( DragDropTarget target )
-	{
-		if ( DragItemPanel.Instance is null )
-			return;
-
-		if ( target is null ) 
-			return;
-
-		if ( DragDropTarget.Current == target )
-		{
-			target.OnDropped( DragItemPanel.Instance.Item, DragItemPanel.Instance.Rotated );
-
-			Instance.Delete();
-			Instance = null;
-		}
+		Instance?.Delete();
+		Instance = null;
 	}
 
 	protected override int BuildHash()

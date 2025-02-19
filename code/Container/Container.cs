@@ -67,6 +67,7 @@ public sealed partial class Container
 		};
 
 		_slotCollections.Add( slotCollection );
+		RefreshOrdering();
 
 		return slotCollection;
 	}
@@ -75,13 +76,15 @@ public sealed partial class Container
 	/// Add a <see cref="SlotCollection"/> directly through reference.
 	/// </summary>
 	/// <param name="slotCollection"></param>
-	public SlotCollection AddSlotCollection( SlotCollection slotCollection )
+	/// <param name="refresh"></param>
+	public SlotCollection AddSlotCollection( SlotCollection slotCollection, bool refresh = true )
 	{
 		Assert.True( slotCollection is not null, "Tried to add null SlotCollection to a Container." );
 		Assert.True( !IsProxy, "Tried to add a slot collection to a container you don't have ownership of." );
 
 		slotCollection.SetParent( this );
 		_slotCollections.Add( slotCollection );
+		RefreshOrdering();
 
 		return slotCollection;
 	}
@@ -98,10 +101,12 @@ public sealed partial class Container
 
 		foreach ( var slot in container.SlotCollections )
 		{
-			var collection = AddSlotCollection( slot );
+			var collection = AddSlotCollection( slot, false );
 			if ( source is not null ) 
 				collection = collection.WithSource( source );
 		}
+
+		RefreshOrdering();
 	}
 
 	/// <summary>
@@ -114,6 +119,7 @@ public sealed partial class Container
 		Assert.True( _slotCollections.Contains( collection ), "Tried to remove SlotCollection that doesn't belong to this Container." );
 
 		_slotCollections.Remove( collection );
+		RefreshOrdering();
 	}
 
 	/// <summary>
@@ -125,11 +131,15 @@ public sealed partial class Container
 		Assert.True( container.IsValid(), "Tried to add slot collections from an invalid container." );
 		Assert.True( !IsProxy, "Tried to add slot collections to a container you don't have ownership of." );
 
-		foreach ( var collection in _slotCollections )
+		var count = _slotCollections.Count;
+		for ( int i = 0; i < count; i++ )
 		{
+			var collection = _slotCollections.ElementAtOrDefault( i );
 			if ( container.SlotCollections.Contains( collection ) )
 				_slotCollections.Remove( collection );
 		}
+
+		RefreshOrdering();
 	}
 
 	/// <summary>
@@ -150,6 +160,23 @@ public sealed partial class Container
 			}
 
 		_slotCollections.Clear();
+	}
+
+	private void RefreshOrdering()
+	{
+		var count = _slotCollections.Count;
+		var collections = _slotCollections.OrderBy( collection => collection?.Order ?? 0 );
+
+		var temp = new List<SlotCollection>( count );
+		for ( int i = 0; i < count; i++ )
+		{
+			var collection = collections.ElementAtOrDefault( i );
+			if ( collection is null ) continue;
+
+			temp.Add( collection );
+		}
+
+		_slotCollections = temp;
 	}
 
 	protected override void OnDestroy()

@@ -85,35 +85,4 @@ partial class Item
 		var gameObject = value.GameObject;
 		GameObject.SetParent( !gameObject.IsValid() ? null : gameObject, true );
 	}
-
-	/// <summary>
-	/// Try to move this Item to a new position.
-	/// </summary>
-	/// <param name="target"></param>
-	/// <param name="box"></param>
-	/// <param name="pos"></param>
-	/// <param name="rotated"></param>
-	/// <returns></returns>
-	public bool TryMove( Container target, SlotCollection.Box box, Vector2Int pos, bool rotated )
-	{
-		if ( !Container.IsValid() ) return false;
-		if ( !target.IsValid() ) return false;
-		if ( box is null ) return false;
-
-		var size = rotated ? new Vector2Int( AbsoluteSize.y, AbsoluteSize.x ) : AbsoluteSize;
-		if ( !box.CanFit( pos, size, this ) ) 
-			return false;
-
-		if ( Container.TryFind( this, out var result ) )
-			result.Box.ClearReference( result.Position );
-
-		if ( Network.Active && !Network.IsOwner ) 
-			Network.TakeOwnership();
-
-		Rotated = rotated;
-		box.StoreReference( pos, this );
-		SetContainer( target );
-
-		return true;
-	}
 }

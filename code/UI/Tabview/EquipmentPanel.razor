@@ -7,7 +7,12 @@
 		<div class="container inner-border">
 			@if ( Equipment.IsValid() )
 			{
-				<ItemPanel Item=@Equipment Static=@true />
+				<ItemPanel 
+					Item=@Equipment 
+					Static=@true 
+					Source=@Character 
+					Container=@Container
+				/>
 			}
 		</div>
 	</div>
@@ -15,6 +20,7 @@
 
 @code {
 	public EquipmentSlot Slot { get; set; }
+	public ContainerDisplay Container { get; set; }
 
 	private Character Character => Character.Local;
 	private Item Equipment 
@@ -44,11 +50,14 @@
 	private bool IsLongSlot()
 		=> Slot is EquipmentSlot.Primary or EquipmentSlot.Secondary;
 
-	public override void OnDropped( Item item, bool rotated )
+	public override void OnDropped( Item item, bool rotated, object source )
 	{
+		if ( source is not Container container )
+			return;
+
 		if ( !Character.IsValid() )
 			return;
-		Log.Error( $"{item} dropped on {Slot}" );
+		
 		if ( item.IsEquipment && Equipment is null )
 			Character.TryEquip( item );
 	}

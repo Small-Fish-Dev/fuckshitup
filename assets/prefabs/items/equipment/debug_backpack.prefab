@@ -9,6 +9,7 @@
         "__type": "FUCKSHIT.Item",
         "__guid": "7aa3ef3d-cd62-45a1-a645-c63a540158b2",
         "AbsoluteSize": "5,8",
+        "ContainerOrder": 1,
         "EquipmentBoxes": [
           {
             "Size": "5,8",
@@ -22,7 +23,7 @@
         },
         "IsContainer": true,
         "IsEquipment": true,
-        "Name": "Debug Equipment",
+        "Name": "Debug Backpack",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

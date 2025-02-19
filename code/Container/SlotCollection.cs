@@ -80,7 +80,14 @@ public sealed class SlotCollection
 		/// <param name="item"></param>
 		public void StoreReference( Vector2Int position, Item item )
 		{
-			Assert.False( _references.TryGetValue( position, out var reference ) && reference.IsValid(), "Tried to store an Item reference on top of another on the Container SlotCollection Box." );
+			if ( _references.TryGetValue( position, out var reference ) )
+			{
+				if ( reference.IsValid() )
+					return;
+
+				_references.Remove( position );
+			}
+
 			if ( position.x >= Size.x || position.y >= Size.y ) return;
 			if ( position.x < 0 || position.y < 0 ) return;
 
@@ -226,6 +233,11 @@ public sealed class SlotCollection
 	public string Name { get; set; }
 
 	/// <summary>
+	/// The ordering number of this <see cref="SlotCollection"/>, the higher it is, the more up it will be.
+	/// </summary>
+	public int Order { get; private set; }
+
+	/// <summary>
 	/// Read-only list of all the boxes inside of this <see cref="SlotCollection"/>.
 	/// </summary>
 	public IReadOnlyCollection<Box> Boxes => _boxes;
@@ -259,6 +271,17 @@ public sealed class SlotCollection
 		Source = source;
 		Source.OnComponentDestroy += Destroy;
 
+		return this;
+	}
+
+	/// <summary>
+	/// Assign an order to a <see cref="SlotCollection"/>.
+	/// </summary>
+	/// <param name="order"></param>
+	/// <returns></returns>
+	public SlotCollection WithOrder( int order )
+	{
+		Order = order;
 		return this;
 	}
 

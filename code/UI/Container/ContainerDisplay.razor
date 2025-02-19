@@ -43,12 +43,32 @@
 		HoveredPosition = new Vector2Int( (int)pos.x, (int)pos.y ) - offset;
 	}
 
-	public void Released( Item item, bool rotated )
+	public void OnDropped( Item item, bool rotated, object source )
 	{
 		if ( !item.IsValid() )
 			return;
 
-		item.TryMove( Container, HoveredBox.Box, HoveredPosition, rotated );
+		var box = HoveredBox?.Box;
+		var pos = HoveredPosition;
+
+		if ( source is Container from )
+		{
+			from.TryTake( Container, item, box, pos, rotated );
+			return;
+		}
+
+		if ( source is Character character )
+		{
+			if ( box is null ) return;
+			if ( !box.CanFit( pos, item.GetSize( rotated ), item ) )
+				return;
+
+			character.TryUnequip( item );
+
+			item.Rotated = rotated;
+			box.StoreReference( pos, item );
+			item.SetContainer( Container );
+		}
 	}
 
 	protected override int BuildHash()

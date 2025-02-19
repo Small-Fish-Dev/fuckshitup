@@ -32,6 +32,7 @@
 
 	public Item Item { get; set; }
 	public bool Static { get; set; }
+	public object Source { get; set; }
 	public ContainerDisplay Container { get; set; }
 
 	private bool IsBeingDragged => DragItemPanel.Instance is not null && DragItemPanel.Instance.Item == Item;
@@ -43,8 +44,7 @@
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
 
-		// todo: doesn't work from equipment slots
-		DragItemPanel.TryBegin( this );
+		DragItemPanel.TryBegin( this, Source );
 	}
 
 	protected override void OnMouseUp( MousePanelEvent e )
@@ -52,11 +52,13 @@
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
 
-		// todo: doesn't work from equipment slots
 		if ( DragDropTarget.Current is not null )
-			DragItemPanel.TryStop( DragDropTarget.Current );
+		{
+			DragItemPanel.TryStop( this, DragDropTarget.Current.OnDropped );
+			return;
+		}
 
-		DragItemPanel.TryStop( this, (item, rotated) => Container?.Released( item, rotated ) );
+		DragItemPanel.TryStop( this, (item, rotated, source) => Container?.OnDropped( item, rotated, source ) );
 	}
 
 	protected override int BuildHash()

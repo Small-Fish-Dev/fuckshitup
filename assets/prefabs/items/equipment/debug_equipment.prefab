@@ -9,6 +9,7 @@
         "__type": "FUCKSHIT.Item",
         "__guid": "7aa3ef3d-cd62-45a1-a645-c63a540158b2",
         "AbsoluteSize": "3,3",
+        "ContainerOrder": -1,
         "EquipmentBoxes": [
           {
             "Size": "1,2",

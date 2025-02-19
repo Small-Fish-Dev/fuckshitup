@@ -12,7 +12,10 @@
 
 			@foreach ( var slot in Enum.GetValues<EquipmentSlot>() )
 			{
-				<EquipmentPanel Slot=@slot />
+				<EquipmentPanel 
+					Slot=@slot 
+					Container=@_container
+				/>
 			}
 		</div>
 	</div>
@@ -20,13 +23,18 @@
 	@* Container inventory *@
 	<div class="window">
 		<div class="container">
-			<ContainerDisplay Container=@Character.Inventory />
+			<ContainerDisplay 
+				Container=@Character.Inventory 
+				@ref=_container
+			/>
 		</div>
 	</div>
 </root>
 
 @code {
 	private Character Character => Character.Local;
+	
+	private ContainerDisplay _container;
 
 	protected override int BuildHash() 
 		=> HashCode.Combine( 

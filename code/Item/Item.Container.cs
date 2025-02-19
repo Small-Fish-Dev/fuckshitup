@@ -33,6 +33,10 @@ partial class Item
 	[Property, FeatureEnabled( "Container" )]
 	public bool IsContainer { get; set; }
 
+	/// <inheritdoc cref="SlotCollection.Order"/>
+	[Property, FeatureEnabled( "Container" )]
+	public int ContainerOrder { get; set; } = 0;
+
 	/// <summary>
 	/// List of all equipment boxes used for constructing the <see cref="Container"/>, this is for the editor.
 	/// </summary>
@@ -61,6 +65,7 @@ partial class Item
 			.ToArray();
 
 		Inventory.AddSlotCollection( Name, boxes )
-			.WithSource( this );
+			.WithSource( this )
+			.WithOrder( ContainerOrder );
 	}
 }

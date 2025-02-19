@@ -19,10 +19,7 @@ public partial class Item : Component
 	}
 	private Vector2Int _size = Vector2Int.One;
 
-	public Vector2Int Size
-	{
-		get => Rotated ? new Vector2Int( _size.y, _size.x ) : _size;
-	}
+	public Vector2Int Size => GetSize( Rotated );
 
 	[Sync]
 	public bool Rotated { get; set; } = false;
@@ -38,6 +35,9 @@ public partial class Item : Component
 	{
 		PrefabSource = GameObject.PrefabInstanceSource;
 	}
+
+	public Vector2Int GetSize( bool rotated = false ) 
+		=> rotated ? new Vector2Int( _size.y, _size.x ) : _size; 
 
 	protected override void OnStart()
 	{
