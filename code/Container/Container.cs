@@ -84,7 +84,7 @@ public sealed partial class Container
 
 		slotCollection.SetParent( this );
 		_slotCollections.Add( slotCollection );
-		RefreshOrdering();
+		if ( refresh ) RefreshOrdering();
 
 		return slotCollection;
 	}

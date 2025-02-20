@@ -27,6 +27,9 @@
 </root>
 
 @code {
+	private const float DOUBLE_CLICK_TIME = 0.25f;
+	private const float DOUBLE_CLICK_DISTANCE = 5f;
+
 	protected const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
 	public const float ICON_SCALE = 0.75f;
 
@@ -35,23 +38,43 @@
 	public object Source { get; set; }
 	public ContainerDisplay Container { get; set; }
 
+	private TimeSince _lastClicked;
+	private Vector2 _clickPosition;
+	private Vector2 _localPosition;
+	private bool _down;
+
 	private bool IsBeingDragged => DragItemPanel.Instance is not null && DragItemPanel.Instance.Item == Item;
 	protected bool Valid => Item.IsValid() && !Item.IsProxy;
 	protected string RgbaColor => Valid ? Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba : "#00000000";
+
+	private bool ShouldDrag =>
+		   (_lastClicked >= DOUBLE_CLICK_TIME 
+		|| _clickPosition.Distance( Mouse.Position ) > DOUBLE_CLICK_DISTANCE) && _down;
 
 	protected override void OnMouseDown( MousePanelEvent e )
 	{
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
 
-		DragItemPanel.TryBegin( this, Source );
+		_down = true;
+
+		if ( _lastClicked < DOUBLE_CLICK_TIME )
+		{
+			// TODO! on double click show container popup, or inspect window
+		}
+
+		_lastClicked = 0f;
+		_clickPosition = Mouse.Position;
+		_localPosition = MousePosition / Box.Rect.Size;
 	}
 
 	protected override void OnMouseUp( MousePanelEvent e )
 	{
 		if ( e.MouseButton is not MouseButtons.Left )
 			return;
-
+			
+		_down = false;
+			
 		if ( DragDropTarget.Current is not null )
 		{
 			DragItemPanel.TryStop( this, DragDropTarget.Current.OnDropped );
@@ -59,6 +82,12 @@
 		}
 
 		DragItemPanel.TryStop( this, (item, rotated, source) => Container?.OnDropped( item, rotated, source ) );
+	}
+
+	public override void Tick()
+	{
+		if ( ShouldDrag && !IsBeingDragged ) 
+			DragItemPanel.TryBegin( this, Source, _localPosition );
 	}
 
 	protected override int BuildHash()

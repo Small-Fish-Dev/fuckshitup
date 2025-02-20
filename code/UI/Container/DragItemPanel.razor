@@ -72,7 +72,7 @@
 		Style.Height = Size.y * GRID_SIZE;
 	}
 
-	public static void TryBegin( ItemPanel panel, object source )
+	public static void TryBegin( ItemPanel panel, object source, Vector2 localPosition )
 	{
 		if ( DragItemPanel.Instance is not null )
 			return;
@@ -89,7 +89,7 @@
 			Item = item,
 			Rotated = item.Rotated,
 			Source = source,
-			LocalPosition = panel.MousePosition / panel.Box.Rect.Size,
+			LocalPosition = localPosition,
 			Parent = UIComponent.Instance?.Panel
 		};
 
