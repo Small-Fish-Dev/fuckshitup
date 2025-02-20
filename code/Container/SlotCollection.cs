@@ -238,6 +238,11 @@ public sealed class SlotCollection
 	public int Order { get; private set; }
 
 	/// <summary>
+	/// The custom <see cref="Item"/> filter of this <see cref="SlotCollection"/>.
+	/// </summary>
+	public Func<Item, bool> Filter { get; private set; }
+
+	/// <summary>
 	/// Read-only list of all the boxes inside of this <see cref="SlotCollection"/>.
 	/// </summary>
 	public IReadOnlyCollection<Box> Boxes => _boxes;
@@ -286,6 +291,18 @@ public sealed class SlotCollection
 	}
 
 	/// <summary>
+	/// Assign a custom <see cref="Item"/> filter to a <see cref="SlotCollection"/>.
+	/// </summary>
+	/// <param name="filter"></param>
+	/// <returns></returns>
+	public SlotCollection WithFilter( Func<Item, bool> filter )
+	{
+		if ( filter == null ) return this;
+		Filter = filter;
+		return this;
+	}
+
+	/// <summary>
 	/// Override the parent <see cref="Container"/> of this <see cref="SlotCollection"/>.
 	/// </summary>
 	/// <param name="container"></param>
@@ -293,6 +310,14 @@ public sealed class SlotCollection
 	{
 		Parent = container;
 	}
+
+	/// <summary>
+	/// Does this <see cref="Item"/> pass our filters?
+	/// <para>NOTE: true by default, if no filter is defined.</para>
+	/// </summary>
+	/// <param name="item"></param>
+	/// <returns></returns>
+	public bool PassesFilter( Item item ) => Filter?.Invoke( item ) ?? true;
 
 	/// <summary>
 	/// Destroy this <see cref="SlotCollection"/>.

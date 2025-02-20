@@ -4,10 +4,15 @@
 @{
 	var size = DragItemPanel.Instance?.Size ?? 0;
 	var position = Container.HoveredPosition;
+	var item = DragItemPanel.Instance?.Item;
 
 	if ( Visible )
 	{
-		CanFit = Container.HoveredBox?.Box?.CanFit( position, size, DragItemPanel.Instance.Item ) ?? false;
+		CanFit = 
+			   item.IsValid()
+			&& item != Container.HoveredCollection?.Source
+			&& (Container.HoveredCollection?.PassesFilter( item ) ?? true)
+			&& (Container.HoveredBox?.Box?.CanFit( position, size, item ) ?? false);
 	}
 
 	<root 

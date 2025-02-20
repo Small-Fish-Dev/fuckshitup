@@ -32,12 +32,14 @@
 
 	public new SlotCollection.Box Box { get; set; }
 	public ContainerDisplay Container { get; set; }
+	public SlotCollection SlotCollection { get; set; }
 
 	private void OnMouseOver()
 	{
 		if ( Container is null )
 			return;
 
+		Container.HoveredCollection = SlotCollection;
 		Container.HoveredBox = this;
 	}
 

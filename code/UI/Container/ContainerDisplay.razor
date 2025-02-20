@@ -19,6 +19,7 @@
 
 	public Container Container { get; set; }
 
+	public SlotCollection HoveredCollection { get; set; }
 	public ContainerBox HoveredBox { get; set; }
 	public Vector2Int HoveredPosition { get; set; }
 
@@ -51,9 +52,14 @@
 		var box = HoveredBox?.Box;
 		var pos = HoveredPosition;
 
+		var collectionSource = HoveredCollection?.Source;
+		if ( collectionSource == item ) return;
+
 		if ( source is Container from )
 		{
-			from.TryTake( Container, item, box, pos, rotated );
+			if ( HoveredCollection?.PassesFilter( item ) ?? true )
+				from.TryTake( Container, item, box, pos, rotated );
+
 			return;
 		}
 

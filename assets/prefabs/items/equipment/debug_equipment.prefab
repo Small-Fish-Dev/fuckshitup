@@ -10,6 +10,7 @@
         "__guid": "7aa3ef3d-cd62-45a1-a645-c63a540158b2",
         "AbsoluteSize": "3,3",
         "ContainerOrder": -1,
+        "CustomFilter": null,
         "EquipmentBoxes": [
           {
             "Size": "1,2",
@@ -72,12 +73,14 @@
             "Margin": "0,0"
           }
         ],
+        "ExcludeFlags": "None",
         "IconSettings": {
           "Offset": "-11,0,0",
           "Rotation": "0,0,0,0"
         },
         "IsContainer": true,
         "IsEquipment": true,
+        "MaxStack": 0,
         "Name": "Debug Equipment",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -86,7 +89,8 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Rarity": "Legendary",
-        "Slot": "Body"
+        "Slot": "Body",
+        "TypeFlags": "Container, Large, Wearable"
       },
       {
         "__type": "Sandbox.Rigidbody",

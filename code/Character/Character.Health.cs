@@ -110,10 +110,11 @@ partial class Character
 		LocalRagdolled = false;
 		WorldTransform = global::Transform.Zero;
 
-		// Reset limb states.
 		if ( MaxHealth != null && Health != null )
+		{
 			foreach ( var (limb, max) in MaxHealth )
 				Health[limb] = max;
+		}
 
 		// todo: clear status effects if there are any
 

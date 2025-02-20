@@ -46,12 +46,18 @@ partial class Container
 	/// </summary>
 	/// <param name="size"></param>
 	/// <param name="result"></param>
+	/// <param name="filter"></param>
 	/// <returns></returns>
-	public bool TryFindSpace( Vector2Int size, out ContainerResult result )
+	public bool TryFindSpace( Vector2Int size, out ContainerResult result, Func<SlotCollection, bool> filter = null )
 	{
 		foreach ( var collection in _slotCollections )
+		{
+			var pass = filter?.Invoke( collection ) ?? true;
+			if ( !pass ) continue;
+
 			if ( TryFindCollectionSpace( collection, size, out result ) )
 				return true;
+		}
 
 		result = default;
 		return false;
@@ -125,14 +131,19 @@ partial class Container
 		Assert.True( item.IsValid(), "Can't place an invalid Item into a Container." );
 		Assert.True( item.Network.Active, "Can't place a non-networked Item into a Container." );
 
+		if ( item.Inventory == this ) return false;
+
 		if ( !item.Network.IsOwner )
 		{
 			var canTakeOwnership = item.Network.Owner is null;
 			Assert.True( canTakeOwnership, "Can't take ownership of this Item, so we can't place it into the Container." );
 		}
 
-		if ( !TryFindSpace( item.AbsoluteSize, out var result ) )
-			return false;
+		if ( !TryFindSpace(
+			item.AbsoluteSize, 
+			out var result, 
+			( collection ) => collection.PassesFilter( item ) 
+		) ) return false;
 
 		item.Network.TakeOwnership();
 		result.Box.StoreReference( result.Position, item );

@@ -33,6 +33,18 @@ partial class Item
 	[Property, FeatureEnabled( "Container" )]
 	public bool IsContainer { get; set; }
 
+	/// <summary>
+	/// What items should we not allow in our container?
+	/// </summary>
+	[Property, FeatureEnabled( "Container" )]
+	public ItemTypeFlags ExcludeFlags { get; set; } = ItemTypeFlags.None;
+
+	/// <summary>
+	/// Custom item fitler?
+	/// </summary>
+	[Property, FeatureEnabled( "Container" )]
+	public Func<Item, bool> CustomFilter { get; set; }
+
 	/// <inheritdoc cref="SlotCollection.Order"/>
 	[Property, FeatureEnabled( "Container" )]
 	public int ContainerOrder { get; set; } = 0;
@@ -57,15 +69,16 @@ partial class Item
 		if ( !Inventory.IsValid() )
 			return;
 
-		// Clear just in case the Container existed before, it might contain some old shit...
-		Inventory.Clear();
-
 		var boxes = EquipmentBoxes
 			.Select( box => new SlotCollection.Box( box.Size, box.Margin, box.SameLine ) )
 			.ToArray();
 
-		Inventory.AddSlotCollection( Name, boxes )
+		var filter = CustomFilter;
+		filter ??= ( item ) => ExcludeFlags == ItemTypeFlags.None || !ExcludeFlags.HasFlag( item.TypeFlags );
+
+		var collection = Inventory.AddSlotCollection( Name, boxes )
 			.WithSource( this )
-			.WithOrder( ContainerOrder );
+			.WithOrder( ContainerOrder )
+			.WithFilter( filter );
 	}
 }

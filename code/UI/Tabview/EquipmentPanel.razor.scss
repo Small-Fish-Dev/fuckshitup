@@ -5,7 +5,6 @@ EquipmentPanel {
     color: $white;
     font-family: $font-main;
     background-color: $black;
-    pointer-events: all;
 
     &.long {
         > .slot {
@@ -36,6 +35,10 @@ EquipmentPanel {
             background-image: url(ui/generic/container-bg.png);
             background-size: 155px 155px;
             background-image-tint: rgba(darken(white, 0.9), 0.05);
+
+            > ItemPanel {
+                pointer-events: all;
+            }
         }
     }
 }
