@@ -70,7 +70,7 @@ public partial class Item : Component
 	[Sync]
 	public bool Rotated { get; set; } = false;
 
-	[Sync, Property]
+	[Sync]
 	public int Amount
 	{
 		get => _amount;

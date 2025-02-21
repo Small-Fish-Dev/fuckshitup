@@ -20,7 +20,7 @@
         },
         "IsContainer": false,
         "IsEquipment": false,
-        "MaxStack": 3,
+        "MaxStack": 1,
         "Name": "Debug Big",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
