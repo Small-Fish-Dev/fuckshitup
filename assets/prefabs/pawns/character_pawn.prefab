@@ -3,6 +3,7 @@
     "__guid": "422f4dfe-b938-43ee-b0c0-739b6a513e9f",
     "Flags": 0,
     "Name": "character_pawn",
+    "Tags": "character",
     "Enabled": true,
     "Components": [
       {

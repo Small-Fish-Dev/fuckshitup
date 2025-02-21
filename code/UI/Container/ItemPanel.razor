@@ -21,7 +21,12 @@
 				}
 			</div>
 
-			<p class="name">@Item.Name</p>
+			<p class="name text">@Item.Name</p>
+
+			@if ( Item.Stackable )
+			{
+				<p class="amount text">@Item.Amount</p>
+			}
 		</div>
 	}
 </root>
@@ -60,7 +65,7 @@
 
 		if ( _lastClicked < DOUBLE_CLICK_TIME )
 		{
-			// TODO! on double click show container popup, or inspect window
+			
 		}
 
 		_lastClicked = 0f;
@@ -94,6 +99,7 @@
 		=> HashCode.Combine(
 			Item.IsValid(),
 			Item?.Rotated,
+			Item?.Amount,
 			IsBeingDragged,
 			(Item as IIconGenerator)?.CreateIconHash()
 		);

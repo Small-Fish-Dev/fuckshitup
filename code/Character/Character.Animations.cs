@@ -50,13 +50,13 @@ partial class Character
 			return;
 		}*/
 
-		SetAnimParameter( "grounded", Ragdolled ? true : Grounded );
-		SetAnimParameter( "crouching", Ragdolled ? false : Crouched );
+		SetAnimParameter( "grounded", NetRagdolled ? true : Grounded );
+		SetAnimParameter( "crouching", NetRagdolled ? false : Crouched );
 
 		var x = 0f;
 		var y = 0f;
 
-		if ( !Ragdolled )
+		if ( !NetRagdolled )
 		{
 			var oldX = Renderer.GetFloat( "move_x" );
 			var oldY = Renderer.GetFloat( "move_y" );
@@ -73,8 +73,8 @@ partial class Character
 
 	private void HandleIK()
 	{
-		SetAnimParameter( "left_ik", !LocalRagdolled && LeftIK != null );
-		SetAnimParameter( "right_ik", !LocalRagdolled && RightIK != null );
+		SetAnimParameter( "left_ik", !NetRagdolled && LeftIK != null );
+		SetAnimParameter( "right_ik", !NetRagdolled && RightIK != null );
 
 		if ( LeftIK != null )
 		{

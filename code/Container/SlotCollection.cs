@@ -142,7 +142,7 @@ public sealed class SlotCollection
 					slotsNeeded.Add( new Vector2Int( x, y ) );
 				}
 
-			foreach ( var (pos, item) in _references)
+			foreach ( var (pos, item) in _references )
 			{
 				if ( ignore is not null && item == ignore ) continue;
 				if ( !item.IsValid() ) continue;
@@ -155,7 +155,37 @@ public sealed class SlotCollection
 					}
 			}
 
-			return true;
+			return false;
+		}
+
+		/// <summary>
+		/// Get the item that is occupying these slots.
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="ignore"></param>
+		/// <returns></returns>
+		public Item GetReferenceAt( Vector2Int position, Item ignore = null )
+		{
+			if ( position.x >= Size.x || position.y >= Size.y )
+				return null;
+
+			if ( position.x < 0 || position.y < 0 )
+				return null;
+
+			foreach ( var (pos, item) in _references )
+			{
+				if ( ignore is not null && item == ignore ) continue;
+				if ( !item.IsValid() ) continue;
+
+				for ( int x = pos.x; x < pos.x + item.Size.x; x++ )
+					for ( int y = pos.y; y < pos.y + item.Size.y; y++ )
+					{
+						if ( position == new Vector2Int( x, y ) ) 
+							return item;
+					}
+			}
+
+			return null;
 		}
 
 		/// <summary>

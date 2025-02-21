@@ -139,6 +139,34 @@ partial class Container
 			Assert.True( canTakeOwnership, "Can't take ownership of this Item, so we can't place it into the Container." );
 		}
 
+		// Find a possible stack...
+		if ( item.Stackable )
+		{
+			bool FindStacks()
+			{
+				if ( item.Amount <= 0 ) return true;
+
+				if ( !TryFind( i => i.PrefabSource == item.PrefabSource && i.Amount < i.MaxStack, out var result ) )
+					return false;
+
+				var reference = result.Box.References[result.Position];
+				var add = Math.Min( item.Amount, reference.MaxStack - reference.Amount );
+				reference.Amount += add;
+				item.Amount -= add;
+
+				return FindStacks();
+			}
+
+			var destroy = FindStacks();
+			if ( destroy )
+			{
+				item.Network.TakeOwnership();
+				item.DestroyGameObject();
+				return true;
+			}
+		}
+
+		// Otherwise just try to add it in.
 		if ( !TryFindSpace(
 			item.AbsoluteSize, 
 			out var result, 

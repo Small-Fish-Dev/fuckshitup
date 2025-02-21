@@ -3,7 +3,7 @@
 partial class GameManager
 {
 	[ConCmd( "give_item" )]
-	private static void CmdGiveItem( string name = "<NOTHING>" )
+	private static void CmdGiveItem( string name = "<NOTHING>", int amount = 1 )
 	{
 		if ( !Character.Local.IsValid() )
 			return;
@@ -55,6 +55,7 @@ partial class GameManager
 				return;
 			}
 
+			itemComponent.Amount = amount;
 			itemGameObject.SetupNetworking( Connection.Local );
 
 			var fit = Character.Local.Inventory.TryInsert( itemComponent );

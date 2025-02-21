@@ -7,7 +7,18 @@ partial class Character
 	private const float BONE_UPDATE_INTERVAL = 0.1f; // How long between bone updates (in seconds).
 
 	[Sync]
-	private bool Ragdolled { get; set; }
+	private bool NetRagdolled
+	{
+		get => _ragdolled;
+		set
+		{
+			_ragdolled = value;
+
+			if ( Renderer.IsValid() )
+				Renderer.Tags.Set( "ragdoll", _ragdolled );
+		}
+	}
+	private bool _ragdolled;
 
 	private TimeSince _lastBoneUpdate;
 	private Transform[] _previousTransforms;
@@ -60,7 +71,7 @@ partial class Character
 			if ( Collider.IsValid() )
 				Collider.Enabled = !value;
 
-			Ragdolled = value;
+			NetRagdolled = value;
 			if ( value ) SendBoneUpdate( initial: true );
 		}
 	}
@@ -109,7 +120,7 @@ partial class Character
 
 	private void SimulateRagdoll()
 	{
-		if ( !Ragdolled ) 
+		if ( !NetRagdolled ) 
 			return;
 
 		if ( !Renderer.IsValid() )

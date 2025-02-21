@@ -21,7 +21,12 @@
 				}
 			</div>
 
-			<p class="name">@Item.Name</p>
+			<p class="name text">@Item.Name</p>
+
+			@if ( Item.Stackable )
+			{
+				<p class="amount text">@Item.Amount</p>
+			}
 		</div>
 	}
 </root>
@@ -33,7 +38,7 @@
 	public object Source { get; set; }
 	public Vector2 LocalPosition { get; set; }
 	public bool Rotated { get; set; }
-	public Vector2Int Size => Rotated ? new Vector2Int( Item.AbsoluteSize.y, Item.AbsoluteSize.x ) : Item.AbsoluteSize;
+	public Vector2Int Size => Item.GetSize( Rotated );
 
 	public bool FromContainer => Source is Container;
 	public bool FromEquipped => Source is Character;
@@ -114,6 +119,7 @@
 		=> HashCode.Combine(
 			Item.IsValid(),
 			Rotated,
+			Item?.Amount,
 			(Item as IIconGenerator)?.CreateIconHash()
 		);
 }

@@ -70,6 +70,14 @@ public partial class Item : Component
 	[Sync]
 	public bool Rotated { get; set; } = false;
 
+	[Sync, Property]
+	public int Amount
+	{
+		get => _amount;
+		set => _amount = value.Clamp( 0, Stackable ? MaxStack : 1 );
+	}
+	private int _amount = 1;
+
 	public ModelRenderer Renderer { get; private set; }
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }

@@ -8,11 +8,22 @@
 
 	if ( Visible )
 	{
-		CanFit = 
-			   item.IsValid()
-			&& item != Container.HoveredCollection?.Source
-			&& (Container.HoveredCollection?.PassesFilter( item ) ?? true)
-			&& (Container.HoveredBox?.Box?.CanFit( position, size, item ) ?? false);
+		CanFit = item.IsValid();
+		CanFit &= item != Container.HoveredCollection?.Source;
+		CanFit &= Container.HoveredCollection?.PassesFilter( item ) ?? true;
+
+		if ( CanFit )
+		{
+			CanFit = Container.HoveredBox?.Box?.CanFit( position, size, item ) ?? false; 
+
+			if ( !CanFit && item.Stackable ) 
+			{
+				var reference = Container.HoveredBox?.Box?.GetReferenceAt( Container.AbsolutePosition, item );
+				CanFit = reference is not null && reference.PrefabSource == item.PrefabSource && reference.Amount < reference.MaxStack;
+
+				// TODO: add some effect to merge target? if CanFit
+			}
+		}
 	}
 
 	<root 

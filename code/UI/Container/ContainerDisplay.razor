@@ -22,6 +22,7 @@
 	public SlotCollection HoveredCollection { get; set; }
 	public ContainerBox HoveredBox { get; set; }
 	public Vector2Int HoveredPosition { get; set; }
+	public Vector2Int AbsolutePosition { get; set; }
 
 	public override void Tick()
 	{
@@ -41,7 +42,8 @@
 		var pos = HoveredBox.MousePosition;
 		pos /= GRID_SIZE * ScaleToScreen;
 
-		HoveredPosition = new Vector2Int( (int)pos.x, (int)pos.y ) - offset;
+		AbsolutePosition = new Vector2Int( (int)pos.x, (int)pos.y );
+		HoveredPosition = AbsolutePosition - offset;
 	}
 
 	public void OnDropped( Item item, bool rotated, object source )
@@ -57,8 +59,12 @@
 
 		if ( source is Container from )
 		{
+			var merge = item.Stackable 
+				 ? box?.GetReferenceAt( AbsolutePosition, item )
+				 : null;
+
 			if ( HoveredCollection?.PassesFilter( item ) ?? true )
-				from.TryTake( Container, item, box, pos, rotated );
+				from.TryTake( Container, item, box, pos, rotated, merge );
 
 			return;
 		}
