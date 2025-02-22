@@ -35,7 +35,7 @@
 		var dragPanel = DragItemPanel.Instance;
 		if ( dragPanel is not null )
 		{
-			var localPosition = dragPanel.LocalPosition * dragPanel.Box.Rect.Size / GRID_SIZE * ScaleToScreen;
+			var localPosition = dragPanel.LocalPosition * dragPanel.Box.Rect.Size / (GRID_SIZE * ScaleToScreen);
 			offset = new Vector2Int( (int)localPosition.x, (int)localPosition.y );
 		}
 

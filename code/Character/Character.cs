@@ -65,7 +65,7 @@ public sealed partial class Character : Pawn
 		if ( !IsProxy && equippables is { Count: > 0 } )
 			foreach ( var source in equippables )
 			{
-				TryEquip( source );
+				TryEquip( source, source.Slot );
 			}
 
 		var components = Scene.GetAllComponents<Item>();

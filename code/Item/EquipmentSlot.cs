@@ -2,6 +2,7 @@
 
 public enum EquipmentSlot
 {
+	None = 0,
 	Headwear,
 	Face,
 	Body,
@@ -9,4 +10,10 @@ public enum EquipmentSlot
 	Legs,
 	Primary,
 	Secondary
+}
+
+public static class EquipmentSlotExtensions
+{
+	public static bool IsHandSlot( this EquipmentSlot slot )
+		=> slot is EquipmentSlot.Primary or EquipmentSlot.Secondary;
 }

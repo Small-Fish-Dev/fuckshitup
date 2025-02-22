@@ -10,14 +10,16 @@
         "__guid": "7699cc7b-c6f9-488e-9c2b-0f4cc9f0e229",
         "AbsoluteSize": "1,3",
         "ContainerOrder": 0,
+        "CustomFilter": null,
         "EquipmentBoxes": null,
         "ExcludeFlags": "None",
+        "Holdable": true,
         "IconSettings": {
           "Offset": "50.10043,-1.300006,5.699991",
           "Rotation": "0,-0,-0.5835403,0.8120841"
         },
         "IsContainer": false,
-        "IsEquipment": false,
+        "IsEquipment": true,
         "MaxStack": 0,
         "Name": "Debug Long",
         "OnComponentDestroy": null,
@@ -27,7 +29,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Rarity": "Rare",
-        "Slot": "Headwear",
+        "Slot": "None",
         "TypeFlags": "Valuable"
       },
       {

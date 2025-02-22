@@ -13,6 +13,7 @@
         "CustomFilter": null,
         "EquipmentBoxes": null,
         "ExcludeFlags": "None",
+        "Holdable": false,
         "IconSettings": {
           "Offset": "-33.20004,0,2.999999",
           "Rotation": "-0.0676318,0.1905466,-0.2963098,0.9334444"
@@ -29,7 +30,7 @@
         "OnComponentUpdate": null,
         "Rarity": "Mythical",
         "Slot": "Headwear",
-        "TypeFlags": "Container, Valuable"
+        "TypeFlags": "Valuable"
       },
       {
         "__type": "Sandbox.Rigidbody",

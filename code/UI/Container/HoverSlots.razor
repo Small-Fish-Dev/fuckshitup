@@ -8,7 +8,8 @@
 
 	if ( Visible )
 	{
-		CanFit = IsValidPlacement( position, size, item, out var state );
+		// This method is very expensive and gets heavy fast if you run it lots, so we run it when the state is changed B)
+		CanFit = IsValidPlacement( position, size, item, out var state ); 
 		// TODO: effects depending on state
 	}
 

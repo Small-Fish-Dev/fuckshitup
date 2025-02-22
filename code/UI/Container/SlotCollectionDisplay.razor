@@ -5,7 +5,7 @@
 	return;
 
 <root class=@(Source.IsValid() ? "has-source" : "")>
-	<div class="title header-bg">@SlotCollection.Name</div>
+	<div class="title header-bg">@Name</div>
 
 	<div class="container">
 
@@ -84,6 +84,10 @@
 	
 	private Character Character => Character.Local;
 	private IReadOnlyCollection<SlotCollection.Box> Boxes => SlotCollection.Boxes;
+	
+	private string Name => Source.IsValid() 
+		? Source.Slot.ToString()
+		: SlotCollection.Name;
 
 	private Item Source => SlotCollection is not null
 		? SlotCollection.Source

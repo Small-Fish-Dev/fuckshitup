@@ -3,6 +3,7 @@ HoverSlots {
     opacity: 0.5;
     background-color: red;
     display: none;
+    pointer-events: none;
 
     &.visible {
         display: flex;

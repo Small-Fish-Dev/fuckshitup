@@ -21,11 +21,14 @@
 				}
 			</div>
 
-			<p class="name text">@Item.Name</p>
-
-			@if ( Item.Stackable )
+			@if ( !HideInfo )
 			{
-				<p class="amount text">@Item.Amount</p>
+				<p class="name text">@Item.Name</p>
+
+				@if ( Item.Stackable )
+				{
+					<p class="amount text">@Item.Amount</p>
+				}
 			}
 		</div>
 	}
@@ -42,6 +45,7 @@
 	public bool Static { get; set; }
 	public object Source { get; set; }
 	public ContainerDisplay Container { get; set; }
+	public bool HideInfo { get; set; }
 
 	private TimeSince _lastClicked;
 	private Vector2 _clickPosition;

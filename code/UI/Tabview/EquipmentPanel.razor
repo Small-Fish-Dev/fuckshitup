@@ -1,7 +1,7 @@
 ﻿@namespace FUCKSHIT.UI
 @inherits DragDropTarget
 
-<root class="@(IsLongSlot() ? "long" : "")" style="left: @(GetSlotOffset().x * 100f)%; top: @(GetSlotOffset().y * 100f)%;">
+<root class="@(Slot.IsHandSlot() ? "long" : "")" style="left: @(GetSlotOffset().x * 100f)%; top: @(GetSlotOffset().y * 100f)%;">
 	<div class="title header-bg">@Slot</div>
 	<div class="slot">
 		<div class="container inner-border">
@@ -47,9 +47,6 @@
 			_ => Vector2.One,
 		};
 
-	private bool IsLongSlot()
-		=> Slot is EquipmentSlot.Primary or EquipmentSlot.Secondary;
-
 	public override void OnDropped( Item item, bool rotated, object source )
 	{
 		if ( source is not Container container )
@@ -59,7 +56,7 @@
 			return;
 		
 		if ( item.IsEquipment && Equipment is null )
-			Character.TryEquip( item );
+			Character.TryEquip( item, Slot );
 	}
 
 	protected override int BuildHash() 

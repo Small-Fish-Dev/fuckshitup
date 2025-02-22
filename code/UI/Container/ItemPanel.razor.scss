@@ -40,6 +40,7 @@ ItemPanel {
         > .name {
             right: 5px;
             top: 2px;
+            word-break: break-all;
         }
 
         > .amount {

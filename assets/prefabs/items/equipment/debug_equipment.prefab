@@ -74,6 +74,7 @@
           }
         ],
         "ExcludeFlags": "None",
+        "Holdable": false,
         "IconSettings": {
           "Offset": "-11,0,0",
           "Rotation": "0,0,0,0"

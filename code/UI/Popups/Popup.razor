@@ -1,0 +1,55 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root>
+	<div class="header">
+		<p>@Title</p>
+		<div class="close-button" />
+	</div>
+
+	<div class="content">
+		@Content
+	</div>
+</root>
+
+@code {
+	public string Title { get; set; } = "Popup";
+
+	public bool Draggable { get; set; } = true;
+	public bool Resizable { get; set; } = false;
+	public bool PointerEvents { get; set; } = true;
+
+	public Vector2 Size
+	{
+		get => _size;
+		set 
+		{
+			_size = value;
+			_size.x = _size.x.Clamp( 1, Screen.Size.x );
+			_size.y = _size.y.Clamp( 1, Screen.Size.y );
+
+			Style.Width = _size.x;
+			Style.Height = _size.y;
+
+			Position = _position;
+		}
+	}
+	private Vector2 _size;
+
+	public Vector2 Position 
+	{
+		get => _position;
+		set
+		{
+			_position = value;
+			_position.x = _position.x.Clamp( 0, Screen.Size.x - Size.x );
+			_position.y = _position.y.Clamp( 0, Screen.Size.y - Size.y );
+
+			Style.Left = _position.x;
+			Style.Top = _position.y;
+		}
+	}
+	private Vector2 _position;
+
+	public RenderFragment Content { get; set; }
+}
