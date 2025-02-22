@@ -51,35 +51,57 @@
 		if ( !item.IsValid() )
 			return;
 
-		var box = HoveredBox?.Box;
-		var pos = HoveredPosition;
-
 		var collectionSource = HoveredCollection?.Source;
 		if ( collectionSource == item ) return;
 
+		var inserting = false;
+		var destination = (
+			Container: Container,
+			Box: HoveredBox?.Box,
+			Collection: HoveredCollection, 
+			Position: HoveredPosition,
+			Rotate: rotated
+		);
+		
+		var reference = destination.Box?.GetReferenceAt( AbsolutePosition, item );
+
+		var inventory = reference?.Inventory;
+		if ( inventory.IsValid() && inventory.TryFindSpace( item.AbsoluteSize, out var result, ( collection ) => collection.PassesFilter( item ) ) )
+		{
+			inserting = true;
+
+			destination = (
+				Container: inventory, 
+				Box: result.Box, 
+				Collection: result.Collection, 
+				Position: result.Position, 
+				Rotate: result.Rotate
+			);
+		}
+
 		if ( source is Container from )
 		{
-			var merge = item.Stackable 
-				 ? box?.GetReferenceAt( AbsolutePosition, item )
-				 : null;
+			var merge = !inserting && reference.IsValid() && item.Stackable && reference.Stackable 
+				? reference 
+				: null;
 
-			if ( HoveredCollection?.PassesFilter( item ) ?? true )
-				from.TryTake( Container, item, box, pos, rotated, merge );
+			if ( inserting || (destination.Collection?.PassesFilter( item ) ?? true) )
+				from.TryTake( destination.Container, item, destination.Box, destination.Position, destination.Rotate, merge );
 
 			return;
 		}
 
 		if ( source is Character character )
 		{
-			if ( box is null ) return;
-			if ( !box.CanFit( pos, item.GetSize( rotated ), item ) )
+			if ( destination.Box is null ) return;
+			if ( !inserting && !destination.Box.CanFit( destination.Position, item.GetSize( rotated ), item ) )
 				return;
 
 			character.TryUnequip( item );
 
-			item.Rotated = rotated;
-			box.StoreReference( pos, item );
-			item.SetContainer( Container );
+			item.Rotated = destination.Rotate;
+			destination.Box.StoreReference( destination.Position, item );
+			item.SetContainer( destination.Container );
 		}
 	}
 

@@ -8,22 +8,8 @@
 
 	if ( Visible )
 	{
-		CanFit = item.IsValid();
-		CanFit &= item != Container.HoveredCollection?.Source;
-		CanFit &= Container.HoveredCollection?.PassesFilter( item ) ?? true;
-
-		if ( CanFit )
-		{
-			CanFit = Container.HoveredBox?.Box?.CanFit( position, size, item ) ?? false; 
-
-			if ( !CanFit && item.Stackable ) 
-			{
-				var reference = Container.HoveredBox?.Box?.GetReferenceAt( Container.AbsolutePosition, item );
-				CanFit = reference is not null && reference.PrefabSource == item.PrefabSource && reference.Amount < reference.MaxStack;
-
-				// TODO: add some effect to merge target? if CanFit
-			}
-		}
+		CanFit = IsValidPlacement( position, size, item, out var state );
+		// TODO: effects depending on state
 	}
 
 	<root 
@@ -41,6 +27,37 @@
 
 	private bool CanFit { get; set; }
 	private bool Visible => Container?.HoveredBox == Box && DragItemPanel.Instance is not null;
+
+	private bool IsValidPlacement( Vector2Int position, Vector2Int size, Item item, out (bool merged, bool inserted) state )
+	{
+		state = (false, false);
+
+		if ( !item.IsValid() ) return false;
+		if ( item == Container.HoveredCollection?.Source ) return false;
+
+		var passFilter = Container.HoveredCollection?.PassesFilter( item ) ?? true;
+		if ( !passFilter ) return false;
+
+		var fit = Container.HoveredBox?.Box?.CanFit( position, size, item ) ?? false; 
+		if ( fit ) return true;
+
+		var reference = Container.HoveredBox?.Box?.GetReferenceAt( Container.AbsolutePosition, item );
+		if ( reference is null ) return false; 
+
+		if ( item.Stackable && reference.Stackable )
+		{
+			state.merged = reference.PrefabSource == item.PrefabSource
+						&& reference.Amount < reference.MaxStack;
+
+			return state.merged;
+		}
+
+		var container = reference.Inventory;
+		state.inserted = container.IsValid() 
+					  && container.TryFindSpace( item.AbsoluteSize, out var result, ( collection ) => collection.PassesFilter( item ) );
+
+		return state.inserted;
+	}
 
 	protected override int BuildHash()
 		=> HashCode.Combine(

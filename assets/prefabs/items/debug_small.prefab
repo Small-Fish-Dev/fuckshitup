@@ -10,14 +10,15 @@
         "__guid": "7699cc7b-c6f9-488e-9c2b-0f4cc9f0e229",
         "AbsoluteSize": "1,1",
         "ContainerOrder": 0,
+        "CustomFilter": null,
         "EquipmentBoxes": null,
-        "ExludeFlags": "None",
+        "ExcludeFlags": "None",
         "IconSettings": {
           "Offset": "-3.999998,-1.3,0.9",
           "Rotation": "0.01091689,0.3359479,0.4647606,0.8191565"
         },
         "IsContainer": false,
-        "IsEquipment": false,
+        "IsEquipment": true,
         "MaxStack": 5,
         "Name": "Debug Small",
         "OnComponentDestroy": null,
@@ -27,7 +28,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Rarity": "Default",
-        "Slot": "Headwear",
+        "Slot": "Legs",
         "TypeFlags": "Valuable"
       },
       {
