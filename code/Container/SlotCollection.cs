@@ -155,7 +155,7 @@ public sealed class SlotCollection
 					}
 			}
 
-			return false;
+			return true;
 		}
 
 		/// <summary>

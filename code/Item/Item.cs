@@ -48,7 +48,7 @@ public partial class Item : Component
 	/// How many items can we stack on 1, max stack of 0 means it isn't stackable.
 	/// </summary>
 	[Property, Category( "Item" ), Range( 1, 120, 1 )]
-	public int MaxStack { get; set; } = 0;
+	public int MaxStack { get; set; } = 1;
 
 	[Property, Category( "Item" )]
 	public IconSettings IconSettings { get; set; }
@@ -65,7 +65,7 @@ public partial class Item : Component
 	private Vector2Int _size = Vector2Int.One;
 
 	public Vector2Int Size => GetSize( Rotated );
-	public bool Stackable => MaxStack > 0;
+	public bool Stackable => MaxStack > 1;
 
 	[Sync]
 	public bool Rotated { get; set; } = false;
@@ -74,7 +74,7 @@ public partial class Item : Component
 	public int Amount
 	{
 		get => _amount;
-		set => _amount = value.Clamp( 0, Stackable ? MaxStack : 1 );
+		set => _amount = value.Clamp( 0, MaxStack );
 	}
 	private int _amount = 1;
 
