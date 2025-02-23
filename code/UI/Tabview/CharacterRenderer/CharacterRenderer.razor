@@ -58,6 +58,12 @@
 		Light.Position = Camera.Position + Camera.Rotation.Forward * 10f;
 	}
 
+	public Vector2 GetBonePosition( string bone )
+	{
+		var transform = SceneModel?.GetBoneWorldTransform( bone ) ?? default;
+		return (Camera?.ToScreen( transform.Position ) ?? default) / Camera.Size;
+	}
+
 	public void UpdateAppearance()
 	{
 		const string CHAR_PATH = "models/guy/guy.vmdl";

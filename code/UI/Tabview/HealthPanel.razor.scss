@@ -1,0 +1,52 @@
+@import "/UI/Style.scss";
+
+HealthPanel {
+    position: absolute;
+    width: 150px;
+    flex-direction: column;
+    pointer-events: all;
+
+    &.drop-hovered {
+        filter: brightness(1.5);
+    }
+
+    > .title {
+        width: 100%;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        height: 20px;
+        align-items: center;
+    }
+
+    * {
+        pointer-events: none;
+    }
+
+    > .container {
+        background-color: rgba($black, 0.95);
+        padding: 2px;
+        height: 20px;
+
+        > .bar {
+            position: relative;
+            border: 1px $dark-gray;
+            padding: 1px;
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            > .fill-container {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                padding: 1px;
+
+                > .fill {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

@@ -33,4 +33,16 @@ public static class LimbExtensions
 			"left_leg" => Limb.LeftLeg,
 			_ => Limb.Torso
 		};
+
+	public static string GetBone( this Limb self )
+		=> self switch
+		{
+			Limb.Head => "head",
+			Limb.Torso => "spine2",
+			Limb.RightArm => "arm_lower_R",
+			Limb.LeftArm => "arm_lower_L",
+			Limb.RightLeg => "leg_lower_R",
+			Limb.LeftLeg => "leg_lower_L",
+			_ => "pelvis",
+		};
 }

@@ -1,0 +1,82 @@
+@namespace FUCKSHIT.UI
+@inherits DragDropTarget
+
+@if ( !Character.IsValid() || Renderer is null )
+	return;
+
+<root class="@(DropHovered ? "drop-hovered" : "")">
+	<div class="title header-bg">@Name</div>
+	<div class="container">
+		<div class="bar">
+			<div class="fill-container">
+				<div 
+					class="fill" 
+					style="background-color: @(Color.Rgb); 
+						   border-top: 4px lighten(@(Color.Rgb), 0.2);
+						   width: @((float)Health / MaxHealth * 100f)%;"
+				/>
+			</div>
+
+			<div>@(Health)/@(MaxHealth)</div>
+		</div>
+	</div>
+</root>
+
+@code {
+	public Limb Limb { get; set; }
+	public CharacterRenderer Renderer { get; set; }
+
+	private int Health => Character.GetLimb( Limb ).Value;
+	private int MaxHealth => Character.GetLimb( Limb ).Max;
+
+	private Character Character => Character.Local;
+
+	private string Name => Limb switch
+	{
+		Limb.RightArm => "Right Arm",
+		Limb.LeftArm => "Left Arm",
+		Limb.RightLeg => "Right Leg",
+		Limb.LeftLeg => "Left Leg",
+		_ => Limb.ToString(),
+	};
+
+	private Vector2 Offset => Limb switch
+	{
+		Limb.Head => new Vector2( 0f, -0.15f ),
+		Limb.RightArm => new Vector2( -0.15f, -0.1f ),
+		Limb.LeftArm => new Vector2( 0.15f, -0.1f ),
+		Limb.RightLeg => new Vector2( -0.175f, 0f ),
+		Limb.LeftLeg => new Vector2( 0.175f, 0f ),
+		_ => Vector2.Zero,
+	};
+
+	private Color Color 
+		=> Color.Lerp( 
+			Color.FromBytes( 215, 75, 15 ),
+			Color.FromBytes( 25, 155, 25 ),
+			(float)Health / MaxHealth
+		);
+
+	public override void Tick()
+	{
+		if ( Renderer is null ) 
+			return;
+
+		var position = Renderer.GetBonePosition( Limb.GetBone() ) + Offset;
+		Style.Left = Length.Fraction( position.x );
+		Style.Top = Length.Fraction( position.y );
+
+		var transform = new PanelTransform();
+		transform.AddTranslateX( Length.Pixels( -Box.Rect.Size.x * ScaleFromScreen / 2f ) );
+		Style.Transform = transform;
+	}
+
+	protected override int BuildHash()
+		=> HashCode.Combine(
+			Character,
+			Renderer,
+			Health,
+			MaxHealth,
+			DropHovered
+		);
+}

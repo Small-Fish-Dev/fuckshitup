@@ -7,7 +7,15 @@
 <Popup Title=" " ShowCloseButton=@false>
 	<ChildContent>
 		<div class="container">
-			<CharacterRenderer />
+			<CharacterRenderer @ref=_renderer />
+
+			@foreach ( var limb in Enum.GetValues<Limb>() )
+			{
+				<HealthPanel 
+					Limb=@limb
+					Renderer=@_renderer
+				/>
+			}
 
 			@foreach ( var slot in Enum.GetValues<EquipmentSlot>() )
 			{
@@ -37,6 +45,7 @@
 	private Character Character => Character.Local;
 	
 	private ContainerDisplay _container;
+	private CharacterRenderer _renderer;
 
 	protected override int BuildHash() 
 		=> HashCode.Combine( 

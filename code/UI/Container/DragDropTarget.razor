@@ -6,6 +6,8 @@
 @code {
 	public static DragDropTarget Current { get; private set; }
 
+	public bool DropHovered => Current == this && DragItemPanel.Instance is not null;
+
 	protected override void OnMouseOver( MousePanelEvent e )
 	{
 		base.OnMouseOver( e );
