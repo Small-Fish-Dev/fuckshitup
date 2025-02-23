@@ -97,6 +97,7 @@
         "Tags": "hitbox_ignore",
         "Enabled": true,
         "NetworkMode": 1,
+        "NetworkOrphaned": 3,
         "Components": [
           {
             "__type": "Sandbox.SkinnedModelRenderer",

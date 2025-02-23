@@ -58,7 +58,7 @@ public sealed partial class Character : Pawn
 				new SlotCollection.Box( 2, 2, margin: Vector2.Left * 30.5f, sameLine: false ),
 				new SlotCollection.Box( 2, 2 ),
 			] )
-			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );*/
+			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
 
 		var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() ).ToList();
 		
@@ -71,7 +71,7 @@ public sealed partial class Character : Pawn
 		var components = Scene.GetAllComponents<Item>();
 		foreach ( var item in components )
 			if ( !item.IsEquipment )
-				Inventory.TryInsert( item );
+				Inventory.TryInsert( item );*/
 	}
 
 	protected override void OnFixedUpdate()

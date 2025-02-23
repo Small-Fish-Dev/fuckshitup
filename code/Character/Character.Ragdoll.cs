@@ -15,7 +15,9 @@ partial class Character
 			_ragdolled = value;
 
 			if ( Renderer.IsValid() )
+			{
 				Renderer.Tags.Set( "ragdoll", _ragdolled );
+			}
 		}
 	}
 	private bool _ragdolled;
@@ -27,7 +29,7 @@ partial class Character
 	/// <summary>
 	/// NOTE: Only use this locally from the owner of this object.
 	/// </summary>
-	public bool LocalRagdolled // todo: for some reason the very first ragdoll is always at default of transform...?
+	public bool LocalRagdolled
 	{
 		get => RagdollController.IsValid() && RagdollController.MotionEnabled;
 		set

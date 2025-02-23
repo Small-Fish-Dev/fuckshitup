@@ -132,6 +132,10 @@ partial class Character
 		if ( !IsAlive || damageInfo.IsHealing ) return;
 
 		SpreadDamage( damageInfo );
-		if ( !IsAlive ) Log.Info( "Died." );
+		if ( !IsAlive )
+		{
+			LocalRagdolled = true;
+			Log.Info( "Died." );
+		}
 	}
 }

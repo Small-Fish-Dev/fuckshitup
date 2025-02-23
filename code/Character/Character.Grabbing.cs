@@ -34,7 +34,7 @@ partial class Character
 			{
 				MoveGrabbed();
 			}
-			else Grabbed = null;
+			else StopGrab();
 		}
 
 		if ( Input.Down( InputAction.RIGHT_MOUSE ) ) // todo: doesn't work properly in ragdoll :D
@@ -62,8 +62,17 @@ partial class Character
 		if ( Grabbed.IsValid() && !LocalRagdolled )
 		{
 			if ( GrabbedPosition.Distance( WorldPosition ) > MAX_HOLD_DISTANCE + 10f )
-				Grabbed = null;
+				StopGrab();
 		}
+	}
+
+	void StopGrab()
+	{
+		var grabbed = Grabbed;
+		Grabbed = null;
+		if ( !grabbed.IsValid() ) return;
+
+		grabbed.Network.DropOwnership();
 	}
 
 	void Grab( SceneTraceResult tr )
@@ -71,12 +80,18 @@ partial class Character
 		if ( !tr.Hit ) return;
 
 		var target = tr.GameObject;
+		if ( target.Network.Owner is not null )
+			return;
+
 		var body = tr.Body;
 
 		if ( !target.IsValid() || !body.IsValid() ) return;
 		if ( body.BodyType != PhysicsBodyType.Dynamic ) return;
 
 		Grabbed = target;
+		if ( Grabbed.Network.Active )
+			Grabbed.Network.TakeOwnership();
+
 		_grabbedBody = body;
 		_grabLerpedDistance = _grabbedDistance = tr.Distance;
 		_grabbedPosition = body.Transform.PointToLocal( tr.HitPosition );
