@@ -1,0 +1,99 @@
+﻿@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root class="@(!Vertical ? "horizontal" : "")">
+	<div class="content" @ref=_targetPanel CanDragScroll=@CanDragScroll>
+		@ChildContent
+	</div>
+
+	<div class="scrollbar" @onmousedown=@(e => MouseDown( e )) @onmouseup=@(e => MouseUp( e ))>
+		<div class="background" />
+		<div class="knob" @ref=_knob />
+	</div>
+</root>
+
+@code {
+	public bool Vertical { get; set; } = true;
+
+	public float Size => Vertical
+		? _targetPanel.ScrollSize.y
+		: _targetPanel.ScrollSize.x;
+
+	public float Offset => Vertical
+		? _targetPanel.ScrollOffset.y
+		: _targetPanel.ScrollOffset.x;
+
+	private static ScrollView _target;
+	private Panel _knob;
+	private Panel _targetPanel;
+	private TimeUntil _timeUntilNextSound;
+
+	private void MouseDown( PanelEvent pe )
+	{
+		if ( pe is not MousePanelEvent e ) return;
+		if ( e.MouseButton != MouseButtons.Left )
+			return;
+
+		// todo sound
+		_target = this;
+	}
+
+	private void MouseUp( PanelEvent pe )
+	{
+		if ( pe is not MousePanelEvent e ) return;
+		if ( e.MouseButton != MouseButtons.Left )
+			return;
+
+		// todo sound
+		_target = null;
+	}
+
+	void UpdateKnob()
+	{
+		if ( _knob is null )
+			return;
+
+		var size = Vertical ? Box.Rect.Height : Box.Rect.Width;
+		var knobSize = Vertical ? _knob.Box.Rect.Height : _knob.Box.Rect.Width;
+
+		var fraction = (Offset / Size).Clamp( 0f, 1f );
+		fraction = fraction - MathX.Lerp( 0f, knobSize / size, fraction );
+
+		_knob.Style.Left = Length.Fraction( Vertical ? 0 : fraction );
+		_knob.Style.Top = Length.Fraction( Vertical ? fraction : 0 );
+	}
+
+	public override void Tick()
+	{
+		if ( _targetPanel is null )
+			return;
+
+		UpdateKnob();
+
+		if ( _target != this )
+			return;
+
+		var knobSize = Vertical ? _knob.Box.Rect.Height : _knob.Box.Rect.Width;
+		var pos = Vertical ? MousePosition.y : MousePosition.x;
+		var size = Vertical ? Box.Rect.Height : Box.Rect.Width;
+
+		var fraction = ((pos - knobSize / 2f) / (size - knobSize)).Clamp( 0f, 1f );
+		var newValue = fraction * Size;
+		if ( (int)newValue == (int)Offset )
+			return;
+
+		var direction = Vertical ? Vector2.Up : Vector2.Left;
+
+		_targetPanel.ScrollVelocity = 0f;
+		_targetPanel.ScrollOffset = direction * newValue;
+
+		if ( _timeUntilNextSound )
+		{
+			// todo sound
+			_timeUntilNextSound = 0.05f;
+		}
+	}
+
+	protected override int BuildHash()
+		=> HashCode.Combine( Vertical );
+}

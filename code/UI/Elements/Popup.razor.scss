@@ -14,16 +14,23 @@ Popup {
         width: 100%;
         align-items: center;
         background-color: darken($dark-gray, 0.65);
+        pointer-events: all;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         > .close-button {
             position: absolute;
             right: 6px;
             height: 16px;
             aspect-ratio: 1;
-            background-color: darken($dark-gray, 0.2);
+            background-color: darken(red, 0.5);
+            pointer-events: all;
 
             &:hover {
-
+                background-color: darken(red, 0.2);
+                cursor: pointer;
             }
         }
     }

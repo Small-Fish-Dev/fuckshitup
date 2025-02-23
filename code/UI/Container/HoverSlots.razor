@@ -24,7 +24,7 @@
 	private const float GRID_SIZE = SlotCollectionDisplay.GRID_SIZE;
 
 	public ContainerDisplay Container { get; set; }
-	public ContainerBox Box { get; set; }
+	public new ContainerBox Box { get; set; }
 
 	private bool CanFit { get; set; }
 	private bool Visible => Container?.HoveredBox == Box && DragItemPanel.Instance is not null;

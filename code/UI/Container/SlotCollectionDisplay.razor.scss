@@ -6,6 +6,7 @@ SlotCollectionDisplay {
     font-family: $font-main;
     gap: 0px;
     flex-shrink: 0;
+    width: 100%;
 
     &.has-source {
         > .container {

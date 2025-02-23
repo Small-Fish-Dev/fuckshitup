@@ -5,6 +5,7 @@ EquipmentPanel {
     color: $white;
     font-family: $font-main;
     background-color: $black;
+    opacity: 0;
 
     &.long {
         > .slot {
@@ -27,7 +28,7 @@ EquipmentPanel {
     }
 
     > .slot {
-        width: 150px;
+        width: 120px;
         aspect-ratio: 1;
         border: 1px $black;
 

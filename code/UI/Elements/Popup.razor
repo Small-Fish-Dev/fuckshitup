@@ -1,0 +1,72 @@
+@namespace FUCKSHIT.UI
+@inherits Panel
+
+<root>
+	<div class="header" onmousedown=@(e => MouseDown( e ))>
+		<div>@Title</div>
+
+		@if ( ShowCloseButton )
+		{
+			<div class="close-button" />
+		}
+	</div>
+
+	<div class="content">
+		@ChildContent
+	</div>
+</root>
+
+@code {
+	public string Title { get; set; } = "Popup";
+
+	public bool Draggable { get; set; } = true;
+	public bool Resizable { get; set; } = false;
+	public bool PointerEvents { get; set; } = true;
+	public bool ShowCloseButton { get; set; } = true;
+
+	public Vector2 Position 
+	{
+		get => _position;
+		set
+		{
+			_position = value;
+			_position.x = _position.x.Clamp( 0, (Screen.Size.x - Box.Rect.Size.x) * ScaleFromScreen );
+			_position.y = _position.y.Clamp( 0, (Screen.Size.y - Box.Rect.Size.y) * ScaleFromScreen );
+
+			Style.Left = _position.x;
+			Style.Top = _position.y;
+		}
+	}
+	private Vector2 _position;
+
+	private static Popup _dragTarget;
+	private static Vector2 _localOffset;
+
+	private void MouseDown( PanelEvent ev )
+	{
+		if ( ev is not MousePanelEvent e ) return;
+		if ( e.MouseButton != MouseButtons.Left )
+			return;
+
+		_dragTarget = this;
+		_localOffset = MousePosition / Box.Rect.Size;
+	}
+
+	protected override void OnMouseUp(MousePanelEvent e)
+	{
+		base.OnMouseUp( e );
+
+		if ( e.MouseButton != MouseButtons.Left )
+			return;
+
+		_dragTarget = null;
+	}
+
+	public override void Tick()
+	{
+		if ( _dragTarget != this )
+			return;
+
+		Position = (Mouse.Position - _localOffset * Box.Rect.Size) * ScaleFromScreen;
+	}
+}

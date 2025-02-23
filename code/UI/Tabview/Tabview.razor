@@ -4,8 +4,8 @@
 @if ( !Character.IsValid() )
 	return;
 
-<Popup Title="My Character">
-	<Content>
+<Popup Title=" " ShowCloseButton=@false>
+	<ChildContent>
 		<div class="container">
 			<CharacterRenderer />
 
@@ -20,13 +20,17 @@
 			}
 		</div>
 
-		<div class="container dark">
-			<ContainerDisplay 
-				Container=@Character.Inventory 
-				@ref=_container
-			/>
+		<div class="container">
+			<ScrollView CanDragScroll=@false>
+				<ChildContent>
+					<ContainerDisplay 
+						Container=@Character.Inventory 
+						@ref=_container
+					/>
+				</ChildContent>
+			</ScrollView>
 		</div>
-	</Content>
+	</ChildContent>
 </Popup>
 
 @code {

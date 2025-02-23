@@ -12,16 +12,13 @@
 	private SceneDirectionalLight Sun { get; set; }
 	private SceneLight Light { get; set; }
 
-	private bool _isDragging;
-	private float _yaw;
-
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
 		base.OnAfterTreeRender( firstTime );
 
 		World ??= new();
-		Camera.FieldOfView = 50;
-		Camera.OnRenderOverlay = OnRenderOverlay;
+		Camera.FieldOfView = 10;
+		Camera.OnRenderOverlay = () => OnRenderOverlay();
 		SetupLighting();
 	}
 
@@ -29,13 +26,14 @@
 	{
 		var material = Material.FromShader( "shaders/character_view.shader" );
 		var attributes = Camera.Attributes;
+		Graphics.GrabFrameTexture( "ColorTexture", attributes );
 
 		using var rt = RenderTarget.GetTemporary( 1, ImageFormat.Default );
 		Graphics.RenderTarget = rt;
 		Graphics.Clear( Color.Black, clearColor: false );
 		{
-			DummyModel.SetBodyGroup( "head", 0 ); // todo
-			DummyModel.SetBodyGroup( "torso", 1 );
+			DummyModel.SetBodyGroup( "head", 1 ); // todo
+			DummyModel.SetBodyGroup( "torso", 0 );
 			DummyModel.SetBodyGroup( "legs", 1 );
 			DummyModel.SetBodyGroup( "feet", 1 );
 			DummyModel.SetBodyGroup( "hands", 1 );
@@ -47,7 +45,6 @@
 
 		attributes.Set( "HoverTexture", rt.ColorTarget );
 
-		Graphics.GrabFrameTexture( "ColorTexture", attributes );
 		Graphics.Blit( material, attributes );
 	}
 
@@ -83,9 +80,17 @@
 		/*if ( _isDragging )
 			_yaw += Mouse.Delta.x * 0.20f;*/
 
-		var lookat = new Vector3( 1000f, localPos.x, -localPos.y ) * SceneModel.Rotation.Inverse;
+		/*var lookat = new Vector3( 1000f, localPos.x, -localPos.y ) * SceneModel.Rotation.Inverse;
 		SetAnimParameter( "lookat", lookat );
 		
+		SetAnimParameter( "right_ik", true );
+		SetAnimParameter( "right_ik_pos", Vector3.Right * 50f );
+		SetAnimParameter( "right_ik_rot", (Vector3.Right + Vector3.Down).EulerAngles );
+
+		SetAnimParameter( "left_ik", true );
+		SetAnimParameter( "left_ik_pos", Vector3.Left * 50f );
+		SetAnimParameter( "left_ik_rot", (Vector3.Left + Vector3.Down).EulerAngles.WithRoll( 180f ) );
+
 		SetAnimParameter( "height", Character.Height );
 		SetAnimParameter( "weight", Character.Fatness );
 
@@ -93,27 +98,7 @@
 
 		// SceneModel.Rotation = Rotation.From( 0, _yaw, 0 );
 		SceneModel.Update( RealTime.Delta );
-		DummyModel.Update( RealTime.Delta );
-	}
-
-	private void SetAnimParameter( string name, Vector3 value )
-	{
-		SceneModel.SetAnimParameter( name, value );
-		DummyModel.SetAnimParameter( name, value );
-	}
-
-	private void SetAnimParameter( string name, float value )
-	{
-		SceneModel.SetAnimParameter( name, value );
-		DummyModel.SetAnimParameter( name, value );
-	}
-
-	public override void OnButtonEvent( ButtonEvent e )
-	{
-		if ( e.Button == "mouseleft" )
-			_isDragging = e.Pressed;
-
-		base.OnButtonEvent( e );
+		DummyModel.Update( RealTime.Delta );*/
 	}
 
 	public override void Tick()
