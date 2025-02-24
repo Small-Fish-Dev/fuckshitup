@@ -89,7 +89,6 @@ public sealed partial class Character : Pawn
 
 			if ( Input.Pressed( InputAction.LEFT_MOUSE ) )
 			{
-				Inventory.Refresh();
 				var resource = ResourceLibrary.GetAll<ProjectileResource>().FirstOrDefault();
 				if ( resource is not null )
 					Projectile.Launch(
