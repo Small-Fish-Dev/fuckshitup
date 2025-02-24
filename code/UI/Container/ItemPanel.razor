@@ -53,7 +53,7 @@
 	private bool _down;
 
 	private bool IsBeingDragged => DragItemPanel.Instance is not null && DragItemPanel.Instance.Item == Item;
-	protected bool Valid => Item.IsValid() && !Item.IsProxy;
+	protected bool Valid => Item.IsValid();
 	protected string RgbaColor => Valid ? Item.Rarity.GetColor().WithAlpha( 0.25f ).Rgba : "#00000000";
 
 	private bool ShouldDrag =>

@@ -561,11 +561,15 @@
         "Flags": 0,
         "Name": "Inventory",
         "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkOrphaned": 3,
+        "OwnerTransfer": 0,
         "Components": [
           {
             "__type": "FUCKSHIT.Container",
             "__guid": "7d9df873-b313-4624-ac50-fe1be8abd093",
             "Name": "Inventory",
+            "Networked": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,

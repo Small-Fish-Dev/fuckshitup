@@ -214,6 +214,8 @@ public sealed class Projectile : Component
 			{
 				var gameObject = new GameObject();
 				gameObject.Name = resource.ResourceName;
+				gameObject.Flags |= GameObjectFlags.Hidden 
+								 | GameObjectFlags.NotNetworked;
 
 				var projectile = gameObject.Components.Create<Projectile>();
 				projectile.Resource = resource;

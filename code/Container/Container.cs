@@ -6,6 +6,9 @@ public sealed partial class Container
 	[Property, Sync, Category( "Information" )]
 	public string Name { get; set; }
 
+	[Property, Sync, Category( "Information" )]
+	public bool Networked { get; set; } = true;
+
 	/// <summary>
 	/// Look up all items this <see cref="Container"/> has inside of it.
 	/// </summary>
@@ -183,5 +186,10 @@ public sealed partial class Container
 	{
 		base.OnDestroy();
 		if ( !IsProxy ) Clear( true );
+	}
+
+	public override string ToString()
+	{
+		return $"Container {Name} - Collections: {_slotCollections.Count}";
 	}
 }

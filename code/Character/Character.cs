@@ -6,12 +6,12 @@ public sealed partial class Character : Pawn
 		? Client.Local.Pawn as Character
 		: null;
 
-	public SkinnedModelRenderer Renderer { get; private set; }
+	[Sync] public SkinnedModelRenderer Renderer { get; set; }
+	[Sync] public Container Inventory { get; set; }
 	public BoxCollider Collider { get; private set; }
 	public CameraComponent Camera { get; private set; }
 	public ShrimpleCharacterController Controller { get; private set; }
 	public RagdollController RagdollController { get; private set; }
-	public Container Inventory { get; private set; }
 	public Voice Voice { get; private set; }
 
 	protected override void OnStart()
@@ -21,6 +21,8 @@ public sealed partial class Character : Pawn
 		Renderer = Components.Get<SkinnedModelRenderer>( FindMode.EverythingInSelfAndChildren );
 		if ( Renderer.IsValid() )
 			Renderer.RenderType = ModelRenderer.ShadowRenderType.On;
+
+		Inventory = Components.Get<Container>( FindMode.EverythingInSelfAndChildren );
 
 		RagdollController = Components.Get<RagdollController>( FindMode.EverythingInSelfAndChildren );
 		if ( RagdollController.IsValid() )
@@ -37,8 +39,6 @@ public sealed partial class Character : Pawn
 		Voice = Components.Get<Voice>( FindMode.EverythingInSelfAndChildren );
 		if ( Voice.IsValid() )
 			Voice.Enabled = !IsProxy;
-
-		Inventory = Components.Get<Container>( FindMode.EverythingInSelfAndChildren );
 
 		if ( !IsProxy ) RequestRespawn();
 		/*Inventory
@@ -58,20 +58,23 @@ public sealed partial class Character : Pawn
 				new SlotCollection.Box( 2, 2, margin: Vector2.Left * 30.5f, sameLine: false ),
 				new SlotCollection.Box( 2, 2 ),
 			] )
-			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );
+			.WithSource( Scene.GetAllComponents<Item>().FirstOrDefault() );*/
 
-		var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.TakeOwnership() ).ToList();
-		
-		if ( !IsProxy && equippables is { Count: > 0 } )
-			foreach ( var source in equippables )
-			{
-				TryEquip( source, source.Slot );
-			}
+		if ( !IsProxy )
+		{
+			var equippables = Scene.GetAllComponents<Item>().Where( item => item.IsEquipment && item.IsContainer && item.Network.Owner is null && item.Network.TakeOwnership() ).ToList();
 
-		var components = Scene.GetAllComponents<Item>();
-		foreach ( var item in components )
-			if ( !item.IsEquipment )
-				Inventory.TryInsert( item );*/
+			if ( equippables is { Count: > 0 } )
+				foreach ( var source in equippables )
+				{
+					TryEquip( source, source.Slot );
+				}
+
+			var components = Scene.GetAllComponents<Item>();
+			foreach ( var item in components )
+				if ( !item.IsEquipment )
+					Inventory.TryInsert( item );
+		}
 	}
 
 	protected override void OnFixedUpdate()
@@ -86,6 +89,7 @@ public sealed partial class Character : Pawn
 
 			if ( Input.Pressed( InputAction.LEFT_MOUSE ) )
 			{
+				Inventory.Refresh();
 				var resource = ResourceLibrary.GetAll<ProjectileResource>().FirstOrDefault();
 				if ( resource is not null )
 					Projectile.Launch(

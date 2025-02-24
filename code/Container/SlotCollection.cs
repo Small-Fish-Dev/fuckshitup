@@ -95,7 +95,15 @@ public sealed class SlotCollection
 		}
 
 		/// <summary>
-		/// Store a reference in our <see cref="SlotCollection.Box"/>.
+		/// Clear all references from our <see cref="SlotCollection.Box"/>.
+		/// </summary>
+		public void ClearReferences()
+		{
+			_references.Clear();
+		}
+
+		/// <summary>
+		/// Clear a reference from our <see cref="SlotCollection.Box"/>.
 		/// </summary>
 		/// <param name="position"></param>
 		public void ClearReference( Vector2Int position )
@@ -105,7 +113,7 @@ public sealed class SlotCollection
 		}
 
 		/// <summary>
-		/// Store a reference in our <see cref="SlotCollection.Box"/>.
+		/// Clear an <see cref="Item"/> reference from our <see cref="SlotCollection.Box"/>.
 		/// </summary>
 		/// <param name="item"></param>
 		public void ClearReference( Item item )
@@ -263,6 +271,11 @@ public sealed class SlotCollection
 	public string Name { get; set; }
 
 	/// <summary>
+	/// Unique identifier of this <see cref="SlotCollection"/>.
+	/// </summary>
+	public Guid Guid { get; set; } = Guid.Empty;
+
+	/// <summary>
 	/// The ordering number of this <see cref="SlotCollection"/>, the higher it is, the more up it will be.
 	/// </summary>
 	public int Order { get; private set; }
@@ -281,9 +294,9 @@ public sealed class SlotCollection
 	public SlotCollection( Container parent, params Box[] boxes )
 	{
 		Assert.NotNull( parent is not null, "Tried create SlotCollection to a null Container." );
-		Assert.True( boxes is not null && boxes.Length > 0, "Tried create SlotCollection with no boxes." );
 
 		Parent = parent;
+		Guid = Guid.NewGuid();
 		_boxes = boxes;
 	}
 
@@ -330,6 +343,15 @@ public sealed class SlotCollection
 		if ( filter == null ) return this;
 		Filter = filter;
 		return this;
+	}
+
+	/// <summary>
+	/// Override the <see cref="SlotCollection.Box"/>es of this <see cref="SlotCollection"/>.
+	/// </summary>
+	/// <param name="boxes"></param>
+	public void SetBoxes( Box[] boxes )
+	{
+		_boxes = boxes;
 	}
 
 	/// <summary>

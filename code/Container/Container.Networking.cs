@@ -1,70 +1,224 @@
 ﻿namespace FUCKSHIT;
 
-partial class Container
+partial class Container : Component.INetworkSnapshot
 {
-	public void TryTake( Container target, Item item, SlotCollection.Box box, Vector2Int position, bool rotated, Item merge = null )
+	/// <summary>
+	/// Serialize this <see cref="Container"/>'s targeted <see cref="SlotCollection"/>s to bytes, defaulted to all collections.
+	/// </summary>
+	/// <param name="collections"></param>
+	/// <returns></returns>
+	public byte[] Serialize( IEnumerable<SlotCollection> collections = null )
 	{
-		if ( !item.IsValid() ) return;
-		if ( !target.IsValid() ) return;
+		using var stream = new MemoryStream();
+		using var writer = new BinaryWriter( stream );
 
-		if ( box is null ) return;
-
-		// Try to stack item if we are trying to place it on a matching item stack...
-		if ( merge.IsValid() && item.Stackable 
-		  && merge.PrefabSource == item.PrefabSource
-		  && merge.Amount < merge.MaxStack )
+		void WriteBox( SlotCollection.Box box )
 		{
-			var add = Math.Min( item.Amount, merge.MaxStack - merge.Amount );
-			merge.Amount += add;
+			if ( box is null ) return;
 
-			var amount = item.Amount - add;
-			SetAmount( item, amount );
-			if ( amount <= 0 )
+			writer.Write( box.Size.x );
+			writer.Write( box.Size.y );
+			writer.Write( box.SameLine );
+			writer.Write( box.Margin == Vector2.Zero );
+			if ( box.Margin != Vector2.Zero )
 			{
-				ClearItem( item );
-				TakeOwnership( item );
-				item.DestroyGameObject();
+				writer.Write( box.Margin.x );
+				writer.Write( box.Margin.y );
 			}
 
+			var count = box.References.Count;
+			writer.Write( count );
+			for ( int i = 0; i < count; i++ )
+			{ 
+				var kvp = box.References.ElementAtOrDefault( i );
+				var pos = kvp.Key;
+				var reference = kvp.Value;
+				if ( !reference.IsValid() )
+					continue;
+
+				writer.Write( pos.x );
+				writer.Write( pos.y );
+				writer.Write( reference.Id.ToByteArray() );
+			}
+		}
+
+		void WriteCollection( SlotCollection collection )
+		{
+			if ( collection is null ) return;
+
+			writer.Write( collection.Name );
+			writer.Write( collection.Guid.ToByteArray() );
+			
+			var count = collection.Boxes.Count;
+			writer.Write( count );
+			for ( int i = 0; i < count; i++ )
+			{
+				var box = collection.Boxes.ElementAtOrDefault( i );
+				WriteBox( box );
+			}
+		}
+
+		collections ??= _slotCollections;
+		
+		var count = collections.Count();
+		writer.Write( count );
+		for ( int i = 0; i < count; i++ )
+		{
+			var collection = collections.ElementAtOrDefault( i );
+			WriteCollection( collection );
+		}
+
+		return stream.ToArray();
+	}
+
+	/// <summary>
+	/// Deserialize the serialized bytes of this <see cref="Container"/>'s full state.
+	/// </summary>
+	/// <param name="data"></param>
+	/// <returns></returns>
+	public bool Deserialize( byte[] data )
+	{
+		if ( data is null ) return false;
+		
+		using var stream = new MemoryStream( data );
+		using var reader = new BinaryReader( stream );
+
+		SlotCollection.Box ReadBox( SlotCollection.Box box )
+		{
+			var size = new Vector2Int( reader.ReadInt32(), reader.ReadInt32() );
+			var sameLine = reader.ReadBoolean();
+			var margin = default( Vector2? );
+			var noMargin = reader.ReadBoolean();
+			if ( !noMargin )
+			{
+				margin = new Vector2( reader.ReadSingle(), reader.ReadSingle() );
+			}
+
+			box ??= new SlotCollection.Box( size, margin, sameLine );
+			box.ClearReferences();
+
+			var count = reader.ReadInt32();
+			for ( int i = 0; i < count; i++ )
+			{
+				var position = new Vector2Int( reader.ReadInt32(), reader.ReadInt32() );
+				var guid = new Guid( reader.ReadBytes( 16 ) );
+				if ( Scene.Directory.FindComponentByGuid( guid ) is not Item item ) // todo cache this if there isn't an item found at that moment..
+					continue;
+
+				box.StoreReference( position, item );
+			}
+
+			return box;
+		}
+
+		SlotCollection ReadCollection( out bool existing )
+		{
+			var name = reader.ReadString();
+			var guid = new Guid( reader.ReadBytes( 16 ) );
+
+			var collection = _slotCollections?.FirstOrDefault( collection => collection.Guid == guid ); // Find existing collection.
+			existing = collection is not null;
+
+			collection ??= new SlotCollection( this, null ) // Create new collection.
+			{
+				Name = name,
+				Guid = guid,
+			};
+
+			var count = reader.ReadInt32();
+			if ( !existing )
+			{
+				var boxes = new SlotCollection.Box[count];
+				for ( int i = 0; i < count; i++ )
+					boxes[i] = ReadBox( null );
+
+				collection.SetBoxes( boxes );
+
+				return collection;
+			}
+
+			for ( int i = 0; i < count; i++ )
+			{
+				var box = collection.Boxes.ElementAtOrDefault( i );
+				ReadBox( box );
+			}
+
+			return collection;
+		}
+
+		try
+		{
+			var refresh = false;
+			var valid = new HashSet<SlotCollection>();
+			var count = reader.ReadInt32();
+			for ( int i = 0; i < count; i++ )
+			{
+				var collection = ReadCollection( out var existing );
+				valid.Add( collection );
+				refresh |= !existing;
+				if ( !existing )
+				{
+					_slotCollections.Add( collection );
+				}
+			}
+
+			foreach ( var collection in _slotCollections )
+			{
+				if ( valid.Contains( collection ) )
+					continue;
+
+				_slotCollections.Remove( collection );
+			}
+
+			if ( refresh ) RefreshOrdering();
+		} 
+		catch { return false; }
+
+		return true;
+	}
+
+	/// <summary>
+	/// Refresh this <see cref="Container"/>'s <see cref="SlotCollection"/>s state to all client's except the owner of this <see cref="Container"/>...
+	/// </summary>
+	public void Refresh( IEnumerable<SlotCollection> collections = null )
+	{
+		if ( IsProxy )
+		{
+			Log.Warning( $"Tried to refresh container you don't own..." );
 			return;
 		}
 
-		if ( !box.CanFit( position, item.GetSize( rotated ), item ) )
+		var data = Serialize( collections );
+		BroadcastRefresh( data );
+	}
+
+	void INetworkSnapshot.ReadSnapshot( ref ByteStream reader )
+	{
+		var length = reader.ReadRemaining;
+		if ( length == 0 )
 			return;
 
-		ClearItem( item );
-		TakeOwnership( item );
+		var buffer = new byte[length];
+		reader.Read( buffer, 0, length );
 
-		item.Rotated = rotated;
-		box.StoreReference( position, item );
-		item.SetContainer( target );
+		Deserialize( buffer );
 	}
 
-	[Rpc.Owner( NetFlags.Reliable )]
-	private void ClearItem( Item item )
+	void INetworkSnapshot.WriteSnapshot( ref ByteStream writer )
 	{
-		if ( !item.IsValid() || !item.Network.Active || item.IsProxy ) return;
-
-		if ( !TryFind( item, out var result ) )
+		var serialized = Serialize();
+		if ( serialized?.Length == 0 )
 			return;
 
-		result.Box.ClearReference( result.Position );
+		writer.Write( serialized );
 	}
 
-	[Rpc.Owner( NetFlags.Reliable )]
-	private void TakeOwnership( Item item )
+	[Rpc.Broadcast]
+	private void BroadcastRefresh( byte[] data )
 	{
-		if ( !item.IsValid() || !item.Network.Active || item.IsProxy ) return;
-
-		item.Network.AssignOwnership( Rpc.Caller );
-	}
-
-
-	[Rpc.Owner( NetFlags.Reliable )]
-	private void SetAmount( Item item, int amount )
-	{
-		if ( !item.IsValid() || !item.Network.Active || item.IsProxy ) return;
-
-		item.Amount = amount;
+		// No need to run this shit on host...
+		if ( !IsProxy ) return;
+		
+		Deserialize( data );
 	}
 }
