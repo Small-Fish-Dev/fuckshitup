@@ -72,7 +72,7 @@ public sealed partial class Character : Pawn
 
 			var components = Scene.GetAllComponents<Item>();
 			foreach ( var item in components )
-				if ( !item.IsEquipment )
+				if ( item.Network.Owner is null )
 					Inventory.TryInsert( item );
 		}
 	}

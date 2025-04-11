@@ -7,8 +7,7 @@ partial class Character
 
 	public bool TryEquip( Item item, EquipmentSlot slot )
 	{
-		var isValid = (slot.IsHandSlot() && item.Holdable)
-				   || item.Slot == slot;
+		var isValid = item.Holdable || item.Slot == slot;
 
 		if ( !item.IsEquipment ) return false;
 		if ( !isValid ) return false;
