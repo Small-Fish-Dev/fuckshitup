@@ -84,6 +84,7 @@ partial class Container
 			result.Position = position;
 			result.Box = box;
 			result.Collection = collection;
+			break;
 		}
 
 		return result.Box is not null;
@@ -112,6 +113,7 @@ partial class Container
 			result.Position = position;
 			result.Box = box;
 			result.Collection = collection;
+			break;
 		}
 
 		return result.Box is not null;

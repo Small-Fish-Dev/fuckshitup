@@ -2,11 +2,16 @@
 @inherits PanelComponent
 
 <root>
-	@*<Tabview />*@
+	@if ( Open )
+	{
+		<Tabview />
+	}
 </root>
 
 @code {
 	public static UIComponent Instance { get; private set; }
+
+	private bool Open { get; set; }
 
 	protected override void OnStart()
 	{
@@ -14,5 +19,18 @@
 
 		DragItemPanel.Reset();
 		Instance = this;
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if ( Input.Pressed( InputAction.INVENTORY ) ) 
+			Open = !Open;
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( Open );
 	}
 }

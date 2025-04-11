@@ -77,6 +77,7 @@
           "OnComponentUpdate": null,
           "Projection": "Sphere",
           "RenderDynamically": false,
+          "Resolution": "Small",
           "Texture": "textures/cubemaps/default2.vtex",
           "TintColor": "1,1,1,1",
           "UpdateStrategy": "OnEnabled",
@@ -498,7 +499,7 @@
               "__guid": "3a657c53-2ace-4023-ad7b-a79ef9442597",
               "Flags": 4,
               "Name": "hand_IK_L",
-              "Position": "36.14843,-0.4226441,10.4302",
+              "Position": "36.14486,-0.4597726,10.53519",
               "Rotation": "0.02840126,0.9991273,-0.005222708,0.03017095",
               "Enabled": true
             },
@@ -506,7 +507,7 @@
               "__guid": "b4117bf5-b14d-4d80-b016-1e357f651924",
               "Flags": 4,
               "Name": "hand_IK_R",
-              "Position": "36.14846,-0.4226646,-10.59908",
+              "Position": "36.14489,-0.4597836,-10.49419",
               "Rotation": "0.02840126,0.9991274,0.005222708,-0.03017089",
               "Enabled": true
             }
@@ -608,7 +609,7 @@
                                           "__guid": "7d1955c5-4a49-469b-82fc-ae7857a48312",
                                           "Flags": 4,
                                           "Name": "hand_R_to_L",
-                                          "Rotation": "0.00000001490116,0.00000002980232,0,-1",
+                                          "Rotation": "-0.0000005066395,-0.0000001639128,0.0000001192093,-1",
                                           "Enabled": true
                                         },
                                         {
@@ -675,7 +676,7 @@
                                           "__guid": "8df0373a-6c07-4415-afa2-1bf0b79a5568",
                                           "Flags": 4,
                                           "Name": "hand_L_to_R",
-                                          "Rotation": "-0.00000001490116,-0.00000002980232,-0.00000002980232,-1",
+                                          "Rotation": "0.000000461936,0.0000002831221,0.0000001490116,-1",
                                           "Enabled": true
                                         },
                                         {
@@ -781,6 +782,15 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "6248d23b-26fc-49ff-aebd-4844d35b2e3a",
+      "Flags": 0,
+      "Name": "m38",
+      "Position": "-116.7347,-13.51712,2",
+      "Enabled": true,
+      "__Prefab": "prefabs/items/weapons/m38.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

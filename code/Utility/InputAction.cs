@@ -18,4 +18,6 @@ public static class InputAction
 	public const string CROUCH = "Crouch";
 	public const string SPRINT = "Sprint";
 	public const string JUMP = "Jump";
+
+	public const string INVENTORY = "Inventory";
 }
