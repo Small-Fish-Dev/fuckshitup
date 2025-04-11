@@ -35,13 +35,24 @@
 		var dragPanel = DragItemPanel.Instance;
 		if ( dragPanel is not null )
 		{
-			var localPosition = dragPanel.LocalPosition * dragPanel.Box.Rect.Size / (GRID_SIZE * ScaleToScreen);
+			var localPosition = dragPanel.LocalPosition;
+			localPosition = dragPanel.Rotated 
+				? new Vector2( 1f - localPosition.y, localPosition.x )
+				: localPosition;
+
+			var size = new Vector2(
+				dragPanel.Size.x * ContainerDisplay.GRID_SIZE,
+				dragPanel.Size.y * ContainerDisplay.GRID_SIZE
+			) * ScaleToScreen;
+
+			localPosition = localPosition * size / (GRID_SIZE * ScaleToScreen);
 			offset = new Vector2Int( (int)localPosition.x, (int)localPosition.y );
 		}
 
 		var pos = HoveredBox.MousePosition;
 		pos /= GRID_SIZE * ScaleToScreen;
 
+		var previous = AbsolutePosition;
 		AbsolutePosition = new Vector2Int( (int)pos.x, (int)pos.y );
 		HoveredPosition = AbsolutePosition - offset;
 	}

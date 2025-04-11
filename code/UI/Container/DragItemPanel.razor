@@ -42,7 +42,11 @@
 	public bool FromContainer => Source is Container;
 	public bool FromEquipped => Source is Character;
 
-	public static void Reset() => Instance = null;
+	public static void Reset()
+	{
+		Instance?.Delete();
+		Instance = null;
+	}
 
 	public override void Tick()
 	{
@@ -54,26 +58,33 @@
 		}
 
 		if ( Input.Pressed( InputAction.RELOAD ) )
-		{
 			Rotated = !Rotated;
-			if ( Size.x != Size.y ) LocalPosition = new Vector2( LocalPosition.y, LocalPosition.x );
-		}
-
-		UpdateTransform( Box.Rect );
+		
+		if ( Box.Rect.Size != Vector2.Zero )
+			UpdateTransform();
 	}
 
-	private void UpdateTransform( Rect rect )
+	private void UpdateTransform()
 	{
-		if ( !Item.IsValid() ) return;
+		if ( !Valid ) return;
 
-		var pos = Mouse.Position - LocalPosition * rect.Size;
+		var localPosition = LocalPosition;
+		if ( Rotated && Size.x != Size.y ) 
+			localPosition = new Vector2( 1f - LocalPosition.y, LocalPosition.x );
+
+		var size = new Vector2(
+			Size.x * GRID_SIZE,
+			Size.y * GRID_SIZE
+		);
+
+		Style.Width = size.x;
+		Style.Height = size.y;
+
+		var pos = Mouse.Position - localPosition * (size * ScaleToScreen);
 		pos /= Screen.Size;
 
 		Style.Left = Length.Fraction( pos.x );
 		Style.Top = Length.Fraction( pos.y );
-
-		Style.Width = Size.x * GRID_SIZE;
-		Style.Height = Size.y * GRID_SIZE;
 	}
 
 	public static void TryBegin( ItemPanel panel, object source, Vector2 localPosition )
@@ -88,6 +99,11 @@
 		if ( !item.IsValid() )
 			return;
 
+		var rotated = item.Rotated;
+		var size = item.AbsoluteSize;
+		if ( rotated && size.x != size.y ) 
+			localPosition = new Vector2( localPosition.y, 1f - localPosition.x );
+
 		Instance = new() 
 		{
 			Item = item,
@@ -97,7 +113,7 @@
 			Parent = UIComponent.Instance?.Panel
 		};
 
-		Instance.UpdateTransform( panel.Box.Rect );
+		Instance.UpdateTransform();
 	}
 
 	public static void TryStop( ItemPanel panel, Action<Item, bool, object> callback )
