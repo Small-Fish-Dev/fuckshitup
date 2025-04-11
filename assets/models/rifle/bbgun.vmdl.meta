@@ -1,0 +1,20 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "bbgun",
+      "Type": "model",
+      "Org": "fish",
+      "Ident": "bbgun",
+      "Tags": null,
+      "Schema": 0,
+      "Resources": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/rifle/bbgun.vmdl"
+      }
+    }
+  }
+}

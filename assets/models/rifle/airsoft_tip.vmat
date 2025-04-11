@@ -1,0 +1,16 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/bettershrimple.shader"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Material ----
+	Color "models/rifle/airsoft_tip_color.png"
+	ColorTintMask "materials/default/default.tga"
+	Metalness "materials/default/default_metal.tga"
+	Normal "models/rifle/airsoft_tip_normal.png"
+	Roughness "materials/default/default_rough.tga"
+}

@@ -1,0 +1,16 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/bettershrimple.shader"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Material ----
+	Color "models/rifle/m38_color.png"
+	ColorTintMask "materials/default/default.tga"
+	Metalness "models/rifle/m38_metal.png"
+	Normal "models/rifle/m38_normal.png"
+	Roughness "models/rifle/m38_rough.png"
+}
