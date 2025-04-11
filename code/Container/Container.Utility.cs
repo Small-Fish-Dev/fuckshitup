@@ -17,9 +17,9 @@ partial class Container
 		Assert.True( size.x >= 1 && size.y >= 1, "Tried to find space for size that is < 1." );
 
 		foreach ( var box in collection.Boxes )
-			if ( box.TryFindSpace( size, out var position ) )
+			if ( box.TryFindSpace( size, out var query, false ) )
 			{
-				result = (collection, box, position, false);
+				result = (collection, box, query.Position, false);
 				return true;
 			}
 
@@ -28,9 +28,9 @@ partial class Container
 		{
 			var rotatedSize = new Vector2Int( size.y, size.x );
 			foreach ( var box in collection.Boxes )
-				if ( box.TryFindSpace( rotatedSize, out var position ) )
+				if ( box.TryFindSpace( rotatedSize, out var query, false ) )
 				{
-					result = (collection, box, position, true);
+					result = (collection, box, query.Position, true);
 					return true;
 				}
 		}

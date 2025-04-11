@@ -48,6 +48,7 @@ partial class Container : Component.INetworkSnapshot
 
 			writer.Write( collection.Name );
 			writer.Write( collection.Guid.ToByteArray() );
+			writer.Write( (ulong)collection.ExcludeFlags );
 			
 			var count = collection.Boxes.Count;
 			writer.Write( count );
@@ -115,6 +116,7 @@ partial class Container : Component.INetworkSnapshot
 		{
 			var name = reader.ReadString();
 			var guid = new Guid( reader.ReadBytes( 16 ) );
+			var excludeFlags = (ItemTypeFlags)reader.ReadUInt64();
 
 			var collection = _slotCollections?.FirstOrDefault( collection => collection.Guid == guid ); // Find existing collection.
 			existing = collection is not null;
@@ -124,6 +126,8 @@ partial class Container : Component.INetworkSnapshot
 				Name = name,
 				Guid = guid,
 			};
+
+			collection.WithExcludeFlags( excludeFlags );
 
 			var count = reader.ReadInt32();
 			if ( !existing )
@@ -216,7 +220,7 @@ partial class Container : Component.INetworkSnapshot
 	[Rpc.Broadcast]
 	private void BroadcastRefresh( byte[] data )
 	{
-		// No need to run this shit on host...
+		// No need to run this shit on owner of object...
 		if ( !IsProxy ) return;
 		
 		Deserialize( data );

@@ -57,10 +57,11 @@ public sealed class SlotCollection
 		}
 
 		/// <summary>
-		/// Does our <see cref="SlotCollection.Box"/> have an item that fullfils this predicate.
+		/// Find the first reference's position matching the predicate.
 		/// </summary>
 		/// <param name="predicate"></param>
 		/// <param name="position"></param>
+		/// <returns>True if we found a position, false if not.</returns>
 		public bool TryFind( Func<Item, bool> predicate, out Vector2Int position )
 		{
 			position = default( Vector2Int );
@@ -71,6 +72,25 @@ public sealed class SlotCollection
 			position = query.Key;
 
 			return query.Value is not null;
+		}
+
+		/// <summary>
+		/// Find all of the references' positions matching the predicate.
+		/// </summary>
+		/// <param name="predicate"></param>
+		/// <returns>All of the found reference positions.</returns>
+		public IEnumerable<Vector2Int> TryFindAll( Func<Item, bool> predicate )
+		{
+			if ( predicate is null )
+				yield break;
+
+			foreach ( var (position, item) in _references )
+			{
+				if ( !predicate( item ) )
+					continue;
+
+				yield return position;
+			}
 		}
 
 		/// <summary>
@@ -126,12 +146,12 @@ public sealed class SlotCollection
 		}
 
 		/// <summary>
-		/// Check if this position is occupied or not from a size.
+		/// Can we fit at a position with a specific size?
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="size"></param>
 		/// <param name="ignore"></param>
-		/// <returns></returns>
+		/// <returns>True if the position is valid for the size, false if not.</returns>
 		public bool CanFit( Vector2Int position, Vector2Int size, Item ignore = null )
 		{
 			if ( position.x + size.x - 1 >= Size.x || position.y + size.y - 1 >= Size.y )
@@ -143,35 +163,27 @@ public sealed class SlotCollection
 			if ( size.x > Size.x || size.y > Size.y )
 				return false;
 
-			var slotsNeeded = new HashSet<Vector2Int>();
-			for ( int x = position.x; x < position.x + size.x; x++ )
-				for ( int y = position.y; y < position.y + size.y; y++ )
-				{
-					slotsNeeded.Add( new Vector2Int( x, y ) );
-				}
-
+			var selfRect = new RectInt( position, size - 1 );
 			foreach ( var (pos, item) in _references )
 			{
 				if ( ignore is not null && item == ignore ) continue;
 				if ( !item.IsValid() ) continue;
 
-				for ( int x = pos.x; x < pos.x + item.Size.x; x++ )
-					for ( int y = pos.y; y < pos.y + item.Size.y; y++ )
-					{
-						if ( slotsNeeded.Contains( new Vector2Int( x, y ) ) )
-							return false;
-					}
+				var rect = new RectInt( pos, item.Size - 1 );
+				if ( rect.IsInside( selfRect ) )
+					return false;
 			}
 
 			return true;
 		}
 
 		/// <summary>
-		/// Get the item that is occupying these slots.
+		/// Try to get the item that is occupying these slots.
+		/// <para>This is the only method that finds </para>
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="ignore"></param>
-		/// <returns></returns>
+		/// <returns>null or the item that occupies this slot in some way.</returns>
 		public Item GetReferenceAt( Vector2Int position, Item ignore = null )
 		{
 			if ( position.x >= Size.x || position.y >= Size.y )
@@ -180,75 +192,80 @@ public sealed class SlotCollection
 			if ( position.x < 0 || position.y < 0 )
 				return null;
 
+			if ( _references.TryGetValue( position, out var reference ) )
+				return reference;
+
 			foreach ( var (pos, item) in _references )
 			{
 				if ( ignore is not null && item == ignore ) continue;
 				if ( !item.IsValid() ) continue;
 
-				for ( int x = pos.x; x < pos.x + item.Size.x; x++ )
-					for ( int y = pos.y; y < pos.y + item.Size.y; y++ )
-					{
-						if ( position == new Vector2Int( x, y ) ) 
-							return item;
-					}
+				var rect = new RectInt( pos, item.Size - 1 );
+				if ( rect.IsInside( position ) )
+					return item;
 			}
 
 			return null;
 		}
 
 		/// <summary>
-		/// Try find space of specific size in this <see cref="SlotCollection.Box"/>.
+		/// Try to find space of this size that isn't taken inside of this Container.
+		/// <para>Use absolute Item sizes for the parameter.</para>
 		/// </summary>
 		/// <param name="size"></param>
-		/// <param name="position"></param>
-		/// <returns></returns>
-		public bool TryFindSpace( Vector2Int size, out Vector2Int position )
+		/// <param name="result"></param>
+		/// <param name="allowRotate"></param>
+		/// <returns>True if we found space, false if not.</returns>
+		public bool TryFindSpace( Vector2Int size, out (Vector2Int Position, bool Rotate) result, bool allowRotate = true )
 		{
-			var occupiedSlots = new HashSet<Vector2Int>();
+			// Find space normally.
+			result = (default, default);
+			if ( FindSpace( size, out result.Position ) )
+				return true;
+
+			// Find rotated space if we want that...
+			if ( !allowRotate )
+				return false;
+
+			var rotsize = new Vector2Int( size.y, size.x );
+			if ( !FindSpace( rotsize, out result.Position ) )
+				return false;
+
+			result.Rotate = true;
+			return true;
+		}
+
+		private bool FindSpace( Vector2Int size, out Vector2Int position )
+		{
 			position = Vector2Int.Zero;
 
 			if ( size.x > Size.x || size.y > Size.y )
 				return false;
 
-			for ( int x = 0; x < Size.x - size.x + 1; x++ )
-				for ( int y = 0; y < Size.y - size.y + 1; y++ )
+			for ( int y = 0; y < Size.y - size.y + 1; y++ )
+				for ( int x = 0; x < Size.x - size.x + 1; x++ )
 				{
-					var pos = new Vector2Int( x, y );
-					if ( occupiedSlots.Contains( pos ) ) continue;
-					if ( _references.TryGetValue( pos, out var item ) )
+					var selfPos = new Vector2Int( x, y );
+					var selfRect = new RectInt( selfPos, size - 1 );
+
+					var valid = true;
+					foreach ( var (pos, item) in _references )
 					{
-						if ( item.Size.x == 1 && item.Size.y == 1 )
-							continue;
+						if ( !item.IsValid() ) continue;
 
-						for ( int itemX = 0; itemX < item.Size.x; itemX++ )
-							for ( int itemY = 0; itemY < item.Size.y; itemY++ )
-							{
-								occupiedSlots.Add( pos + new Vector2Int( itemX, itemY ) );
-							}
-
-						continue;
-					}
-
-					var fits = true;
-					for ( int itemX = 0; itemX < size.x; itemX++ )
-					{
-						if ( !fits ) break;
-
-						for ( int itemY = 0; itemY < size.y; itemY++ )
+						var rect = new RectInt( pos, item.Size - 1 );
+						if ( rect.IsInside( selfRect ) )
 						{
-							position = pos + new Vector2Int( itemX, itemY );
-							if ( occupiedSlots.Contains( position ) ) continue;
-							if ( !_references.TryGetValue( pos, out _ ) )
-								continue;
-
-							fits = false;
+							valid = false;
 							break;
 						}
 					}
 
-					position = pos;
-
-					if ( fits ) return true;
+					if ( valid )
+					{
+						position = selfPos;
+						return true;
+					}
 				}
 
 			return false;
@@ -281,9 +298,9 @@ public sealed class SlotCollection
 	public int Order { get; private set; }
 
 	/// <summary>
-	/// The custom <see cref="Item"/> filter of this <see cref="SlotCollection"/>.
+	/// The <see cref="ItemTypeFlags"/> exclude flags filter of this <see cref="SlotCollection"/>.
 	/// </summary>
-	public Func<Item, bool> Filter { get; private set; }
+	public ItemTypeFlags ExcludeFlags { get; private set; }
 
 	/// <summary>
 	/// Read-only list of all the boxes inside of this <see cref="SlotCollection"/>.
@@ -334,14 +351,24 @@ public sealed class SlotCollection
 	}
 
 	/// <summary>
-	/// Assign a custom <see cref="Item"/> filter to a <see cref="SlotCollection"/>.
+	/// Assign a custom <see cref="ItemTypeFlags"/> exclude flags to a <see cref="SlotCollection"/>.
 	/// </summary>
-	/// <param name="filter"></param>
+	/// <param name="flags"></param>
 	/// <returns></returns>
-	public SlotCollection WithFilter( Func<Item, bool> filter )
+	public SlotCollection WithExcludeFlags( ItemTypeFlags flags )
 	{
-		if ( filter == null ) return this;
-		Filter = filter;
+		ExcludeFlags = flags;
+		return this;
+	}
+
+	/// <summary>
+	/// Assign a custom <see cref="ItemTypeFlags"/> exclude flags to a <see cref="SlotCollection"/>.
+	/// </summary>
+	/// <param name="flags"></param>
+	/// <returns></returns>
+	public SlotCollection With( ItemTypeFlags flags )
+	{
+		ExcludeFlags = flags;
 		return this;
 	}
 
@@ -363,13 +390,14 @@ public sealed class SlotCollection
 		Parent = container;
 	}
 
+	// todo: add item blacklisting and whitelisting
 	/// <summary>
 	/// Does this <see cref="Item"/> pass our filters?
-	/// <para>NOTE: true by default, if no filter is defined.</para>
 	/// </summary>
 	/// <param name="item"></param>
 	/// <returns></returns>
-	public bool PassesFilter( Item item ) => Filter?.Invoke( item ) ?? true;
+	public bool PassesFilter( Item item ) 
+		=> ExcludeFlags == ItemTypeFlags.None || !ExcludeFlags.HasFlag( item.TypeFlags );
 
 	/// <summary>
 	/// Destroy this <see cref="SlotCollection"/>.

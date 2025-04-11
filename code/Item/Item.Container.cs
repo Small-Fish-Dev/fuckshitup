@@ -39,12 +39,6 @@ partial class Item
 	[Property, FeatureEnabled( "Container" )]
 	public ItemTypeFlags ExcludeFlags { get; set; } = ItemTypeFlags.None;
 
-	/// <summary>
-	/// Custom item fitler?
-	/// </summary>
-	[Property, FeatureEnabled( "Container" )]
-	public Func<Item, bool> CustomFilter { get; set; }
-
 	/// <inheritdoc cref="SlotCollection.Order"/>
 	[Property, FeatureEnabled( "Container" )]
 	public int ContainerOrder { get; set; } = 0;
@@ -73,12 +67,9 @@ partial class Item
 			.Select( box => new SlotCollection.Box( box.Size, box.Margin, box.SameLine ) )
 			.ToArray();
 
-		var filter = CustomFilter;
-		filter ??= ( item ) => ExcludeFlags == ItemTypeFlags.None || !ExcludeFlags.HasFlag( item.TypeFlags );
-
 		var collection = Inventory.AddSlotCollection( Name, boxes )
 			.WithSource( this )
 			.WithOrder( ContainerOrder )
-			.WithFilter( filter );
+			.WithExcludeFlags( ExcludeFlags );
 	}
 }

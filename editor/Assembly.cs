@@ -9,5 +9,9 @@ global using System.Threading.Tasks;
 global using Editor;
 global using System.Text;
 global using System.Text.Json.Serialization;
+global using System.CodeDom.Compiler;
+global using System.IO;
+global using System.Text.RegularExpressions;
+
 
 namespace FUCKSHIT.Editor;
