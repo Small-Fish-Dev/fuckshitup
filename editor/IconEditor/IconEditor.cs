@@ -53,6 +53,7 @@ public sealed class IconEditor : GraphicsView
 				Layout.Add( new VectorControlWidget( position ), 0 );
 		}
 
+		Layout.AddStretchCell( 0 );
 		Layout.AddSpacingCell( 8 );
 
 		var row = Layout.Add( Layout.Row() );
@@ -100,7 +101,6 @@ public sealed class IconEditor : GraphicsView
 		if ( _obj == null )
 			return;
 
-
 		// Update camera and light.
 		var transform = _camera.FitModel( _obj );
 		_camera.Position = transform.Position;
@@ -117,6 +117,10 @@ public sealed class IconEditor : GraphicsView
 
 		var modelRenderer = GameObject?.Components.Get<ModelRenderer>( FindMode.EverythingInSelfAndChildren );
 		if ( modelRenderer.IsValid() )
+		{
 			_obj.Model = modelRenderer.Model;
+			_obj.MeshGroupMask = modelRenderer.BodyGroups;
+			_obj.ColorTint = modelRenderer.Tint;
+		}
 	}
 }
